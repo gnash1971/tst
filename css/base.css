@@ -1,0 +1,73 @@
+/**
+ * Fondations : variables, défilement, typographie de page.
+ */
+
+:root {
+    --sport-court: #15803d;
+    --sport-court-light: #22c55e;
+    --sport-ball: #f97316;
+    --sport-navy: #0f172a;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+.page-bg {
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.35s ease, color 0.35s ease;
+    background-color: #f0fdf4;
+    background-image:
+        radial-gradient(
+            circle at 15% 8%,
+            rgba(34, 197, 94, 0.12) 0%,
+            transparent 42%
+        ),
+        radial-gradient(
+            circle at 88% 5%,
+            rgba(249, 115, 22, 0.08) 0%,
+            transparent 38%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(21, 128, 61, 0.06) 0%,
+            transparent 50%
+        );
+}
+
+.dark .page-bg {
+    background-color: #020617;
+    background-image:
+        radial-gradient(
+            circle at 12% 6%,
+            rgba(34, 197, 94, 0.14) 0%,
+            transparent 40%
+        ),
+        radial-gradient(
+            circle at 90% 8%,
+            rgba(249, 115, 22, 0.1) 0%,
+            transparent 36%
+        ),
+        radial-gradient(
+            circle at 50% 95%,
+            rgba(21, 128, 61, 0.1) 0%,
+            transparent 48%
+        );
+}
+
+.font-display {
+    font-family: 'Exo 2', 'Inter', system-ui, sans-serif;
+}
+
+.texte-redactionnel {
+    text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+}

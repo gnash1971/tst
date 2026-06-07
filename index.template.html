@@ -1,0 +1,36 @@
+<!--
+  Modèle source de la page d'accueil.
+  Après modification des fragments dans partials/, regénérer index.html :
+  python scripts/build_index.py
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<!-- @partial partials/head.html -->
+</head>
+<body class="page-bg text-slate-800 dark:text-slate-100 min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white">
+
+<!-- @partial partials/header.html -->
+
+    <!-- Zone principale de contenu -->
+    <main class="flex-grow">
+
+<!-- @partial partials/hero.html -->
+
+<!-- @partial partials/documents-header.html -->
+
+<!-- @partial partials/doc-card-fiche.html -->
+<!-- @partial partials/doc-card-reglement.html -->
+<!-- @partial partials/doc-card-pv.html -->
+<!-- @partial partials/doc-card-statuts.html -->
+
+            </div>
+        </section>
+
+<!-- @partial partials/info.html -->
+
+    </main>
+
+<!-- @partial partials/footer.html -->
+</body>
+</html>

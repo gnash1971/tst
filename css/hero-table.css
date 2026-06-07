@@ -1,0 +1,183 @@
+/**
+ * Table de ping et balle animée (colonne visuelle du hero).
+ */
+
+.hero-visual__table-area {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 1.25rem;
+    padding: 0 1.5rem 0 0.5rem;
+}
+
+.hero-table {
+    position: relative;
+    width: 13.5rem;
+    flex-shrink: 0;
+    transform: perspective(520px) rotateX(14deg);
+    transform-origin: center bottom;
+}
+
+.hero-table__surface {
+    position: relative;
+    width: 100%;
+    height: 7.5rem;
+    border-radius: 0.625rem;
+    overflow: visible;
+    background: linear-gradient(
+        155deg,
+        #14532d 0%,
+        #15803d 38%,
+        #22c55e 100%
+    );
+    border: 3px solid #f8fafc;
+    box-shadow:
+        0 14px 32px rgba(21, 128, 61, 0.32),
+        inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.hero-table__shadow {
+    height: 0.75rem;
+    margin: 0.35rem 1.25rem 0;
+    border-radius: 9999px;
+    background: radial-gradient(
+        ellipse at center,
+        rgba(15, 23, 42, 0.22) 0%,
+        transparent 72%
+    );
+    filter: blur(2px);
+}
+
+.dark .hero-table__shadow {
+    background: radial-gradient(
+        ellipse at center,
+        rgba(0, 0, 0, 0.45) 0%,
+        transparent 72%
+    );
+}
+
+.hero-table__line {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.92);
+    pointer-events: none;
+}
+
+.hero-table__line--horizontal {
+    left: 6%;
+    right: 6%;
+    top: 50%;
+    height: 2px;
+    transform: translateY(-50%);
+    opacity: 0.35;
+}
+
+.hero-table__net {
+    position: absolute;
+    top: 5%;
+    bottom: 5%;
+    left: 50%;
+    z-index: 4;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 0.85rem;
+    transform: translateX(-50%);
+    pointer-events: none;
+}
+
+.hero-table__net-post {
+    width: 0.55rem;
+    height: 0.55rem;
+    border-radius: 9999px;
+    background: linear-gradient(145deg, #334155, #0f172a);
+    border: 2px solid #f8fafc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.25);
+    flex-shrink: 0;
+    z-index: 2;
+}
+
+.hero-table__net-tape {
+    position: absolute;
+    top: 0.45rem;
+    bottom: 0.45rem;
+    left: 50%;
+    width: 0.3rem;
+    transform: translateX(-50%);
+    background: linear-gradient(
+        180deg,
+        #ffffff 0%,
+        #f1f5f9 50%,
+        #ffffff 100%
+    );
+    border-radius: 1px;
+    box-shadow:
+        0 0 0 1px rgba(15, 23, 42, 0.12),
+        0 1px 3px rgba(0, 0, 0, 0.15);
+    z-index: 3;
+}
+
+.hero-table__net-mesh {
+    flex: 1;
+    width: 100%;
+    min-height: 2.5rem;
+    margin: 0.05rem 0;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.18);
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255, 255, 255, 0.55) 0 1px,
+            transparent 1px 4px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.45) 0 1px,
+            transparent 1px 3px
+        );
+    border-left: 1px solid rgba(255, 255, 255, 0.5);
+    border-right: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.15);
+}
+
+.hero-table__ball {
+    position: absolute;
+    z-index: 6;
+    width: 1.3rem;
+    height: 1.3rem;
+    border-radius: 9999px;
+    pointer-events: none;
+    background: radial-gradient(
+        circle at 30% 28%,
+        #ffffff 0%,
+        #f8fafc 45%,
+        #cbd5e1 100%
+    );
+    box-shadow:
+        inset -2px -3px 5px rgba(0, 0, 0, 0.07),
+        0 3px 8px rgba(15, 23, 42, 0.22);
+    animation: ball-rally 3.2s ease-in-out infinite;
+}
+
+.hero-table__ball::before {
+    content: '';
+    position: absolute;
+    bottom: -0.2rem;
+    left: 50%;
+    width: 70%;
+    height: 0.35rem;
+    transform: translateX(-50%);
+    border-radius: 9999px;
+    background: rgba(15, 23, 42, 0.18);
+    filter: blur(1px);
+    animation: ball-shadow-rally 3.2s ease-in-out infinite;
+}
+
+.hero-table__ball::after {
+    content: '';
+    position: absolute;
+    inset: 18%;
+    border-radius: 9999px;
+    border: 1.5px solid rgba(148, 163, 184, 0.4);
+}

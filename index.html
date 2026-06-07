@@ -1,0 +1,591 @@
+<!--
+  Modèle source de la page d'accueil.
+  Après modification des fragments dans partials/, regénérer index.html :
+  python scripts/build_index.py
+-->
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Espace documentaire officiel de l'association Lentilly Tennis de Table (LTT). Statuts, règlement, inscription et procès-verbaux.">
+    <meta name="author" content="Lentilly Tennis de Table">
+    <meta name="theme-color" content="#15803d">
+    <meta name="color-scheme" content="light dark">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; style-src 'self' file: 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' file: https://cdn.tailwindcss.com; font-src 'self' file: https://fonts.gstatic.com; img-src 'self' file: data:; connect-src 'self' file: https://cdn.tailwindcss.com https://fonts.googleapis.com https://fonts.gstatic.com;">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>Espace Documentaire Officiel &mdash; Lentilly Tennis de Table</title>
+
+    <!-- Tailwind CSS (CDN) + configuration locale -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="js/tailwind.config.js"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Styles personnalisés -->
+    <link rel="stylesheet" href="css/styles.css">
+
+    <!-- Icônes Lucide (local : file:// et production) -->
+    <script src="js/lucide.min.js"></script>
+
+    <!-- Thème : noyau + application immédiate (évite le flash blanc) -->
+    <script src="js/ltt-theme-core.js"></script>
+    <script src="js/theme-init.js"></script>
+</head>
+<body class="page-bg text-slate-800 dark:text-slate-100 min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white">
+
+    <!-- En-tête (Header) -->
+    <header class="site-header sticky top-0 z-50 bg-white/85 dark:bg-slate-900/85 backdrop-blur-lg border-b border-slate-200/80 dark:border-slate-800 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo et Titre -->
+            <a href="index.html" class="flex items-center space-x-4 group" aria-label="Accueil — Lentilly Tennis de Table">
+                <div class="relative">
+                    <!-- Utilisation du logo extrait -->
+                    <img src="logo/logo_club.jpg" alt="Logo LTT" data-logo-fallback="svg" width="48" height="48" class="h-12 w-auto object-contain rounded-md shadow-md border border-slate-100 dark:border-slate-800 transition-transform duration-300 group-hover:scale-105">
+                    <span class="absolute -bottom-1 -right-1 flex h-3 w-3">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                    </span>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
+                        Lentilly Tennis de Table
+                    </h1>
+                    <p class="text-xs font-bold text-emerald-700 dark:text-emerald-400 tracking-wider uppercase">
+                        Club de tennis de table — Lentilly
+                    </p>
+                </div>
+            </a>
+
+            <!-- Actions de l'en-tête (Thème & Contact) -->
+            <div class="flex items-center space-x-4">
+                
+                <!-- Bouton Thème (icônes SVG intégrées, sans dépendance CDN) -->
+                <button id="theme-toggle" type="button" class="inline-flex items-center justify-center p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500" aria-label="Changer de thème">
+                    <svg class="h-5 w-5 block dark:hidden shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <circle cx="12" cy="12" r="4"></circle>
+                        <path d="M12 2v2"></path>
+                        <path d="M12 20v2"></path>
+                        <path d="m4.93 4.93 1.41 1.41"></path>
+                        <path d="m17.66 17.66 1.41 1.41"></path>
+                        <path d="M2 12h2"></path>
+                        <path d="M20 12h2"></path>
+                        <path d="m6.34 17.66-1.41 1.41"></path>
+                        <path d="m19.07 4.93-1.41 1.41"></path>
+                    </svg>
+                    <svg class="h-5 w-5 hidden dark:block shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                    </svg>
+                </button>
+
+                <!-- Lien Site du Club / Contact -->
+                <a href="mailto:contact@lentillytt.fr" class="hidden sm:inline-flex items-center space-x-2 px-4 h-10 bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-orange-500 dark:to-orange-600 text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:shadow-emerald-600/25 dark:hover:shadow-orange-500/25 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    <i data-lucide="mail" class="h-4 w-4"></i>
+                    <span>Nous contacter</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Zone principale de contenu -->
+    <main class="flex-grow">
+
+        <!-- Hero Section -->
+        <section class="hero-section relative overflow-hidden border-b border-emerald-200/50 dark:border-emerald-900/40 transition-colors duration-300">
+            <!-- Fond d'ambiance sportif -->
+            <div class="hero-aurora" aria-hidden="true"></div>
+            <div class="hero-glow hero-glow--court" aria-hidden="true"></div>
+            <div class="hero-glow hero-glow--ball" aria-hidden="true"></div>
+
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start pt-10 pb-6 lg:pt-14 lg:pb-8">
+                    <!-- Colonne texte -->
+                    <div class="lg:col-span-7 text-center lg:text-left">
+                        <span class="hero-badge inline-flex items-center px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-600/10 dark:bg-emerald-500/15 text-emerald-800 dark:text-emerald-300 border border-emerald-500/25 mb-6 shadow-sm">
+                            <i data-lucide="trophy" class="h-4 w-4 mr-2"></i>
+                            Club LTT — Documents officiels
+                        </span>
+
+                        <h2 class="hero-title text-4xl sm:text-5xl xl:text-[3.4rem] font-extrabold tracking-tight mb-5 leading-[1.05]">
+                            <span class="block hero-display uppercase text-slate-800 dark:text-white">Préparez</span>
+                            <span class="block text-gradient mt-1 uppercase">votre saison au ping</span>
+                        </h2>
+
+                        <p class="texte-redactionnel hero-lead text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto lg:mx-0 leading-relaxed mb-8">
+                            Inscription, règlement, statuts et procès-verbaux : retrouvez ici tous les documents officiels du club <strong class="font-semibold text-slate-900 dark:text-white">Lentilly Tennis de Table</strong>, pour jouer, vous entraîner ou vous engager en toute sérénité — en loisir comme en compétition.
+                        </p>
+
+                        <div class="hero-stats flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                            <span class="stat-pill stat-pill--accent">
+                                <span class="stat-pill-icon stat-pill-icon--court" aria-hidden="true">
+                                    <i data-lucide="files" class="h-3.5 w-3.5"></i>
+                                </span>
+                                4 docs à consulter
+                            </span>
+                            <span class="stat-pill">
+                                <span class="stat-pill-icon stat-pill-icon--ball" aria-hidden="true">
+                                    <i data-lucide="sun" class="h-3.5 w-3.5"></i>
+                                </span>
+                                Mode jour / nuit
+                            </span>
+                            <span class="stat-pill">
+                                <span class="stat-pill-icon stat-pill-icon--navy" aria-hidden="true">
+                                    <i data-lucide="smartphone" class="h-3.5 w-3.5"></i>
+                                </span>
+                                Sur le court ou à la maison
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Colonne visuelle (desktop) -->
+                    <div class="lg:col-span-5 hidden lg:flex lg:justify-end lg:pt-2">
+                        <div class="hero-visual" aria-labelledby="hero-vestiaire-title">
+                            <div class="hero-visual__glow"></div>
+
+                            <div class="hero-visual__table-area">
+                                <div class="hero-table">
+                                    <div class="hero-table__surface">
+                                        <div class="hero-table__line hero-table__line--horizontal"></div>
+                                        <div class="hero-table__net" aria-hidden="true">
+                                            <span class="hero-table__net-post hero-table__net-post--top"></span>
+                                            <span class="hero-table__net-mesh"></span>
+                                            <span class="hero-table__net-post hero-table__net-post--bottom"></span>
+                                            <span class="hero-table__net-tape"></span>
+                                        </div>
+                                        <div class="hero-table__ball" aria-hidden="true"></div>
+                                    </div>
+                                    <div class="hero-table__shadow"></div>
+                                </div>
+                            </div>
+
+                            <div class="hero-visual__card">
+                                <div class="hero-visual__header">
+                                    <img src="logo/logo_club.jpg" alt="" data-logo-fallback="hide" class="hero-visual__logo">
+                                    <div>
+                                        <p class="hero-visual__club">Lentilly Tennis de Table</p>
+                                        <p class="hero-visual__tagline" id="hero-vestiaire-title">Le vestiaire numérique du club</p>
+                                    </div>
+                                </div>
+                                <nav class="hero-visual__docs" aria-label="Sommaire des documents">
+                                    <a href="#doc-fiche-inscription" class="hero-visual__doc hero-visual__doc--purple doc-toc-link">
+                                        <span>Fiche d'inscription</span>
+                                        <i data-lucide="file-edit" class="h-4 w-4" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="#doc-reglement-interieur" class="hero-visual__doc hero-visual__doc--blue doc-toc-link">
+                                        <span>Règlement intérieur</span>
+                                        <i data-lucide="book-open" class="h-4 w-4" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="#doc-pv-ag" class="hero-visual__doc hero-visual__doc--green doc-toc-link">
+                                        <span>PV d'AG constitutive</span>
+                                        <i data-lucide="file-text" class="h-4 w-4" aria-hidden="true"></i>
+                                    </a>
+                                    <a href="#doc-statuts" class="hero-visual__doc hero-visual__doc--red doc-toc-link">
+                                        <span>Statuts de l'association</span>
+                                        <i data-lucide="shield" class="h-4 w-4" aria-hidden="true"></i>
+                                    </a>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Panneau recherche & filtres -->
+                <div class="hero-search-panel hero-search mb-8 lg:mb-10">
+                    <div class="hero-search-panel__inner">
+                        <div class="hero-search-panel__label">
+                            <i data-lucide="search" class="h-4 w-4 text-emerald-600"></i>
+                            <span>Trouvez votre document en un clin d'œil</span>
+                        </div>
+                        <div class="search-panel relative">
+                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                                <i data-lucide="search" class="h-5 w-5"></i>
+                            </div>
+                            <input type="search" id="search-bar" maxlength="120" autocomplete="off" spellcheck="false" placeholder="Mot-clé : tarif, RGPD, AG, bureau, statuts…" class="w-full pl-12 pr-12 py-4 rounded-2xl text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none transition-all duration-200 text-base" aria-label="Rechercher un document">
+                            <button id="clear-search" type="button" class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hidden" aria-label="Effacer la recherche">
+                                <i data-lucide="x" class="h-5 w-5"></i>
+                            </button>
+                        </div>
+
+                        <div class="hero-filters">
+                            <span class="hero-filters__label">Filtrer :</span>
+                            <div class="flex flex-wrap items-center gap-2">
+                                <button class="filter-btn active px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-emerald-600 text-white shadow-md shadow-emerald-500/20 border border-emerald-600" data-category="all">
+                                    Tous les documents
+                                </button>
+                                <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="administratif">
+                                    Administratif & Inscription
+                                </button>
+                                <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="juridique">
+                                    Statuts & PV d'AG
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Grille des Documents -->
+        <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-10">
+                <div>
+                    <p class="text-xs font-bold uppercase tracking-widest text-emerald-600 dark:text-emerald-400 mb-1">
+                        Vestiaire documentaire
+                    </p>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">
+                        Vos documents de jeu
+                    </h3>
+                </div>
+                <p id="doc-count" class="text-sm font-medium text-slate-500 dark:text-slate-400">
+                    4 documents disponibles
+                </p>
+            </div>
+
+            <!-- Sommaire mobile (équivalent au vestiaire numérique desktop) -->
+            <nav class="doc-toc-mobile lg:hidden flex flex-wrap gap-2 mb-8" aria-label="Sommaire des documents">
+                <a href="#doc-fiche-inscription" class="doc-toc-mobile__link doc-toc-link">Fiche d'inscription</a>
+                <a href="#doc-reglement-interieur" class="doc-toc-mobile__link doc-toc-link">Règlement intérieur</a>
+                <a href="#doc-pv-ag" class="doc-toc-mobile__link doc-toc-link">PV d'AG</a>
+                <a href="#doc-statuts" class="doc-toc-mobile__link doc-toc-link">Statuts</a>
+            </nav>
+
+            <div id="no-results" class="text-center py-12 hidden">
+                <div class="inline-flex p-4 rounded-full bg-slate-100 dark:bg-slate-900 text-slate-400 dark:text-slate-500 mb-4">
+                    <i data-lucide="file-warning" class="h-10 w-10"></i>
+                </div>
+                <p class="texte-redactionnel text-lg font-medium text-slate-900 dark:text-white">Aucun document ne correspond à votre recherche</p>
+                <p class="texte-redactionnel text-slate-500 dark:text-slate-400 mt-1">Essayez d'autres mots-clés ou modifiez vos filtres.</p>
+                <button id="reset-search" class="mt-4 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-semibold shadow transition-all duration-200">
+                    Réinitialiser la recherche
+                </button>
+            </div>
+
+            <div id="documents-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <!-- Carte 1 : Fiche d'inscription -->
+                <div id="doc-fiche-inscription" class="doc-card bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-brand-purple/40 dark:hover:border-brand-purple/40 transition-all duration-300 flex flex-col overflow-hidden group" data-category="administratif" data-search="fiche inscription adhésion tarifs prix rgpd engagements protection données créneaux signature">
+                    <div class="h-2 bg-gradient-to-r from-purple-500 to-indigo-600"></div>
+                    <div class="p-8 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-start justify-between mb-6">
+                                <div class="p-4 bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 rounded-2xl group-hover:scale-110 transition-transform duration-300">
+                                    <i data-lucide="file-edit" class="h-7 w-7"></i>
+                                </div>
+                                <div class="flex flex-col items-end space-y-1">
+                                    <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-purple-100 dark:bg-purple-950/80 text-purple-800 dark:text-purple-300 border border-purple-200/50 dark:border-purple-900/50">
+                                        Version V2
+                                    </span>
+                                    <span class="text-[10px] text-slate-400 dark:text-slate-500 font-semibold uppercase tracking-wider">
+                                        Administratif
+                                    </span>
+                                </div>
+                            </div>
+
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-200 mb-3">
+                                Fiche d'Inscription & RGPD
+                            </h3>
+
+                            <p class="texte-redactionnel text-slate-600 dark:text-slate-300 mb-6 leading-relaxed text-sm">
+                                Le document officiel de référence pour toute demande d'adhésion au club. Il regroupe le formulaire de renseignements, la grille de cotisations pour la saison en cours (compétition et loisirs), les créneaux horaires réservés, ainsi que la charte d'engagements réciproques vis-à-vis du RGPD et du droit à l'image.
+                            </p>
+
+                            <div class="key-content space-y-2 mb-8">
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Contenu clé :</h4>
+                                <ul class="grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
+                                    <li class="flex items-center space-x-2">
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-purple-500 shrink-0"></i>
+                                        <span>Tarifs des cotisations</span>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-purple-500 shrink-0"></i>
+                                        <span>Créneaux horaires</span>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-purple-500 shrink-0"></i>
+                                        <span>Autorisations d'image</span>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-purple-500 shrink-0"></i>
+                                        <span>Conformité RGPD</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
+                            <span class="text-xs text-slate-400 dark:text-slate-500">Mise à jour : Saison en cours</span>
+                            <a href="fic/V2_fiche_inscription.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-purple-500/10 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-200">
+                                <span>Consulter en ligne</span>
+                                <i data-lucide="arrow-right" class="h-4 w-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carte 2 : Règlement Intérieur -->
+                <div id="doc-reglement-interieur" class="doc-card bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-brand-blue/40 dark:hover:border-brand-blue/40 transition-all duration-300 flex flex-col overflow-hidden group" data-category="administratif" data-search="règlement intérieur ri code conduite règles de vie salle horaires matériel respect tennis table sécurité sanctions">
+                    <div class="h-2 bg-gradient-to-r from-blue-500 to-sky-600"></div>
+                    <div class="p-8 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-start justify-between mb-6">
+                                <div class="p-4 bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 rounded-2xl group-hover:scale-110 transition-transform duration-300">
+                                    <i data-lucide="book-open" class="h-7 w-7"></i>
+                                </div>
+                                <div class="flex flex-col items-end space-y-1">
+                                    <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-100 dark:bg-blue-950/80 text-blue-800 dark:text-blue-300 border border-blue-200/50 dark:border-blue-900/50">
+                                        Version V5
+                                    </span>
+                                    <span class="text-[10px] text-slate-400 dark:text-slate-500 font-semibold uppercase tracking-wider">
+                                        Administratif
+                                    </span>
+                                </div>
+                            </div>
+
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 mb-3">
+                                Règlement Intérieur (RI)
+                            </h3>
+
+                            <p class="texte-redactionnel text-slate-600 dark:text-slate-300 mb-6 leading-relaxed text-sm">
+                                Le cadre d'organisation interne et de civilité du club. Indispensable pour garantir une pratique harmonieuse, il détaille les modalités d'accès à la salle de sport, le comportement attendu des adhérents, le respect dû au matériel (tables, séparations, robots d'entraînement) ainsi que l'organisation des créneaux.
+                            </p>
+
+                            <div class="key-content space-y-2 mb-8">
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Contenu clé :</h4>
+                                <ul class="grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
+                                    <li class="flex items-center space-x-2">
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-blue-500 shrink-0"></i>
+                                        <span>Usage du matériel</span>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-blue-500 shrink-0"></i>
+                                        <span>Règles de bonne conduite</span>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-blue-500 shrink-0"></i>
+                                        <span>Accès à la salle et clés</span>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-blue-500 shrink-0"></i>
+                                        <span>Ethique en compétition</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
+                            <span class="text-xs text-slate-400 dark:text-slate-500">Règles de vie collective</span>
+                            <a href="fic/V5_reglement_interieur_clubLTT.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-blue-500/10 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-200">
+                                <span>Consulter en ligne</span>
+                                <i data-lucide="arrow-right" class="h-4 w-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carte 3 : PV de l'AG Constitutive -->
+                <div id="doc-pv-ag" class="doc-card bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-brand-green/40 dark:hover:border-brand-green/40 transition-all duration-300 flex flex-col overflow-hidden group" data-category="juridique" data-search="procès-verbal pv assemblée générale constitutive fondateurs bureau président secrétaire trésorier délibérations création histoire">
+                    <div class="h-2 bg-gradient-to-r from-green-500 to-emerald-600"></div>
+                    <div class="p-8 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-start justify-between mb-6">
+                                <div class="p-4 bg-green-50 dark:bg-green-950/40 text-green-600 dark:text-green-400 rounded-2xl group-hover:scale-110 transition-transform duration-300">
+                                    <i data-lucide="file-text" class="h-7 w-7"></i>
+                                </div>
+                                <div class="flex flex-col items-end space-y-1">
+                                    <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-green-100 dark:bg-green-950/80 text-green-800 dark:text-green-300 border border-green-200/50 dark:border-green-900/50">
+                                        Version V2
+                                    </span>
+                                    <span class="text-[10px] text-slate-400 dark:text-slate-500 font-semibold uppercase tracking-wider">
+                                        Juridique & Officiel
+                                    </span>
+                                </div>
+                            </div>
+
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-200 mb-3">
+                                PV d'Assemblée Générale
+                            </h3>
+
+                            <p class="texte-redactionnel text-slate-600 dark:text-slate-300 mb-6 leading-relaxed text-sm">
+                                L'acte fondateur authentifiant la création du club de Tennis de Table. Ce procès-verbal retrace les débats historiques de l'Assemblée Générale Constitutive, l'adoption à l'unanimité des statuts d'origine, la nomination des premiers membres du Bureau Directeur (Bureau initial) et l'établissement formel du siège social.
+                            </p>
+
+                            <div class="key-content space-y-2 mb-8">
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Contenu clé :</h4>
+                                <ul class="grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
+                                    <li class="flex items-center space-x-2">
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-green-500 shrink-0"></i>
+                                        <span>Liste des fondateurs</span>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-green-500 shrink-0"></i>
+                                        <span>Élection du premier Bureau</span>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-green-500 shrink-0"></i>
+                                        <span>Délibérations officielles</span>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-green-500 shrink-0"></i>
+                                        <span>Pouvoirs de formalités</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
+                            <span class="text-xs text-slate-400 dark:text-slate-500">Acte fondateur historique</span>
+                            <a href="fic/V2_PV_AG1.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-green-500/10 hover:shadow-lg hover:shadow-green-500/20 transition-all duration-200">
+                                <span>Consulter en ligne</span>
+                                <i data-lucide="arrow-right" class="h-4 w-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Carte 4 : Statuts du Club -->
+                <div id="doc-statuts" class="doc-card bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-brand-red/40 dark:hover:border-brand-red/40 transition-all duration-300 flex flex-col overflow-hidden group" data-category="juridique" data-search="statuts constitution loi 1901 association déclaré adhésion démission radiation conseil administration assemblées ressources modifications dissolution">
+                    <div class="h-2 bg-gradient-to-r from-red-500 to-rose-600"></div>
+                    <div class="p-8 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-start justify-between mb-6">
+                                <div class="p-4 bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 rounded-2xl group-hover:scale-110 transition-transform duration-300">
+                                    <i data-lucide="shield" class="h-7 w-7"></i>
+                                </div>
+                                <div class="flex flex-col items-end space-y-1">
+                                    <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-red-100 dark:bg-red-950/80 text-red-800 dark:text-red-300 border border-red-200/50 dark:border-red-900/50">
+                                        Version V12
+                                    </span>
+                                    <span class="text-[10px] text-slate-400 dark:text-slate-500 font-semibold uppercase tracking-wider">
+                                        Juridique & Officiel
+                                    </span>
+                                </div>
+                            </div>
+
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-200 mb-3">
+                                Statuts de l'Association
+                            </h3>
+
+                            <p class="texte-redactionnel text-slate-600 dark:text-slate-300 mb-6 leading-relaxed text-sm">
+                                La constitution juridique suprême du club, rédigée conformément à la loi du 1er juillet 1901. Ce document définit l'objet non lucratif de l'association (le tennis de table), l'organisation interne (Conseil d'Administration, Assemblée Générale Ordinaire et Extraordinaire), les ressources matérielles et la gestion de la dissolution.
+                            </p>
+
+                            <div class="key-content space-y-2 mb-8">
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Contenu clé :</h4>
+                                <ul class="grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
+                                    <li class="flex items-center space-x-2">
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-red-500 shrink-0"></i>
+                                        <span>Objet & Siège social</span>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-red-500 shrink-0"></i>
+                                        <span>Conseil d'Administration</span>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-red-500 shrink-0"></i>
+                                        <span>Modalités AGO & AGE</span>
+                                    </li>
+                                    <li class="flex items-center space-x-2">
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-red-500 shrink-0"></i>
+                                        <span>Financement & Dissolution</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="pt-4 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
+                            <span class="text-xs text-slate-400 dark:text-slate-500">Texte juridique constitutionnel</span>
+                            <a href="fic/V12_statuts_club_LTT.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-red-500/10 hover:shadow-lg hover:shadow-red-500/20 transition-all duration-200">
+                                <span>Consulter en ligne</span>
+                                <i data-lucide="arrow-right" class="h-4 w-4"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Section Infos Pratiques Additionnelles -->
+        <section class="py-16 bg-slate-100/80 dark:bg-slate-900/50 border-t border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="max-w-3xl mx-auto text-center mb-12">
+                    <h3 class="text-3xl font-extrabold text-slate-900 dark:text-white font-display uppercase tracking-tight">
+                        Avant d'aller à la table
+                    </h3>
+                    <p class="texte-redactionnel text-slate-600 dark:text-slate-400 mt-3">
+                        Consultez, lisez et imprimez les documents du club où que vous soyez — avant l'entraînement, après le match ou depuis les gradins.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="info-card bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                        <div class="p-3 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-600 dark:text-emerald-400 rounded-xl w-fit mb-4">
+                            <i data-lucide="smartphone" class="h-5 w-5"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Sur tous les écrans</h4>
+                        <p class="texte-redactionnel text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                            Smartphone, tablette ou ordinateur : les documents s'adaptent pour une lecture confortable, que vous soyez au club ou en déplacement.
+                        </p>
+                    </div>
+
+                    <div class="info-card bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm">
+                        <div class="p-3 bg-orange-50 dark:bg-orange-950/40 text-orange-600 dark:text-orange-400 rounded-xl w-fit mb-4">
+                            <i data-lucide="eye" class="h-5 w-5"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Jour &amp; nuit</h4>
+                        <p class="texte-redactionnel text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                            Un mode sombre reposant pour les yeux après les séances du soir. Votre préférence est mémorisée automatiquement.
+                        </p>
+                    </div>
+
+                    <div class="info-card bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm sm:col-span-2 lg:col-span-1">
+                        <div class="p-3 bg-green-50 dark:bg-green-950/40 text-green-600 dark:text-green-400 rounded-xl w-fit mb-4">
+                            <i data-lucide="printer" class="h-5 w-5"></i>
+                        </div>
+                        <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Imprimer ou archiver</h4>
+                        <p class="texte-redactionnel text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
+                            Chaque document est optimisé pour l'impression. Enregistrez-le en PDF via votre navigateur (<kbd class="px-1.5 py-0.5 bg-slate-100 dark:bg-slate-800 rounded border text-xs">Ctrl+P</kbd>) pour le garder dans votre sac de sport.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Pied de page (Footer) -->
+    <footer class="site-footer border-t border-slate-200 dark:border-slate-900 transition-colors duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+            
+            <div class="flex items-center space-x-3 text-slate-500 dark:text-slate-400 text-sm">
+                <img src="logo/logo_club.jpg" alt="Logo LTT" data-logo-fallback="hide" width="32" height="32" class="h-8 w-auto opacity-70">
+                <span>&copy; 2026 Lentilly Tennis de Table (LTT). Tous droits réservés.</span>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-6 text-sm text-slate-500 dark:text-slate-400">
+                <span class="inline-flex items-center">
+                    <i data-lucide="trophy" class="h-4 w-4 mr-1.5 text-emerald-500"></i>
+                    <span>Association Loi 1901</span>
+                </span>
+                <span>•</span>
+                <span>Lentilly (69210), France</span>
+                <span>•</span>
+                <a href="mailto:contact@lentillytt.fr" class="hover:text-blue-500 dark:hover:text-blue-400 transition-colors">contact@lentillytt.fr</a>
+            </div>
+            
+        </div>
+    </footer>
+
+    <!-- Modules JavaScript (ordre de chargement requis) -->
+    <script src="js/ltt-images.js"></script>
+    <script src="js/ltt-constants.js"></script>
+    <script src="js/ltt-theme-manager.js"></script>
+    <script src="js/ltt-document-filter.js"></script>
+    <script src="js/ltt-document-navigator.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
+

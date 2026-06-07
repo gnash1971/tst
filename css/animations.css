@@ -1,0 +1,102 @@
+/**
+ * Animations et respect des préférences de mouvement réduit.
+ */
+
+@keyframes ball-rally {
+    0%, 100% {
+        left: 7%;
+        top: 40%;
+        transform: translate(0, 0) scale(1);
+    }
+    18% {
+        top: 34%;
+    }
+    44% {
+        left: 86%;
+        top: 54%;
+        transform: translate(-100%, 0) scale(1);
+    }
+    48% {
+        left: 52%;
+        top: 46%;
+        transform: translate(-50%, 0) scale(0.86);
+    }
+    52% {
+        left: 48%;
+        top: 46%;
+        transform: translate(-50%, 0) scale(0.86);
+    }
+    72% {
+        top: 36%;
+    }
+    88% {
+        left: 10%;
+        top: 44%;
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+@keyframes ball-shadow-rally {
+    0%, 100% {
+        opacity: 0.55;
+        transform: translateX(-50%) scale(1);
+    }
+    48%, 52% {
+        opacity: 0.35;
+        transform: translateX(-50%) scale(0.75);
+    }
+}
+
+@keyframes float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-in-down {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-badge,
+    .hero-title,
+    .hero-lead,
+    .hero-stats,
+    .hero-search,
+    .doc-card {
+        animation: none;
+    }
+
+    .doc-card:hover,
+    .filter-btn:hover,
+    .info-card:hover,
+    .stat-pill:hover,
+    .hero-visual__doc:hover,
+    .hero-table__ball,
+    .hero-table__ball::before {
+        animation: none;
+        transform: none;
+    }
+
+    .hero-table__ball {
+        left: 30%;
+        top: 42%;
+    }
+}

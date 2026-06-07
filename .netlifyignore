@@ -1,0 +1,12 @@
+# Sources de build : utilisées par build_index.py, non publiées en ligne
+partials/
+scripts/
+index.template.html
+
+# Fichiers locaux / Apache (Netlify utilise netlify.toml et _headers)
+.htaccess
+
+# Outils de développement
+.cursor/
+.git/
+.gitignore

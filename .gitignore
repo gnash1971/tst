@@ -1,0 +1,15 @@
+# Éditeur / OS
+.DS_Store
+Thumbs.db
+desktop.ini
+.cursor/
+
+# Environnements Python locaux
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# Secrets (ne jamais versionner)
+.env
+.env.*

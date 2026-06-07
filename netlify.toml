@@ -1,0 +1,32 @@
+# Déploiement Netlify — Lentilly Tennis de Table
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  command = "python scripts/build_index.py"
+  publish = "."
+
+[build.environment]
+  PYTHON_VERSION = "3.12"
+
+# Fichiers sources de build : accessibles au build, exclus du site via .netlifyignore
+# (partials/, scripts/, index.template.html)
+
+[[redirects]]
+  from = "/partials/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/scripts/*"
+  to = "/404.html"
+  status = 404
+  force = true
+
+[[redirects]]
+  from = "/index.template.html"
+  to = "/404.html"
+  status = 404
+  force = true
+
+# Page 404 personnalisée : fichier 404.html à la racine (comportement Netlify natif).

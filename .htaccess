@@ -1,0 +1,38 @@
+# ============================================================
+# En-têtes de sécurité HTTP — Lentilly Tennis de Table
+# Apache uniquement (mod_headers, mod_rewrite recommandés).
+# ============================================================
+
+<IfModule mod_headers.c>
+    # CSP globale : les pages fic/ complètent via balise <meta> si besoin.
+    Header set Content-Security-Policy "default-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://cdn.jsdelivr.net; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://cdn.tailwindcss.com https://cdn.jsdelivr.net https://fonts.googleapis.com https://fonts.gstatic.com;"
+
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "DENY"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), vr=(), interest-cohort=()"
+    Header set Cross-Origin-Opener-Policy "same-origin"
+    Header set Cross-Origin-Resource-Policy "same-site"
+
+    # HSTS (HTTPS obligatoire côté hébergeur).
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+</IfModule>
+
+# Bloque l'accès HTTP aux sources de build et aux scripts internes.
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteRule (^|/)partials/ - [F,L]
+    RewriteRule (^|/)scripts/ - [F,L]
+    RewriteRule ^index\.template\.html$ - [F,L]
+</IfModule>
+
+<IfModule mod_autoindex.c>
+    Options -Indexes
+</IfModule>
+
+# Types MIME explicites pour les ressources statiques.
+<IfModule mod_mime.c>
+    AddType text/css .css
+    AddType application/javascript .js
+    AddType image/jpeg .jpg .jpeg
+</IfModule>

@@ -1,0 +1,105 @@
+/**
+ * Grille documentaire : sommaire mobile, cartes et navigation par ancres.
+ */
+
+.doc-toc-mobile__link {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 0.875rem;
+    border-radius: 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: #047857;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.doc-toc-mobile__link:hover {
+    background: rgba(16, 185, 129, 0.18);
+    transform: translateY(-1px);
+}
+
+.doc-toc-mobile__link:focus-visible {
+    outline: 2px solid var(--sport-court-light);
+    outline-offset: 2px;
+}
+
+.dark .doc-toc-mobile__link {
+    color: #6ee7b7;
+    background: rgba(16, 185, 129, 0.15);
+    border-color: rgba(16, 185, 129, 0.3);
+}
+
+.doc-card {
+    position: relative;
+    scroll-margin-top: 6rem;
+    transition:
+        transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+    animation: fade-in-up 0.55s ease-out both;
+}
+
+.doc-card:nth-child(1) { animation-delay: 0.05s; }
+.doc-card:nth-child(2) { animation-delay: 0.12s; }
+.doc-card:nth-child(3) { animation-delay: 0.19s; }
+.doc-card:nth-child(4) { animation-delay: 0.26s; }
+
+.doc-card:hover {
+    transform: translateY(-6px);
+}
+
+.doc-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    box-shadow: 0 24px 48px rgba(15, 23, 42, 0.12);
+}
+
+.doc-card:hover::after {
+    opacity: 1;
+}
+
+.dark .doc-card:hover::after {
+    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+}
+
+.doc-card--highlight {
+    box-shadow:
+        0 0 0 3px rgba(34, 197, 94, 0.45),
+        0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.dark .doc-card--highlight {
+    box-shadow:
+        0 0 0 3px rgba(34, 197, 94, 0.35),
+        0 20px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+.key-content {
+    padding: 0.875rem 1rem;
+    border-radius: 1rem;
+    background: rgba(248, 250, 252, 0.85);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.dark .key-content {
+    background: rgba(15, 23, 42, 0.55);
+    border-color: rgba(51, 65, 85, 0.7);
+}
+
+.doc-card a[href*="fic/"] i,
+.doc-card a[href*="fic/"] svg {
+    transition: transform 0.2s ease;
+}
+
+.doc-card a[href*="fic/"]:hover i,
+.doc-card a[href*="fic/"]:hover svg {
+    transform: translateX(3px);
+}

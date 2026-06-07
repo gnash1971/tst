@@ -1,0 +1,19 @@
+/**
+ * Section informations pratiques.
+ */
+
+.info-card {
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+}
+
+.dark .info-card:hover {
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
+}
