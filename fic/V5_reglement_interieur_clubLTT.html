@@ -17,8 +17,9 @@
         http-equiv="Content-Security-Policy"
         content="default-src 'self'; base-uri 'none'; form-action 'none';
         frame-ancestors 'none'; object-src 'none'; style-src 'self'
-        'unsafe-inline'; script-src 'self' 'unsafe-inline'; font-src 'self';
+        'unsafe-inline'; script-src 'self'; font-src 'self';
         img-src 'self' data:;"
+    >
     >
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta http-equiv="X-Frame-Options" content="DENY">
@@ -1862,82 +1863,7 @@
         </footer>
 
     </main>
-    <script>
-        /**
-         * Gère la bascule entre le mode clair et le mode sombre.
-         * Persiste la préférence utilisateur dans le stockage local et
-         * synchronise l'état accessible (aria-pressed) du bouton.
-         */
-        class ThemeToggle {
-            constructor() {
-                this.button = document.getElementById("theme-toggle");
-                if (!(this.button instanceof HTMLElement)) {
-                    return;
-                }
-                this.storageKey = "theme-preference";
-                this.init();
-            }
-
-            /**
-             * Lit le thème courant à partir de l'attribut `data-theme`.
-             * @returns {string} "dark" ou "light".
-             */
-            getCurrentTheme() {
-                return document.documentElement.getAttribute("data-theme")
-                    === "dark" ? "dark" : "light";
-            }
-
-            /**
-             * Applique le thème souhaité au document et synchronise l'état
-             * accessible du bouton.
-             * @param {string} theme - "dark" ou "light".
-             */
-            applyTheme(theme) {
-                const safeTheme = theme === "dark" ? "dark" : "light";
-                document.documentElement.setAttribute("data-theme", safeTheme);
-                this.button.setAttribute(
-                    "aria-pressed",
-                    safeTheme === "dark" ? "true" : "false"
-                );
-                this.button.setAttribute(
-                    "title",
-                    safeTheme === "dark"
-                        ? "Passer en mode clair"
-                        : "Passer en mode sombre"
-                );
-            }
-
-            /**
-             * Persiste la préférence utilisateur.
-             * @param {string} theme - "dark" ou "light".
-             */
-            persistTheme(theme) {
-                try {
-                    window.localStorage.setItem(this.storageKey, theme);
-                } catch (e) {
-                    /* Stockage indisponible : on ignore silencieusement. */
-                }
-            }
-
-            /**
-             * Initialise l'état et attache l'écouteur de clic.
-             */
-            init() {
-                this.applyTheme(this.getCurrentTheme());
-                this.button.addEventListener("click", () => {
-                    const next = this.getCurrentTheme() === "dark"
-                        ? "light"
-                        : "dark";
-                    this.applyTheme(next);
-                    this.persistTheme(next);
-                });
-            }
-        }
-
-        document.addEventListener("DOMContentLoaded", () => {
-            new ThemeToggle();
-        });
-    </script>
+    <script src="../js/ltt-document-theme.js"></script>
 </body>
 </html>
 
