@@ -46,8 +46,9 @@
             <!-- Logo et Titre -->
             <a href="index.html" class="flex items-center space-x-4 group" aria-label="Accueil — Lentilly Tennis de Table">
                 <div class="relative">
-                    <!-- Utilisation du logo extrait -->
-                    <img src="logo/logo_club.jpg" alt="Logo LTT" data-logo-fallback="svg" width="48" height="48" class="h-12 w-auto object-contain rounded-md shadow-md border border-slate-100 dark:border-slate-800 transition-transform duration-300 group-hover:scale-105">
+                    <!-- Logos adaptés au thème (fonds clairs / fonds sombres) -->
+                    <img src="logo/V5_logo_fonds_clairs.png" alt="Logo LTT" data-logo-fallback="svg" width="48" height="48" class="h-12 w-auto object-contain rounded-md shadow-md border border-slate-100 transition-transform duration-300 group-hover:scale-105 block dark:hidden">
+                    <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="svg" width="48" height="48" aria-hidden="true" class="h-12 w-auto object-contain rounded-md shadow-md border border-slate-800 transition-transform duration-300 group-hover:scale-105 hidden dark:block">
                     <span class="absolute -bottom-1 -right-1 flex h-3 w-3">
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
@@ -166,7 +167,8 @@
 
                             <div class="hero-visual__card">
                                 <div class="hero-visual__header">
-                                    <img src="logo/logo_club.jpg" alt="" data-logo-fallback="hide" class="hero-visual__logo">
+                                    <img src="logo/V5_logo_fonds_clairs.png" alt="" data-logo-fallback="hide" class="hero-visual__logo block dark:hidden">
+                                    <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="hide" aria-hidden="true" class="hero-visual__logo hidden dark:block">
                                     <div>
                                         <p class="hero-visual__club">Lentilly Tennis de Table</p>
                                         <p class="hero-visual__tagline" id="hero-vestiaire-title">Le vestiaire numérique du club</p>
@@ -561,7 +563,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
             
             <div class="flex items-center space-x-3 text-slate-500 dark:text-slate-400 text-sm">
-                <img src="logo/logo_club.jpg" alt="Logo LTT" data-logo-fallback="hide" width="32" height="32" class="h-8 w-auto opacity-70">
+                <img src="logo/V5_logo_fonds_clairs.png" alt="Logo LTT" data-logo-fallback="hide" width="32" height="32" class="h-8 w-auto opacity-70 block dark:hidden">
+                <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="hide" width="32" height="32" aria-hidden="true" class="h-8 w-auto opacity-70 hidden dark:block">
                 <span>&copy; 2026 Lentilly Tennis de Table (LTT). Tous droits réservés.</span>
             </div>
 
