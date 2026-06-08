@@ -2,7 +2,7 @@
 # https://docs.netlify.com/configure-builds/file-based-configuration/
 
 [build]
-  command = "python scripts/build_index.py"
+  command = "npm run build"
   publish = "."
 
 [build.environment]

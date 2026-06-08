@@ -82,8 +82,31 @@ def construire_index() -> None:
         print(f"Erreur : modèle introuvable ({TEMPLATE_PATH}).", file=sys.stderr)
         sys.exit(1)
 
+    # Vérifie si le mode production est activé via l'argument --prod
+    is_prod = "--prod" in sys.argv
+
     contenu_modele = TEMPLATE_PATH.read_text(encoding="utf-8")
     contenu_final = assembler_page(contenu_modele)
+
+    if is_prod:
+        # En production, on remplace le script du Play CDN de Tailwind par le CSS compilé statique
+        cdn_pattern = re.compile(
+            r"<!--\s*Tailwind CSS \(CDN\)\s*\+.*-->\s*<script\s+src=\"https://cdn\.tailwindcss\.com\"></script>\s*<script\s+src=\"js/tailwind\.config\.js\"></script>",
+            re.IGNORECASE | re.MULTILINE
+        )
+        remplacement = '<!-- Tailwind CSS statique compilé pour la production -->\n    <link rel="stylesheet" href="css/tailwind.built.css">'
+        contenu_final = cdn_pattern.sub(remplacement, contenu_final)
+
+        # On nettoie également la CSP dans la balise <meta> en retirant cdn.tailwindcss.com
+        contenu_final = contenu_final.replace(
+            "file: https://cdn.tailwindcss.com",
+            "file:"
+        ).replace(
+            " https://cdn.tailwindcss.com",
+            ""
+        )
+        print("Optimisations de production appliquées (Tailwind CDN remplacé par le CSS statique et CSP renforcée).")
+
     OUTPUT_PATH.write_text(contenu_final + "\n", encoding="utf-8")
     print(f"Page générée : {OUTPUT_PATH}")
 

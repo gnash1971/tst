@@ -1,0 +1,13 @@
+{
+  "name": "clubtt-lentilly",
+  "version": "1.0.0",
+  "description": "Espace documentaire Lentilly Tennis de Table",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i css/tailwind-input.css -o css/tailwind.built.css --minify",
+    "build": "python scripts/build_index.py --prod && npm run build:css"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
+}

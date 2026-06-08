@@ -17,3 +17,8 @@ __pycache__/
 # Scripts d'automatisation locaux (ne pas pousser sur GitHub)
 publier_git.bat
 scripts/git_commit_message.ps1
+
+# Dépendances Node.js et builds Tailwind
+node_modules/
+css/tailwind.built.css
+
