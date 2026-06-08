@@ -13,3 +13,7 @@ __pycache__/
 # Secrets (ne jamais versionner)
 .env
 .env.*
+
+# Scripts d'automatisation locaux (ne pas pousser sur GitHub)
+publier_git.bat
+scripts/git_commit_message.ps1
