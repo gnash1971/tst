@@ -1,21 +1,32 @@
-# Security Policy
+# Politique de Sécurité
 
-## Supported Versions
+## Versions Supportées
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+Nous assurons le support de sécurité pour la version actuellement déployée en production sur le site officiel.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+| Version | Supportée |
+| ------- | --------- |
+| Production (Main) | :white_check_mark: |
+| Développement / Branches | :x: |
 
-## Reporting a Vulnerability
+## Signalement d'une Vulnérabilité
 
-Use this section to tell people how to report a vulnerability.
+La sécurité de notre espace documentaire et de nos membres est une priorité absolue pour l'association Lentilly Tennis de Table (LTT). Si vous découvrez une faille de sécurité ou une vulnérabilité, nous vous remercions de nous la signaler de manière responsable et confidentielle.
 
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+### Comment signaler une vulnérabilité ?
+
+Veuillez envoyer un e-mail détaillé à notre adresse de contact officielle :
+📧 **contact@lentillytt.fr**
+
+Dans votre message, merci d'inclure les informations suivantes :
+- Une description de la vulnérabilité découverte.
+- Les étapes détaillées pour reproduire le problème (un script de preuve de concept ou des captures d'écran sont grandement appréciés).
+- L'impact potentiel de cette faille.
+
+### Notre engagement
+
+- **Accusé de réception** : Nous nous engageons à accuser réception de votre signalement sous 48 heures ouvrées.
+- **Résolution** : Nous analyserons le problème et déploierons un correctif dans les plus brefs délais si la vulnérabilité est confirmée.
+- **Confidentialité** : Nous vous demandons de ne pas divulguer publiquement la vulnérabilité avant que nous ayons eu le temps de la corriger, afin de protéger les utilisateurs du site.
+
+Merci de nous aider à maintenir la sécurité du site du Lentilly Tennis de Table !
