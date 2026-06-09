@@ -3,30 +3,12 @@
 
 [build]
   command = "npm run build"
-  publish = "."
+  publish = "dist"
 
 [build.environment]
   PYTHON_VERSION = "3.12"
 
-# Fichiers sources de build : accessibles au build, exclus du site via .netlifyignore
-# (partials/, scripts/, index.template.html)
-
-[[redirects]]
-  from = "/partials/*"
-  to = "/404.html"
-  status = 404
-  force = true
-
-[[redirects]]
-  from = "/scripts/*"
-  to = "/404.html"
-  status = 404
-  force = true
-
-[[redirects]]
-  from = "/index.template.html"
-  to = "/404.html"
-  status = 404
-  force = true
-
-# Page 404 personnalisée : fichier 404.html à la racine (comportement Netlify natif).
+# Le dossier 'dist/' est généré dynamiquement lors du build.
+# Seuls les fichiers requis pour l'exécution publique (index.html, css/, js/, fonts/, fic/)
+# sont inclus dans 'dist/'. Cela protège totalement les scripts de build, fichiers de config,
+# et sources partielles contre l'accès public et les téléchargements non autorisés.

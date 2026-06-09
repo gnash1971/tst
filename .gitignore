@@ -21,4 +21,5 @@ scripts/git_commit_message.ps1
 # Dépendances Node.js et builds Tailwind
 node_modules/
 css/tailwind.built.css
+dist/
 
