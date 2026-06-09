@@ -8,6 +8,6 @@
     "build": "python scripts/build_index.py --prod && npm run build:css && python scripts/build_dist.py"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "3.4.17"
   }
 }

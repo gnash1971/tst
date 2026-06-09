@@ -5,7 +5,7 @@
 
 <IfModule mod_headers.c>
     # CSP globale : les pages fic/ complètent via balise <meta> si besoin.
-    Header set Content-Security-Policy "default-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; style-src 'self' 'unsafe-inline'; script-src 'self' https://cdn.jsdelivr.net; font-src 'self'; img-src 'self' data:; connect-src 'self' https://cdn.jsdelivr.net https://ingesteer.services-prod.nsvcs.net;"
+    Header set Content-Security-Policy "default-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self';"
 
     Header set X-Content-Type-Options "nosniff"
     Header set X-Frame-Options "DENY"
