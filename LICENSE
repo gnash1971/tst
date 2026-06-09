@@ -46,8 +46,8 @@ détournée requiert l’accord écrit du conseil d’administration du club.
   organismes pour les conditions d’usage.
 - Bibliothèque d’icônes Lucide (`js/lucide.min.js`) : licence ISC
   (voir https://lucide.dev).
-- Tailwind CSS (chargé via CDN en production) : licence MIT
-  (voir https://tailwindcss.com).
+- Tailwind CSS (CSS statique compilé pour la production, CDN Play en
+  développement local) : licence MIT (voir https://tailwindcss.com).
 
 
 Contact
