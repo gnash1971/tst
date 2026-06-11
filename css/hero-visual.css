@@ -127,46 +127,25 @@
     outline-offset: 2px;
 }
 
-.hero-visual__doc--purple {
-    background: rgba(139, 92, 246, 0.12);
-    color: #6d28d9;
-    border-color: rgba(139, 92, 246, 0.2);
-}
-
-.hero-visual__doc--blue {
-    background: rgba(59, 130, 246, 0.12);
-    color: #1d4ed8;
-    border-color: rgba(59, 130, 246, 0.2);
-}
-
-.hero-visual__doc--green {
-    background: rgba(16, 185, 129, 0.12);
+/* Deux variantes de catégorie ; l'icône porte la couleur du document. */
+.hero-visual__doc--admin {
+    background: rgba(16, 185, 129, 0.1);
     color: #047857;
-    border-color: rgba(16, 185, 129, 0.2);
+    border-color: rgba(16, 185, 129, 0.22);
 }
 
-.hero-visual__doc--red {
-    background: rgba(239, 68, 68, 0.12);
-    color: #b91c1c;
-    border-color: rgba(239, 68, 68, 0.2);
+.hero-visual__doc--legal {
+    background: rgba(249, 115, 22, 0.1);
+    color: #c2410c;
+    border-color: rgba(249, 115, 22, 0.22);
 }
 
-.dark .hero-visual__doc--purple {
-    color: #c4b5fd;
-    background: rgba(139, 92, 246, 0.18);
-}
-
-.dark .hero-visual__doc--blue {
-    color: #93c5fd;
-    background: rgba(59, 130, 246, 0.18);
-}
-
-.dark .hero-visual__doc--green {
+.dark .hero-visual__doc--admin {
     color: #6ee7b7;
-    background: rgba(16, 185, 129, 0.18);
+    background: rgba(16, 185, 129, 0.16);
 }
 
-.dark .hero-visual__doc--red {
-    color: #fca5a5;
-    background: rgba(239, 68, 68, 0.18);
+.dark .hero-visual__doc--legal {
+    color: #fdba74;
+    background: rgba(249, 115, 22, 0.16);
 }

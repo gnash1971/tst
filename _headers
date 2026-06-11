@@ -3,7 +3,16 @@
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=()
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=(), usb=()
   Cross-Origin-Opener-Policy: same-origin
   Cross-Origin-Resource-Policy: same-site
   Strict-Transport-Security: max-age=31536000; includeSubDomains
+
+# Cache long pour les ressources stables non fingerprintées les plus lourdes.
+# (css/js volontairement laissés sur la revalidation ETag par défaut de Netlify
+# car leurs noms de fichiers ne changent pas à chaque évolution du site.)
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/logo/*
+  Cache-Control: public, max-age=86400

@@ -3,18 +3,12 @@
  */
 
 .site-header {
-    box-shadow: 0 2px 0 rgba(21, 128, 61, 0.15);
-    border-bottom: 2px solid transparent;
-    border-image: linear-gradient(
-        90deg,
-        var(--sport-court) 0%,
-        var(--sport-ball) 50%,
-        var(--sport-court) 100%
-    ) 1;
+    /* Filet vert discret sous la bordure slate gérée par Tailwind. */
+    box-shadow: 0 1px 0 rgba(21, 128, 61, 0.22);
 }
 
 .dark .site-header {
-    box-shadow: 0 2px 0 rgba(34, 197, 94, 0.12);
+    box-shadow: 0 1px 0 rgba(34, 197, 94, 0.16);
 }
 
 .site-footer {

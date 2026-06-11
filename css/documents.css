@@ -32,6 +32,23 @@
     border-color: rgba(16, 185, 129, 0.3);
 }
 
+/* Variante catégorie juridique (PV, statuts). */
+.doc-toc-mobile__link--legal {
+    color: #c2410c;
+    background: rgba(249, 115, 22, 0.1);
+    border-color: rgba(249, 115, 22, 0.25);
+}
+
+.doc-toc-mobile__link--legal:hover {
+    background: rgba(249, 115, 22, 0.18);
+}
+
+.dark .doc-toc-mobile__link--legal {
+    color: #fdba74;
+    background: rgba(249, 115, 22, 0.15);
+    border-color: rgba(249, 115, 22, 0.3);
+}
+
 .doc-card {
     position: relative;
     scroll-margin-top: 6rem;
@@ -48,7 +65,7 @@
 .doc-card:nth-child(4) { animation-delay: 0.26s; }
 
 .doc-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-3px);
 }
 
 .doc-card::after {
@@ -59,7 +76,7 @@
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.3s ease;
-    box-shadow: 0 24px 48px rgba(15, 23, 42, 0.12);
+    box-shadow: 0 16px 32px rgba(15, 23, 42, 0.1);
 }
 
 .doc-card:hover::after {
@@ -67,7 +84,7 @@
 }
 
 .dark .doc-card:hover::after {
-    box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.3);
 }
 
 .doc-card--highlight {

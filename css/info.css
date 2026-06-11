@@ -10,10 +10,10 @@
 }
 
 .info-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 16px 32px rgba(15, 23, 42, 0.08);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(15, 23, 42, 0.07);
 }
 
 .dark .info-card:hover {
-    box-shadow: 0 16px 32px rgba(0, 0, 0, 0.28);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.24);
 }

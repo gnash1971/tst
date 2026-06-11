@@ -3,7 +3,6 @@
             <!-- Fond d'ambiance sportif -->
             <div class="hero-aurora" aria-hidden="true"></div>
             <div class="hero-glow hero-glow--court" aria-hidden="true"></div>
-            <div class="hero-glow hero-glow--ball" aria-hidden="true"></div>
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start pt-10 pb-6 lg:pt-14 lg:pb-8">
@@ -76,21 +75,22 @@
                                     </div>
                                 </div>
                                 <nav class="hero-visual__docs" aria-label="Sommaire des documents">
-                                    <a href="#doc-fiche-inscription" class="hero-visual__doc hero-visual__doc--purple doc-toc-link">
+                                    <!-- Icônes teintées : rappel de l'identité visuelle de chaque document -->
+                                    <a href="#doc-fiche-inscription" class="hero-visual__doc hero-visual__doc--admin doc-toc-link">
                                         <span>Fiche d'inscription</span>
-                                        <i data-lucide="file-edit" class="h-4 w-4" aria-hidden="true"></i>
+                                        <i data-lucide="file-edit" class="h-4 w-4 text-brand-purple dark:text-purple-300" aria-hidden="true"></i>
                                     </a>
-                                    <a href="#doc-reglement-interieur" class="hero-visual__doc hero-visual__doc--blue doc-toc-link">
+                                    <a href="#doc-reglement-interieur" class="hero-visual__doc hero-visual__doc--admin doc-toc-link">
                                         <span>Règlement intérieur</span>
-                                        <i data-lucide="book-open" class="h-4 w-4" aria-hidden="true"></i>
+                                        <i data-lucide="book-open" class="h-4 w-4 text-brand-blue dark:text-sky-300" aria-hidden="true"></i>
                                     </a>
-                                    <a href="#doc-pv-ag" class="hero-visual__doc hero-visual__doc--green doc-toc-link">
+                                    <a href="#doc-pv-ag" class="hero-visual__doc hero-visual__doc--legal doc-toc-link">
                                         <span>PV d'AG constitutive</span>
-                                        <i data-lucide="file-text" class="h-4 w-4" aria-hidden="true"></i>
+                                        <i data-lucide="file-text" class="h-4 w-4 text-brand-green dark:text-green-300" aria-hidden="true"></i>
                                     </a>
-                                    <a href="#doc-statuts" class="hero-visual__doc hero-visual__doc--red doc-toc-link">
+                                    <a href="#doc-statuts" class="hero-visual__doc hero-visual__doc--legal doc-toc-link">
                                         <span>Statuts de l'association</span>
-                                        <i data-lucide="shield" class="h-4 w-4" aria-hidden="true"></i>
+                                        <i data-lucide="shield" class="h-4 w-4 text-brand-red dark:text-red-300" aria-hidden="true"></i>
                                     </a>
                                 </nav>
                             </div>
@@ -100,34 +100,32 @@
 
                 <!-- Panneau recherche & filtres -->
                 <div class="hero-search-panel hero-search mb-8 lg:mb-10">
-                    <div class="hero-search-panel__inner">
-                        <div class="hero-search-panel__label">
-                            <i data-lucide="search" class="h-4 w-4 text-emerald-600"></i>
-                            <span>Trouvez votre document en un clin d'œil</span>
+                    <div class="hero-search-panel__label">
+                        <i data-lucide="search" class="h-4 w-4 text-emerald-600"></i>
+                        <span>Trouvez votre document en un clin d'œil</span>
+                    </div>
+                    <div class="search-panel relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                            <i data-lucide="search" class="h-5 w-5"></i>
                         </div>
-                        <div class="search-panel relative">
-                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-                                <i data-lucide="search" class="h-5 w-5"></i>
-                            </div>
-                            <input type="search" id="search-bar" maxlength="120" autocomplete="off" spellcheck="false" placeholder="Mot-clé : tarif, RGPD, AG, bureau, statuts…" class="w-full pl-12 pr-12 py-4 rounded-2xl text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none transition-all duration-200 text-base" aria-label="Rechercher un document">
-                            <button id="clear-search" type="button" class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hidden" aria-label="Effacer la recherche">
-                                <i data-lucide="x" class="h-5 w-5"></i>
-                            </button>
-                        </div>
+                        <input type="search" id="search-bar" maxlength="120" autocomplete="off" spellcheck="false" placeholder="Mot-clé : tarif, RGPD, AG, bureau, statuts…" class="w-full pl-12 pr-12 py-4 rounded-2xl text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none transition-all duration-200 text-base" aria-label="Rechercher un document">
+                        <button id="clear-search" type="button" class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hidden" aria-label="Effacer la recherche">
+                            <i data-lucide="x" class="h-5 w-5"></i>
+                        </button>
+                    </div>
 
-                        <div class="hero-filters">
-                            <span class="hero-filters__label">Filtrer :</span>
-                            <div class="flex flex-wrap items-center gap-2">
-                                <button class="filter-btn active px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-emerald-600 text-white shadow-md shadow-emerald-500/20 border border-emerald-600" data-category="all">
-                                    Tous les documents
-                                </button>
-                                <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="administratif">
-                                    Administratif & Inscription
-                                </button>
-                                <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="juridique">
-                                    Statuts & PV d'AG
-                                </button>
-                            </div>
+                    <div class="hero-filters">
+                        <span class="hero-filters__label">Filtrer :</span>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button class="filter-btn active px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-emerald-600 text-white shadow-md shadow-emerald-500/20 border border-emerald-600" data-category="all">
+                                Tous les documents
+                            </button>
+                            <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="administratif">
+                                Administratif & Inscription
+                            </button>
+                            <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="juridique">
+                                Statuts & PV d'AG
+                            </button>
                         </div>
                     </div>
                 </div>

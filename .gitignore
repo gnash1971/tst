@@ -9,6 +9,7 @@ desktop.ini
 venv/
 __pycache__/
 *.pyc
+.pytest_cache/
 
 # Secrets (ne jamais versionner)
 .env

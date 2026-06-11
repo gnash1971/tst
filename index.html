@@ -42,10 +42,6 @@
                     <!-- Logos adaptés au thème (fonds clairs / fonds sombres) -->
                     <img src="logo/V5_logo_fonds_clairs.png" alt="Logo LTT" data-logo-fallback="svg" width="48" height="48" class="h-12 w-auto object-contain rounded-md shadow-md border border-slate-100 transition-transform duration-300 group-hover:scale-105 block dark:hidden">
                     <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="svg" width="48" height="48" aria-hidden="true" class="h-12 w-auto object-contain rounded-md shadow-md border border-slate-800 transition-transform duration-300 group-hover:scale-105 hidden dark:block">
-                    <span class="absolute -bottom-1 -right-1 flex h-3 w-3">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                    </span>
                 </div>
                 <div>
                     <h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
@@ -79,7 +75,7 @@
                 </button>
 
                 <!-- Lien Site du Club / Contact -->
-                <a href="mailto:contact@lentillytt.fr" class="hidden sm:inline-flex items-center space-x-2 px-4 h-10 bg-gradient-to-r from-emerald-600 to-emerald-700 dark:from-orange-500 dark:to-orange-600 text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:shadow-emerald-600/25 dark:hover:shadow-orange-500/25 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <a href="mailto:contact@lentillytt.fr" class="hidden sm:inline-flex items-center space-x-2 px-4 h-10 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:shadow-emerald-600/25 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500">
                     <i data-lucide="mail" class="h-4 w-4"></i>
                     <span>Nous contacter</span>
                 </a>
@@ -95,7 +91,6 @@
             <!-- Fond d'ambiance sportif -->
             <div class="hero-aurora" aria-hidden="true"></div>
             <div class="hero-glow hero-glow--court" aria-hidden="true"></div>
-            <div class="hero-glow hero-glow--ball" aria-hidden="true"></div>
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-start pt-10 pb-6 lg:pt-14 lg:pb-8">
@@ -168,21 +163,22 @@
                                     </div>
                                 </div>
                                 <nav class="hero-visual__docs" aria-label="Sommaire des documents">
-                                    <a href="#doc-fiche-inscription" class="hero-visual__doc hero-visual__doc--purple doc-toc-link">
+                                    <!-- Icônes teintées : rappel de l'identité visuelle de chaque document -->
+                                    <a href="#doc-fiche-inscription" class="hero-visual__doc hero-visual__doc--admin doc-toc-link">
                                         <span>Fiche d'inscription</span>
-                                        <i data-lucide="file-edit" class="h-4 w-4" aria-hidden="true"></i>
+                                        <i data-lucide="file-edit" class="h-4 w-4 text-brand-purple dark:text-purple-300" aria-hidden="true"></i>
                                     </a>
-                                    <a href="#doc-reglement-interieur" class="hero-visual__doc hero-visual__doc--blue doc-toc-link">
+                                    <a href="#doc-reglement-interieur" class="hero-visual__doc hero-visual__doc--admin doc-toc-link">
                                         <span>Règlement intérieur</span>
-                                        <i data-lucide="book-open" class="h-4 w-4" aria-hidden="true"></i>
+                                        <i data-lucide="book-open" class="h-4 w-4 text-brand-blue dark:text-sky-300" aria-hidden="true"></i>
                                     </a>
-                                    <a href="#doc-pv-ag" class="hero-visual__doc hero-visual__doc--green doc-toc-link">
+                                    <a href="#doc-pv-ag" class="hero-visual__doc hero-visual__doc--legal doc-toc-link">
                                         <span>PV d'AG constitutive</span>
-                                        <i data-lucide="file-text" class="h-4 w-4" aria-hidden="true"></i>
+                                        <i data-lucide="file-text" class="h-4 w-4 text-brand-green dark:text-green-300" aria-hidden="true"></i>
                                     </a>
-                                    <a href="#doc-statuts" class="hero-visual__doc hero-visual__doc--red doc-toc-link">
+                                    <a href="#doc-statuts" class="hero-visual__doc hero-visual__doc--legal doc-toc-link">
                                         <span>Statuts de l'association</span>
-                                        <i data-lucide="shield" class="h-4 w-4" aria-hidden="true"></i>
+                                        <i data-lucide="shield" class="h-4 w-4 text-brand-red dark:text-red-300" aria-hidden="true"></i>
                                     </a>
                                 </nav>
                             </div>
@@ -192,34 +188,32 @@
 
                 <!-- Panneau recherche & filtres -->
                 <div class="hero-search-panel hero-search mb-8 lg:mb-10">
-                    <div class="hero-search-panel__inner">
-                        <div class="hero-search-panel__label">
-                            <i data-lucide="search" class="h-4 w-4 text-emerald-600"></i>
-                            <span>Trouvez votre document en un clin d'œil</span>
+                    <div class="hero-search-panel__label">
+                        <i data-lucide="search" class="h-4 w-4 text-emerald-600"></i>
+                        <span>Trouvez votre document en un clin d'œil</span>
+                    </div>
+                    <div class="search-panel relative">
+                        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
+                            <i data-lucide="search" class="h-5 w-5"></i>
                         </div>
-                        <div class="search-panel relative">
-                            <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-slate-400">
-                                <i data-lucide="search" class="h-5 w-5"></i>
-                            </div>
-                            <input type="search" id="search-bar" maxlength="120" autocomplete="off" spellcheck="false" placeholder="Mot-clé : tarif, RGPD, AG, bureau, statuts…" class="w-full pl-12 pr-12 py-4 rounded-2xl text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none transition-all duration-200 text-base" aria-label="Rechercher un document">
-                            <button id="clear-search" type="button" class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hidden" aria-label="Effacer la recherche">
-                                <i data-lucide="x" class="h-5 w-5"></i>
-                            </button>
-                        </div>
+                        <input type="search" id="search-bar" maxlength="120" autocomplete="off" spellcheck="false" placeholder="Mot-clé : tarif, RGPD, AG, bureau, statuts…" class="w-full pl-12 pr-12 py-4 rounded-2xl text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none transition-all duration-200 text-base" aria-label="Rechercher un document">
+                        <button id="clear-search" type="button" class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hidden" aria-label="Effacer la recherche">
+                            <i data-lucide="x" class="h-5 w-5"></i>
+                        </button>
+                    </div>
 
-                        <div class="hero-filters">
-                            <span class="hero-filters__label">Filtrer :</span>
-                            <div class="flex flex-wrap items-center gap-2">
-                                <button class="filter-btn active px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-emerald-600 text-white shadow-md shadow-emerald-500/20 border border-emerald-600" data-category="all">
-                                    Tous les documents
-                                </button>
-                                <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="administratif">
-                                    Administratif & Inscription
-                                </button>
-                                <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="juridique">
-                                    Statuts & PV d'AG
-                                </button>
-                            </div>
+                    <div class="hero-filters">
+                        <span class="hero-filters__label">Filtrer :</span>
+                        <div class="flex flex-wrap items-center gap-2">
+                            <button class="filter-btn active px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-emerald-600 text-white shadow-md shadow-emerald-500/20 border border-emerald-600" data-category="all">
+                                Tous les documents
+                            </button>
+                            <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="administratif">
+                                Administratif & Inscription
+                            </button>
+                            <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="juridique">
+                                Statuts & PV d'AG
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -246,8 +240,8 @@
             <nav class="doc-toc-mobile lg:hidden flex flex-wrap gap-2 mb-8" aria-label="Sommaire des documents">
                 <a href="#doc-fiche-inscription" class="doc-toc-mobile__link doc-toc-link">Fiche d'inscription</a>
                 <a href="#doc-reglement-interieur" class="doc-toc-mobile__link doc-toc-link">Règlement intérieur</a>
-                <a href="#doc-pv-ag" class="doc-toc-mobile__link doc-toc-link">PV d'AG</a>
-                <a href="#doc-statuts" class="doc-toc-mobile__link doc-toc-link">Statuts</a>
+                <a href="#doc-pv-ag" class="doc-toc-mobile__link doc-toc-mobile__link--legal doc-toc-link">PV d'AG</a>
+                <a href="#doc-statuts" class="doc-toc-mobile__link doc-toc-mobile__link--legal doc-toc-link">Statuts</a>
             </nav>
 
             <div id="no-results" class="text-center py-12 hidden">
@@ -264,25 +258,26 @@
             <div id="documents-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
                 <!-- Carte 1 : Fiche d'inscription -->
-                <div id="doc-fiche-inscription" class="doc-card bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-brand-purple/40 dark:hover:border-brand-purple/40 transition-all duration-300 flex flex-col overflow-hidden group" data-category="administratif" data-search="fiche inscription adhésion tarifs prix rgpd engagements protection données créneaux signature">
-                    <div class="h-2 bg-gradient-to-r from-purple-500 to-indigo-600"></div>
+                <div id="doc-fiche-inscription" class="doc-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-lg hover:border-emerald-500/40 dark:hover:border-emerald-400/40 transition-all duration-300 flex flex-col overflow-hidden group" data-category="administratif" data-search="fiche inscription adhésion tarifs prix rgpd engagements protection données créneaux signature">
+                    <div class="h-1 bg-emerald-600 dark:bg-emerald-500"></div>
                     <div class="p-8 flex-grow flex flex-col justify-between">
                         <div>
                             <div class="flex items-start justify-between mb-6">
-                                <div class="p-4 bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 rounded-2xl group-hover:scale-110 transition-transform duration-300">
+                                <!-- Pastille violette : rappel de l'identité du document ouvert -->
+                                <div class="p-4 bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 rounded-2xl group-hover:scale-105 transition-transform duration-300">
                                     <i data-lucide="file-edit" class="h-7 w-7"></i>
                                 </div>
                                 <div class="flex flex-col items-end space-y-1">
-                                    <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-purple-100 dark:bg-purple-950/80 text-purple-800 dark:text-purple-300 border border-purple-200/50 dark:border-purple-900/50">
-                                        Version V2
+                                    <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-900/50">
+                                        Administratif
                                     </span>
                                     <span class="text-[10px] text-slate-400 dark:text-slate-500 font-semibold uppercase tracking-wider">
-                                        Administratif
+                                        Version V2
                                     </span>
                                 </div>
                             </div>
 
-                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors duration-200 mb-3">
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200 mb-3">
                                 Fiche d'Inscription & RGPD
                             </h3>
 
@@ -294,19 +289,19 @@
                                 <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Contenu clé :</h4>
                                 <ul class="grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
                                     <li class="flex items-center space-x-2">
-                                        <i data-lucide="check" class="h-3.5 w-3.5 text-purple-500 shrink-0"></i>
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0"></i>
                                         <span>Tarifs des cotisations</span>
                                     </li>
                                     <li class="flex items-center space-x-2">
-                                        <i data-lucide="check" class="h-3.5 w-3.5 text-purple-500 shrink-0"></i>
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0"></i>
                                         <span>Créneaux horaires</span>
                                     </li>
                                     <li class="flex items-center space-x-2">
-                                        <i data-lucide="check" class="h-3.5 w-3.5 text-purple-500 shrink-0"></i>
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0"></i>
                                         <span>Autorisations d'image</span>
                                     </li>
                                     <li class="flex items-center space-x-2">
-                                        <i data-lucide="check" class="h-3.5 w-3.5 text-purple-500 shrink-0"></i>
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0"></i>
                                         <span>Conformité RGPD</span>
                                     </li>
                                 </ul>
@@ -315,7 +310,7 @@
 
                         <div class="pt-4 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
                             <span class="text-xs text-slate-400 dark:text-slate-500">Mise à jour : Saison en cours</span>
-                            <a href="fic/V2_fiche_inscription.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-purple-600 hover:bg-purple-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-purple-500/10 hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-200">
+                            <a href="fic/V2_fiche_inscription.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-200">
                                 <span>Consulter en ligne</span>
                                 <i data-lucide="arrow-right" class="h-4 w-4"></i>
                             </a>
@@ -323,25 +318,26 @@
                     </div>
                 </div>
                 <!-- Carte 2 : Règlement Intérieur -->
-                <div id="doc-reglement-interieur" class="doc-card bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-brand-blue/40 dark:hover:border-brand-blue/40 transition-all duration-300 flex flex-col overflow-hidden group" data-category="administratif" data-search="règlement intérieur ri code conduite règles de vie salle horaires matériel respect tennis table sécurité sanctions">
-                    <div class="h-2 bg-gradient-to-r from-blue-500 to-sky-600"></div>
+                <div id="doc-reglement-interieur" class="doc-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-lg hover:border-emerald-500/40 dark:hover:border-emerald-400/40 transition-all duration-300 flex flex-col overflow-hidden group" data-category="administratif" data-search="règlement intérieur ri code conduite règles de vie salle horaires matériel respect tennis table sécurité sanctions">
+                    <div class="h-1 bg-emerald-600 dark:bg-emerald-500"></div>
                     <div class="p-8 flex-grow flex flex-col justify-between">
                         <div>
                             <div class="flex items-start justify-between mb-6">
-                                <div class="p-4 bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 rounded-2xl group-hover:scale-110 transition-transform duration-300">
+                                <!-- Pastille bleue : rappel de l'identité du document ouvert -->
+                                <div class="p-4 bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 rounded-2xl group-hover:scale-105 transition-transform duration-300">
                                     <i data-lucide="book-open" class="h-7 w-7"></i>
                                 </div>
                                 <div class="flex flex-col items-end space-y-1">
-                                    <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-100 dark:bg-blue-950/80 text-blue-800 dark:text-blue-300 border border-blue-200/50 dark:border-blue-900/50">
-                                        Version V5
+                                    <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-900/50">
+                                        Administratif
                                     </span>
                                     <span class="text-[10px] text-slate-400 dark:text-slate-500 font-semibold uppercase tracking-wider">
-                                        Administratif
+                                        Version V5
                                     </span>
                                 </div>
                             </div>
 
-                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-200 mb-3">
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200 mb-3">
                                 Règlement Intérieur (RI)
                             </h3>
 
@@ -353,19 +349,19 @@
                                 <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Contenu clé :</h4>
                                 <ul class="grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
                                     <li class="flex items-center space-x-2">
-                                        <i data-lucide="check" class="h-3.5 w-3.5 text-blue-500 shrink-0"></i>
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0"></i>
                                         <span>Usage du matériel</span>
                                     </li>
                                     <li class="flex items-center space-x-2">
-                                        <i data-lucide="check" class="h-3.5 w-3.5 text-blue-500 shrink-0"></i>
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0"></i>
                                         <span>Règles de bonne conduite</span>
                                     </li>
                                     <li class="flex items-center space-x-2">
-                                        <i data-lucide="check" class="h-3.5 w-3.5 text-blue-500 shrink-0"></i>
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0"></i>
                                         <span>Accès à la salle et clés</span>
                                     </li>
                                     <li class="flex items-center space-x-2">
-                                        <i data-lucide="check" class="h-3.5 w-3.5 text-blue-500 shrink-0"></i>
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0"></i>
                                         <span>Ethique en compétition</span>
                                     </li>
                                 </ul>
@@ -374,7 +370,7 @@
 
                         <div class="pt-4 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
                             <span class="text-xs text-slate-400 dark:text-slate-500">Règles de vie collective</span>
-                            <a href="fic/V5_reglement_interieur_clubLTT.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-blue-500/10 hover:shadow-lg hover:shadow-blue-500/20 transition-all duration-200">
+                            <a href="fic/V5_reglement_interieur_clubLTT.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-200">
                                 <span>Consulter en ligne</span>
                                 <i data-lucide="arrow-right" class="h-4 w-4"></i>
                             </a>
@@ -382,25 +378,26 @@
                     </div>
                 </div>
                 <!-- Carte 3 : PV de l'AG Constitutive -->
-                <div id="doc-pv-ag" class="doc-card bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-brand-green/40 dark:hover:border-brand-green/40 transition-all duration-300 flex flex-col overflow-hidden group" data-category="juridique" data-search="procès-verbal pv assemblée générale constitutive fondateurs bureau président secrétaire trésorier délibérations création histoire">
-                    <div class="h-2 bg-gradient-to-r from-green-500 to-emerald-600"></div>
+                <div id="doc-pv-ag" class="doc-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-lg hover:border-orange-500/40 dark:hover:border-orange-400/40 transition-all duration-300 flex flex-col overflow-hidden group" data-category="juridique" data-search="procès-verbal pv assemblée générale constitutive fondateurs bureau président secrétaire trésorier délibérations création histoire">
+                    <div class="h-1 bg-orange-600 dark:bg-orange-500"></div>
                     <div class="p-8 flex-grow flex flex-col justify-between">
                         <div>
                             <div class="flex items-start justify-between mb-6">
-                                <div class="p-4 bg-green-50 dark:bg-green-950/40 text-green-600 dark:text-green-400 rounded-2xl group-hover:scale-110 transition-transform duration-300">
+                                <!-- Pastille verte : rappel de l'identité du document ouvert -->
+                                <div class="p-4 bg-green-50 dark:bg-green-950/40 text-green-600 dark:text-green-400 rounded-2xl group-hover:scale-105 transition-transform duration-300">
                                     <i data-lucide="file-text" class="h-7 w-7"></i>
                                 </div>
                                 <div class="flex flex-col items-end space-y-1">
-                                    <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-green-100 dark:bg-green-950/80 text-green-800 dark:text-green-300 border border-green-200/50 dark:border-green-900/50">
-                                        Version V2
+                                    <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-orange-100 dark:bg-orange-950/80 text-orange-800 dark:text-orange-300 border border-orange-200/50 dark:border-orange-900/50">
+                                        Juridique & Officiel
                                     </span>
                                     <span class="text-[10px] text-slate-400 dark:text-slate-500 font-semibold uppercase tracking-wider">
-                                        Juridique & Officiel
+                                        Version V2
                                     </span>
                                 </div>
                             </div>
 
-                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-green-600 dark:group-hover:text-green-400 transition-colors duration-200 mb-3">
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-200 mb-3">
                                 PV d'Assemblée Générale
                             </h3>
 
@@ -412,19 +409,19 @@
                                 <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Contenu clé :</h4>
                                 <ul class="grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
                                     <li class="flex items-center space-x-2">
-                                        <i data-lucide="check" class="h-3.5 w-3.5 text-green-500 shrink-0"></i>
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-orange-600 dark:text-orange-400 shrink-0"></i>
                                         <span>Liste des fondateurs</span>
                                     </li>
                                     <li class="flex items-center space-x-2">
-                                        <i data-lucide="check" class="h-3.5 w-3.5 text-green-500 shrink-0"></i>
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-orange-600 dark:text-orange-400 shrink-0"></i>
                                         <span>Élection du premier Bureau</span>
                                     </li>
                                     <li class="flex items-center space-x-2">
-                                        <i data-lucide="check" class="h-3.5 w-3.5 text-green-500 shrink-0"></i>
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-orange-600 dark:text-orange-400 shrink-0"></i>
                                         <span>Délibérations officielles</span>
                                     </li>
                                     <li class="flex items-center space-x-2">
-                                        <i data-lucide="check" class="h-3.5 w-3.5 text-green-500 shrink-0"></i>
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-orange-600 dark:text-orange-400 shrink-0"></i>
                                         <span>Pouvoirs de formalités</span>
                                     </li>
                                 </ul>
@@ -433,7 +430,7 @@
 
                         <div class="pt-4 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
                             <span class="text-xs text-slate-400 dark:text-slate-500">Acte fondateur historique</span>
-                            <a href="fic/V2_PV_AG1.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-green-600 hover:bg-green-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-green-500/10 hover:shadow-lg hover:shadow-green-500/20 transition-all duration-200">
+                            <a href="fic/V2_PV_AG1.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-orange-600 hover:bg-orange-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-orange-500/10 hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-200">
                                 <span>Consulter en ligne</span>
                                 <i data-lucide="arrow-right" class="h-4 w-4"></i>
                             </a>
@@ -441,25 +438,26 @@
                     </div>
                 </div>
                 <!-- Carte 4 : Statuts du Club -->
-                <div id="doc-statuts" class="doc-card bg-white dark:bg-slate-900 rounded-3xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-xl hover:border-brand-red/40 dark:hover:border-brand-red/40 transition-all duration-300 flex flex-col overflow-hidden group" data-category="juridique" data-search="statuts constitution loi 1901 association déclaré adhésion démission radiation conseil administration assemblées ressources modifications dissolution">
-                    <div class="h-2 bg-gradient-to-r from-red-500 to-rose-600"></div>
+                <div id="doc-statuts" class="doc-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-lg hover:border-orange-500/40 dark:hover:border-orange-400/40 transition-all duration-300 flex flex-col overflow-hidden group" data-category="juridique" data-search="statuts constitution loi 1901 association déclaré adhésion démission radiation conseil administration assemblées ressources modifications dissolution">
+                    <div class="h-1 bg-orange-600 dark:bg-orange-500"></div>
                     <div class="p-8 flex-grow flex flex-col justify-between">
                         <div>
                             <div class="flex items-start justify-between mb-6">
-                                <div class="p-4 bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 rounded-2xl group-hover:scale-110 transition-transform duration-300">
+                                <!-- Pastille rouge : rappel de l'identité du document ouvert -->
+                                <div class="p-4 bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 rounded-2xl group-hover:scale-105 transition-transform duration-300">
                                     <i data-lucide="shield" class="h-7 w-7"></i>
                                 </div>
                                 <div class="flex flex-col items-end space-y-1">
-                                    <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-red-100 dark:bg-red-950/80 text-red-800 dark:text-red-300 border border-red-200/50 dark:border-red-900/50">
-                                        Version V12
+                                    <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-orange-100 dark:bg-orange-950/80 text-orange-800 dark:text-orange-300 border border-orange-200/50 dark:border-orange-900/50">
+                                        Juridique & Officiel
                                     </span>
                                     <span class="text-[10px] text-slate-400 dark:text-slate-500 font-semibold uppercase tracking-wider">
-                                        Juridique & Officiel
+                                        Version V12
                                     </span>
                                 </div>
                             </div>
 
-                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-red-600 dark:group-hover:text-red-400 transition-colors duration-200 mb-3">
+                            <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-200 mb-3">
                                 Statuts de l'Association
                             </h3>
 
@@ -471,19 +469,19 @@
                                 <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Contenu clé :</h4>
                                 <ul class="grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
                                     <li class="flex items-center space-x-2">
-                                        <i data-lucide="check" class="h-3.5 w-3.5 text-red-500 shrink-0"></i>
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-orange-600 dark:text-orange-400 shrink-0"></i>
                                         <span>Objet & Siège social</span>
                                     </li>
                                     <li class="flex items-center space-x-2">
-                                        <i data-lucide="check" class="h-3.5 w-3.5 text-red-500 shrink-0"></i>
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-orange-600 dark:text-orange-400 shrink-0"></i>
                                         <span>Conseil d'Administration</span>
                                     </li>
                                     <li class="flex items-center space-x-2">
-                                        <i data-lucide="check" class="h-3.5 w-3.5 text-red-500 shrink-0"></i>
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-orange-600 dark:text-orange-400 shrink-0"></i>
                                         <span>Modalités AGO & AGE</span>
                                     </li>
                                     <li class="flex items-center space-x-2">
-                                        <i data-lucide="check" class="h-3.5 w-3.5 text-red-500 shrink-0"></i>
+                                        <i data-lucide="check" class="h-3.5 w-3.5 text-orange-600 dark:text-orange-400 shrink-0"></i>
                                         <span>Financement & Dissolution</span>
                                     </li>
                                 </ul>
@@ -492,7 +490,7 @@
 
                         <div class="pt-4 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
                             <span class="text-xs text-slate-400 dark:text-slate-500">Texte juridique constitutionnel</span>
-                            <a href="fic/V12_statuts_club_LTT.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-red-500/10 hover:shadow-lg hover:shadow-red-500/20 transition-all duration-200">
+                            <a href="fic/V12_statuts_club_LTT.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-orange-600 hover:bg-orange-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-orange-500/10 hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-200">
                                 <span>Consulter en ligne</span>
                                 <i data-lucide="arrow-right" class="h-4 w-4"></i>
                             </a>
@@ -537,7 +535,7 @@
                     </div>
 
                     <div class="info-card bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-100 dark:border-slate-800 shadow-sm sm:col-span-2 lg:col-span-1">
-                        <div class="p-3 bg-green-50 dark:bg-green-950/40 text-green-600 dark:text-green-400 rounded-xl w-fit mb-4">
+                        <div class="p-3 bg-slate-100 dark:bg-slate-800/70 text-slate-700 dark:text-slate-300 rounded-xl w-fit mb-4">
                             <i data-lucide="printer" class="h-5 w-5"></i>
                         </div>
                         <h4 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Imprimer ou archiver</h4>

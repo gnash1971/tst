@@ -33,7 +33,7 @@
     );
     border: 3px solid #f8fafc;
     box-shadow:
-        0 14px 32px rgba(21, 128, 61, 0.32),
+        0 12px 26px rgba(21, 128, 61, 0.22),
         inset 0 1px 0 rgba(255, 255, 255, 0.15);
 }
 
@@ -157,7 +157,8 @@
     box-shadow:
         inset -2px -3px 5px rgba(0, 0, 0, 0.07),
         0 3px 8px rgba(15, 23, 42, 0.22);
-    animation: ball-rally 3.2s ease-in-out infinite;
+    /* Rallye ralenti pour une ambiance plus posée. */
+    animation: ball-rally 5s ease-in-out infinite;
 }
 
 .hero-table__ball::before {
@@ -171,7 +172,7 @@
     border-radius: 9999px;
     background: rgba(15, 23, 42, 0.18);
     filter: blur(1px);
-    animation: ball-shadow-rally 3.2s ease-in-out infinite;
+    animation: ball-shadow-rally 5s ease-in-out infinite;
 }
 
 .hero-table__ball::after {

@@ -12,6 +12,18 @@ OUTPUT_PATH = ROOT_DIR / "index.html"
 PARTIAL_PATTERN = re.compile(r"<!--\s*@partial\s+(\S+)\s*-->")
 PARTIALS_PREFIX = "partials/"
 
+# Bloc Tailwind CDN (mode développement) remplacé en production.
+CDN_PATTERN = re.compile(
+    r"<!--\s*Tailwind CSS \(CDN\)\s*\+.*-->\s*"
+    r"<script\s+src=\"https://cdn\.tailwindcss\.com\"></script>\s*"
+    r"<script\s+src=\"js/tailwind\.config\.js\"></script>",
+    re.IGNORECASE | re.MULTILINE,
+)
+REMPLACEMENT_CSS_STATIQUE = (
+    "<!-- Tailwind CSS statique compilé pour la production -->\n"
+    '    <link rel="stylesheet" href="css/tailwind.built.css">'
+)
+
 
 def valider_chemin_fragment(chemin_relatif: str) -> None:
     """
@@ -76,6 +88,24 @@ def assembler_page(contenu_modele: str) -> str:
     return resultat
 
 
+def appliquer_optimisations_production(contenu: str) -> str:
+    """
+    Applique les transformations de production au HTML assemblé.
+
+    Remplace le Play CDN de Tailwind par le CSS compilé statique et retire
+    cdn.tailwindcss.com de la CSP déclarée en balise ``<meta>``.
+
+    Args:
+        contenu: HTML assemblé en mode développement.
+
+    Returns:
+        str: HTML prêt pour la publication (sans dépendance CDN).
+    """
+    resultat = CDN_PATTERN.sub(REMPLACEMENT_CSS_STATIQUE, contenu)
+    resultat = resultat.replace("file: https://cdn.tailwindcss.com", "file:")
+    return resultat.replace(" https://cdn.tailwindcss.com", "")
+
+
 def construire_index() -> None:
     """Génère index.html à partir du modèle et des fragments."""
     if not TEMPLATE_PATH.is_file():
@@ -89,23 +119,11 @@ def construire_index() -> None:
     contenu_final = assembler_page(contenu_modele)
 
     if is_prod:
-        # En production, on remplace le script du Play CDN de Tailwind par le CSS compilé statique
-        cdn_pattern = re.compile(
-            r"<!--\s*Tailwind CSS \(CDN\)\s*\+.*-->\s*<script\s+src=\"https://cdn\.tailwindcss\.com\"></script>\s*<script\s+src=\"js/tailwind\.config\.js\"></script>",
-            re.IGNORECASE | re.MULTILINE
+        contenu_final = appliquer_optimisations_production(contenu_final)
+        print(
+            "Optimisations de production appliquées (Tailwind CDN remplacé "
+            "par le CSS statique et CSP renforcée)."
         )
-        remplacement = '<!-- Tailwind CSS statique compilé pour la production -->\n    <link rel="stylesheet" href="css/tailwind.built.css">'
-        contenu_final = cdn_pattern.sub(remplacement, contenu_final)
-
-        # On nettoie également la CSP dans la balise <meta> en retirant cdn.tailwindcss.com
-        contenu_final = contenu_final.replace(
-            "file: https://cdn.tailwindcss.com",
-            "file:"
-        ).replace(
-            " https://cdn.tailwindcss.com",
-            ""
-        )
-        print("Optimisations de production appliquées (Tailwind CDN remplacé par le CSS statique et CSP renforcée).")
 
     OUTPUT_PATH.write_text(contenu_final + "\n", encoding="utf-8")
     print(f"Page générée : {OUTPUT_PATH}")

@@ -16,6 +16,12 @@ module.exports = {
           courtLight: '#22c55e',
           ball: '#f97316',
           navy: '#0f172a',
+          // Accents par catégorie de documents
+          admin: '#059669',
+          adminLight: '#34d399',
+          legal: '#ea580c',
+          legalLight: '#fb923c',
+          // Rappels d'identité visuelle des documents (fic/*.html)
           purple: '#8e44ad',
           blue: '#2980b9',
           green: '#16a34a',

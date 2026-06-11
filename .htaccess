@@ -10,7 +10,7 @@
     Header set X-Content-Type-Options "nosniff"
     Header set X-Frame-Options "DENY"
     Header set Referrer-Policy "strict-origin-when-cross-origin"
-    Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), interest-cohort=()"
+    Header set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=()"
     Header set Cross-Origin-Opener-Policy "same-origin"
     Header set Cross-Origin-Resource-Policy "same-site"
 
