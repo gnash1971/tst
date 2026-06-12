@@ -9,6 +9,7 @@
   PYTHON_VERSION = "3.12"
 
 # Le dossier 'dist/' est généré dynamiquement lors du build.
-# Seuls les fichiers requis pour l'exécution publique (index.html, css/, js/, fonts/, fic/)
-# sont inclus dans 'dist/'. Cela protège totalement les scripts de build, fichiers de config,
-# et sources partielles contre l'accès public et les téléchargements non autorisés.
+# Seuls les fichiers requis pour l'exécution publique (index.html, css/, js/,
+# fonts/, fic/, logo/, pub/) sont inclus dans 'dist/'. Cela protège totalement
+# les scripts de build, fichiers de config, et sources partielles contre
+# l'accès public et les téléchargements non autorisés.

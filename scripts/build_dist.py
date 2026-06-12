@@ -116,6 +116,7 @@ def preparer_dossier_production() -> None:
     copier_dossier_optionnel("fonts")
     copier_dossier_optionnel("fic")
     copier_dossier_optionnel("logo")
+    copier_dossier_optionnel("pub")
 
     logger.info("Préparation du dossier 'dist/' terminée avec succès !")
 

@@ -49,6 +49,23 @@
     border-color: rgba(249, 115, 22, 0.3);
 }
 
+/* Variante catégorie vie du club (maillot). */
+.doc-toc-mobile__link--club {
+    color: #0369a1;
+    background: rgba(14, 165, 233, 0.1);
+    border-color: rgba(14, 165, 233, 0.25);
+}
+
+.doc-toc-mobile__link--club:hover {
+    background: rgba(14, 165, 233, 0.18);
+}
+
+.dark .doc-toc-mobile__link--club {
+    color: #7dd3fc;
+    background: rgba(14, 165, 233, 0.15);
+    border-color: rgba(14, 165, 233, 0.3);
+}
+
 .doc-card {
     position: relative;
     scroll-margin-top: 6rem;
@@ -63,6 +80,7 @@
 .doc-card:nth-child(2) { animation-delay: 0.12s; }
 .doc-card:nth-child(3) { animation-delay: 0.19s; }
 .doc-card:nth-child(4) { animation-delay: 0.26s; }
+.doc-card:nth-child(5) { animation-delay: 0.33s; }
 
 .doc-card:hover {
     transform: translateY(-3px);
@@ -112,11 +130,15 @@
 }
 
 .doc-card a[href*="fic/"] i,
-.doc-card a[href*="fic/"] svg {
+.doc-card a[href*="fic/"] svg,
+.doc-card a[href*="pub/"] i,
+.doc-card a[href*="pub/"] svg {
     transition: transform 0.2s ease;
 }
 
 .doc-card a[href*="fic/"]:hover i,
-.doc-card a[href*="fic/"]:hover svg {
+.doc-card a[href*="fic/"]:hover svg,
+.doc-card a[href*="pub/"]:hover i,
+.doc-card a[href*="pub/"]:hover svg {
     transform: translateX(3px);
 }

@@ -127,7 +127,7 @@
     outline-offset: 2px;
 }
 
-/* Deux variantes de catégorie ; l'icône porte la couleur du document. */
+/* Trois variantes de catégorie ; l'icône porte la couleur du document. */
 .hero-visual__doc--admin {
     background: rgba(16, 185, 129, 0.1);
     color: #047857;
@@ -140,6 +140,12 @@
     border-color: rgba(249, 115, 22, 0.22);
 }
 
+.hero-visual__doc--club {
+    background: rgba(14, 165, 233, 0.1);
+    color: #0369a1;
+    border-color: rgba(14, 165, 233, 0.22);
+}
+
 .dark .hero-visual__doc--admin {
     color: #6ee7b7;
     background: rgba(16, 185, 129, 0.16);
@@ -148,4 +154,9 @@
 .dark .hero-visual__doc--legal {
     color: #fdba74;
     background: rgba(249, 115, 22, 0.16);
+}
+
+.dark .hero-visual__doc--club {
+    color: #7dd3fc;
+    background: rgba(14, 165, 233, 0.16);
 }

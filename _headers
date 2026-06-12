@@ -16,3 +16,6 @@
 
 /logo/*
   Cache-Control: public, max-age=86400
+
+/pub/*
+  Cache-Control: public, max-age=86400
