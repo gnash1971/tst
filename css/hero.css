@@ -72,6 +72,64 @@
     background: rgba(21, 128, 61, 0.26);
 }
 
+/*
+ * Filigrane : logo du club fondu dans le dégradé du hero.
+ * Les PNG ont un fond plein (blanc ou noir) : les modes de fusion
+ * multiply (clair) et screen (sombre) effacent ce fond, et le masque
+ * radial adoucit les contours pour un rendu de filigrane.
+ */
+.hero-watermark {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.hero-watermark__img {
+    display: none;
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    width: min(150vw, 56rem);
+    max-width: none;
+    transform: translate(-50%, -50%) rotate(-6deg);
+    -webkit-mask-image: radial-gradient(
+        ellipse 60% 75% at 50% 50%,
+        rgba(0, 0, 0, 1) 52%,
+        transparent 96%
+    );
+    mask-image: radial-gradient(
+        ellipse 60% 75% at 50% 50%,
+        rgba(0, 0, 0, 1) 52%,
+        transparent 96%
+    );
+}
+
+.hero-watermark__img--light {
+    display: block;
+    mix-blend-mode: multiply;
+    opacity: 0.1;
+}
+
+.dark .hero-watermark__img--light {
+    display: none;
+}
+
+.dark .hero-watermark__img--dark {
+    display: block;
+    mix-blend-mode: screen;
+    opacity: 0.16;
+}
+
+/* Sur grand écran, le filigrane occupe le creux entre texte et carte. */
+@media (min-width: 1024px) {
+    .hero-watermark__img {
+        top: 40%;
+        left: 45%;
+        width: clamp(44rem, 66vw, 62rem);
+    }
+}
+
 .hero-badge {
     animation: fade-in-down 0.6s ease-out both;
 }
