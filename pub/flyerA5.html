@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Flyer A5 — Espace documentaire Lentilly Tennis de Table (LTT) · www.l-tt.club">
+    <meta name="author" content="Lentilly Tennis de Table">
+    <meta name="theme-color" content="#15803d">
+    <title>Flyer A5 — Lentilly Tennis de Table · l-tt.club</title>
+
+    <style>
+        @font-face {
+            font-family: 'Exo 2';
+            src: url('../fonts/exo-2-700.woff2') format('woff2');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Exo 2';
+            src: url('../fonts/exo-2-800.woff2') format('woff2');
+            font-weight: 800;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Inter';
+            src: url('../fonts/inter-regular.woff2') format('woff2');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'Inter';
+            src: url('../fonts/inter-600.woff2') format('woff2');
+            font-weight: 600;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --court: #15803d;
+            --court-dark: #064e3b;
+            --court-light: #22c55e;
+            --navy: #0f172a;
+            --slate-600: #475569;
+            --slate-500: #64748b;
+            --slate-400: #94a3b8;
+            --white: #ffffff;
+            --pad-x: 6mm;
+            --gap: 2.5mm;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html { font-size: 9pt; }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            color: var(--navy);
+            background: #cbd5e1;
+            line-height: 1.35;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .flyer {
+            width: 148mm;
+            height: 210mm;
+            margin: 1rem auto;
+            background: var(--white);
+            box-shadow: 0 20px 40px rgb(15 23 42 / 0.18);
+            overflow: hidden;
+            display: grid;
+            /* header · docs (réduit) · CTA · maillots (majoré) */
+            grid-template-rows: 1fr 0.75fr 1fr 1.25fr auto auto;
+            row-gap: 1mm;
+        }
+
+        /* Bande horizontale à hauteur équivalente */
+        .flyer-row {
+            min-height: 0;
+            padding: 2mm var(--pad-x);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* ── Ligne 1 : en-tête ── */
+        .hero {
+            position: relative;
+            background:
+                radial-gradient(ellipse 70% 60% at 100% 0%, rgb(249 115 22 / 0.14), transparent 50%),
+                radial-gradient(ellipse 60% 50% at 0% 100%, rgb(34 197 94 / 0.16), transparent 45%),
+                linear-gradient(168deg, #f0fdf4, #ecfdf5 45%, #fff7ed);
+            border-bottom: 1px solid rgb(21 128 61 / 0.08);
+        }
+
+        .hero-glow {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(36px);
+            pointer-events: none;
+        }
+
+        .hero-glow--green {
+            top: -12mm;
+            left: -8mm;
+            width: 45mm;
+            height: 45mm;
+            background: rgb(34 197 94 / 0.2);
+        }
+
+        .hero-glow--orange {
+            top: 0;
+            right: -6mm;
+            width: 32mm;
+            height: 32mm;
+            background: rgb(249 115 22 / 0.12);
+        }
+
+        .hero-grid {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            min-height: 0;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 4mm;
+            align-items: center;
+        }
+
+        .hero-logo-frame {
+            height: 100%;
+            width: auto;
+            max-width: 58mm;
+            aspect-ratio: 1380 / 752;
+            border-radius: 9px;
+            border: 1.5px solid rgb(21 128 61 / 0.22);
+            box-shadow: 0 3px 12px rgb(21 128 61 / 0.1);
+            overflow: hidden;
+            background: rgb(255 255 255 / 0.45);
+        }
+
+        .hero-logo-frame__img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+
+        .hero-copy {
+            display: flex;
+            flex-direction: column;
+            gap: 2mm;
+            min-width: 0;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            align-self: flex-start;
+            gap: 1.5mm;
+            padding: 1.2mm 3mm;
+            border-radius: 999px;
+            font-size: 0.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--court-dark);
+            background: rgb(255 255 255 / 0.88);
+            border: 1px solid rgb(21 128 61 / 0.2);
+            box-shadow: 0 1px 4px rgb(21 128 61 / 0.08);
+        }
+
+        .hero-badge svg {
+            width: 3.2mm;
+            height: 3.2mm;
+            color: var(--court);
+        }
+
+        .hero-title {
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.1rem, 2.8vw, 1.5rem);
+            line-height: 0.98;
+            text-transform: uppercase;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-title .line2 {
+            display: block;
+            margin-top: 0.8mm;
+            background: linear-gradient(92deg, var(--court), var(--court-light));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-sub {
+            font-size: 0.62rem;
+            color: var(--slate-600);
+            line-height: 1.4;
+        }
+
+        .hero-loc {
+            font-size: 0.5rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.09em;
+            color: var(--court);
+        }
+
+        /* ── Ligne 3 : bandeau URL + QR ── */
+        .cta {
+            min-height: 0;
+            height: 100%;
+            align-self: stretch;
+            margin: 0 var(--pad-x);
+            padding: 2mm 3.5mm;
+            border-radius: 9px;
+            background: linear-gradient(135deg, var(--court-dark), var(--court) 55%, #166534);
+            color: var(--white);
+            display: flex;
+            align-items: stretch;
+            gap: 3mm;
+            box-shadow: 0 4px 14px rgb(21 128 61 / 0.28);
+        }
+
+        .cta-tag {
+            font-size: 0.48rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.9;
+        }
+
+        .cta-url {
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+            margin-top: 0.6mm;
+        }
+
+        .cta-url a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .cta-note {
+            margin-top: 1.5mm;
+            font-size: 0.55rem;
+            opacity: 0.9;
+            line-height: 1.35;
+        }
+
+        .cta-copy {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-width: 0;
+        }
+
+        .qr-box {
+            flex: 0 0 auto;
+            align-self: stretch;
+            aspect-ratio: 1;
+            width: auto;
+            background: var(--white);
+            padding: 1.2mm;
+            border-radius: 7px;
+            box-shadow: 0 2px 8px rgb(0 0 0 / 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-box img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 2px;
+            /* Contours nets si repli PNG */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+        }
+
+        /* ── Ligne 2 : documents officiels ── */
+        .docs-section {
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .section-label {
+            font-family: 'Exo 2', sans-serif;
+            font-weight: 700;
+            font-size: 0.52rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--slate-500);
+            margin-bottom: 1.2mm;
+            flex-shrink: 0;
+        }
+
+        .docs {
+            flex: 1;
+            min-height: 0;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2mm;
+            list-style: none;
+            align-items: stretch;
+        }
+
+        .doc {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 1.5mm;
+            height: 100%;
+            padding: 2mm 1.5mm;
+            border-radius: 7px;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px rgb(15 23 42 / 0.04);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .doc::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 2px;
+        }
+
+        .doc--purple::before { background: #8e44ad; }
+        .doc--blue::before   { background: #2980b9; }
+        .doc--green::before  { background: #16a34a; }
+        .doc--red::before    { background: #e74c3c; }
+
+        .doc-icon {
+            flex-shrink: 0;
+            width: 5.5mm;
+            height: 5.5mm;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .doc-icon svg {
+            width: 3.2mm;
+            height: 3.2mm;
+        }
+
+        .doc--purple .doc-icon { background: #f3e8ff; color: #8e44ad; }
+        .doc--blue   .doc-icon { background: #dbeafe; color: #2980b9; }
+        .doc--green  .doc-icon { background: #dcfce7; color: #16a34a; }
+        .doc--red    .doc-icon { background: #fee2e2; color: #e74c3c; }
+
+        .doc-text {
+            font-size: 0.5rem;
+            font-weight: 600;
+            line-height: 1.15;
+        }
+
+        .doc-cat {
+            display: block;
+            font-size: 0.42rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--slate-400);
+            margin-top: 0.4mm;
+        }
+
+        /* ── Ligne 4 : maillots ── */
+        .maillot-band {
+            min-height: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5mm;
+            padding: 2mm var(--pad-x);
+            background: linear-gradient(180deg, #f0f9ff 0%, #f8fafc 100%);
+            border-top: 1px solid #bae6fd;
+        }
+
+        .maillot-band__head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1mm;
+            flex-shrink: 0;
+        }
+
+        .maillot-band__head .section-label {
+            margin-bottom: 0;
+            color: #0369a1;
+        }
+
+        .maillot-band__tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2mm;
+        }
+
+        .maillot-tag {
+            padding: 0.7mm 2mm;
+            border-radius: 999px;
+            font-size: 0.42rem;
+            font-weight: 600;
+            color: #0c4a6e;
+            background: rgb(255 255 255 / 0.95);
+            border: 1px solid #7dd3fc;
+        }
+
+        .maillot-visual {
+            flex: 1;
+            min-height: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--white);
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            padding: 1.5mm;
+        }
+
+        .maillot-visual img {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .maillot-caption {
+            font-size: 0.48rem;
+            color: var(--slate-600);
+            line-height: 1.3;
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .maillot-caption strong {
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        /* Atouts (hors des 4 bandes égales) */
+        .perks {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5mm;
+            padding: 1.5mm var(--pad-x) 1mm;
+        }
+
+        .perk {
+            display: flex;
+            align-items: center;
+            gap: 1.5mm;
+            padding: 1.5mm 2mm;
+            border-radius: 7px;
+            background: #f0fdf4;
+            border: 1px solid #d1fae5;
+        }
+
+        .perk-icon {
+            width: 4mm;
+            height: 4mm;
+            flex-shrink: 0;
+            color: var(--court);
+        }
+
+        .perk-text strong {
+            display: block;
+            font-size: 0.48rem;
+            font-weight: 700;
+            line-height: 1.15;
+        }
+
+        .perk-text span {
+            font-size: 0.42rem;
+            color: var(--slate-500);
+        }
+
+        /* Pied de page */
+        .footer {
+            padding: 2.5mm var(--pad-x);
+            background: var(--navy);
+            color: rgb(255 255 255 / 0.82);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3mm;
+            font-size: 0.48rem;
+        }
+
+        .footer-left {
+            font-weight: 500;
+        }
+
+        .footer-right {
+            text-align: right;
+            line-height: 1.4;
+        }
+
+        .footer-right a {
+            color: var(--court-light);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .print-hint {
+            text-align: center;
+            padding: 0.6rem;
+            font-size: 0.8rem;
+            color: var(--slate-500);
+        }
+
+        .print-hint kbd {
+            padding: 0.1rem 0.35rem;
+            border-radius: 4px;
+            border: 1px solid #cbd5e1;
+            background: var(--white);
+            font-size: 0.78em;
+        }
+
+        @media print {
+            body { background: var(--white); }
+            .flyer { margin: 0; box-shadow: none; }
+            .print-hint { display: none; }
+        }
+
+        @page {
+            size: A5 portrait;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+    <p class="print-hint" aria-hidden="true">
+        Impression A5 — <kbd>Ctrl</kbd>+<kbd>P</kbd> — format A5, marges aucune,
+        arrière-plans activés.
+    </p>
+
+    <article class="flyer" role="document" aria-label="Flyer A5 Lentilly Tennis de Table">
+
+        <header class="hero flyer-row">
+            <div class="hero-glow hero-glow--green" aria-hidden="true"></div>
+            <div class="hero-glow hero-glow--orange" aria-hidden="true"></div>
+
+            <div class="hero-grid">
+                <div class="hero-logo-frame">
+                    <img
+                        src="../logo/V5_logo_filigrane.png"
+                        alt="Logo Lentilly Tennis de Table"
+                        class="hero-logo-frame__img"
+                        width="440"
+                        height="240"
+                    >
+                </div>
+
+                <div class="hero-copy">
+                    <span class="hero-badge">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                             stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                             stroke-linejoin="round" aria-hidden="true">
+                            <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
+                            <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
+                            <path d="M4 22h16"></path>
+                            <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20 7 22"></path>
+                            <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20 17 22"></path>
+                            <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
+                        </svg>
+                        Espace documentaire officiel
+                    </span>
+
+                    <h1 class="hero-title">
+                        Préparez
+                        <span class="line2">votre saison au ping</span>
+                    </h1>
+
+                    <p class="hero-sub">
+                        Statuts, inscription, règlement et PV — loisir ou compétition,
+                        au gymnase ou chez vous.
+                    </p>
+
+                    <p class="hero-loc">Lentilly · 69210</p>
+                </div>
+            </div>
+        </header>
+
+        <section class="docs-section flyer-row" aria-labelledby="docs-label">
+            <h2 class="section-label" id="docs-label">4 documents officiels</h2>
+            <ul class="docs" role="list">
+                    <li class="doc doc--purple">
+                        <div class="doc-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <path d="M12 20h9"></path>
+                                <path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"></path>
+                            </svg>
+                        </div>
+                        <p class="doc-text">
+                            Fiche d'inscription
+                            <span class="doc-cat">RGPD</span>
+                        </p>
+                    </li>
+                    <li class="doc doc--blue">
+                        <div class="doc-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
+                                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
+                            </svg>
+                        </div>
+                        <p class="doc-text">
+                            Règlement intérieur
+                            <span class="doc-cat">Vie au club</span>
+                        </p>
+                    </li>
+                    <li class="doc doc--green">
+                        <div class="doc-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                            </svg>
+                        </div>
+                        <p class="doc-text">
+                            PV d'AG constitutive
+                            <span class="doc-cat">Juridique</span>
+                        </p>
+                    </li>
+                    <li class="doc doc--red">
+                        <div class="doc-icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                 stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                        </div>
+                        <p class="doc-text">
+                            Statuts association
+                            <span class="doc-cat">Juridique</span>
+                        </p>
+                    </li>
+            </ul>
+        </section>
+
+        <section class="cta" aria-labelledby="cta-label">
+            <div class="cta-copy">
+                <p class="cta-tag" id="cta-label">Le vestiaire numérique du club</p>
+                <p class="cta-url">
+                    <a href="https://www.l-tt.club" rel="noopener">www.l-tt.club</a>
+                </p>
+                <p class="cta-note">Consultez, recherchez et imprimez vos documents.</p>
+            </div>
+            <div class="qr-box">
+                <img
+                    src="qr_l-tt-club.svg"
+                    alt="QR code vers www.l-tt.club"
+                    width="696"
+                    height="696"
+                >
+            </div>
+        </section>
+
+        <section class="maillot-band" aria-labelledby="maillot-label">
+                <div class="maillot-band__head">
+                    <h2 class="section-label" id="maillot-label">Maillot du club</h2>
+                    <div class="maillot-band__tags">
+                        <span class="maillot-tag">Marine &amp; crème</span>
+                        <span class="maillot-tag">Prénom floqué</span>
+                        <span class="maillot-tag">Écusson LTT</span>
+                    </div>
+                </div>
+                <figure class="maillot-visual">
+                    <img
+                        src="V5_t-shirts.png"
+                        alt="Maillots LTT marine et crème, dos floqué au prénom"
+                        width="480"
+                        height="360"
+                    >
+                </figure>
+                <p class="maillot-caption">
+                    <strong>Le maillot officiel</strong> — Lentilly Tennis de Table,
+                    à l'entraînement comme en compétition.
+                </p>
+        </section>
+
+        <div class="perks" aria-label="Atouts du site">
+                <article class="perk">
+                    <svg class="perk-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round" aria-hidden="true">
+                        <rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect>
+                        <path d="M12 18h.01"></path>
+                    </svg>
+                    <div class="perk-text">
+                        <strong>Tous écrans</strong>
+                        <span>Mobile &amp; ordinateur</span>
+                    </div>
+                </article>
+                <article class="perk">
+                    <svg class="perk-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round" aria-hidden="true">
+                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+                    </svg>
+                    <div class="perk-text">
+                        <strong>Jour &amp; nuit</strong>
+                        <span>Mode sombre</span>
+                    </div>
+                </article>
+                <article class="perk">
+                    <svg class="perk-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
+                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                         stroke-linejoin="round" aria-hidden="true">
+                        <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+                        <rect width="12" height="8" x="6" y="14"></rect>
+                    </svg>
+                    <div class="perk-text">
+                        <strong>PDF</strong>
+                        <span>Imprimer &amp; archiver</span>
+                    </div>
+                </article>
+        </div>
+
+        <footer class="footer">
+            <p class="footer-left">&copy; 2026 Lentilly Tennis de Table · Loi 1901</p>
+            <div class="footer-right">
+                Lentilly, France ·
+                <a href="mailto:gnash@ensba-lyon.fr">gnash@ensba-lyon.fr</a>
+            </div>
+        </footer>
+    </article>
+
+</body>
+</html>
