@@ -1,15 +1,5 @@
-@import "fonts.css";
-@import "base.css";
-@import "layout.css";
-@import "animations.css";
-@import "hero.css";
-@import "hero-table.css";
-@import "hero-visual.css";
-@import "search-filters.css";
-@import "documents.css";
-@import "info.css";
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
