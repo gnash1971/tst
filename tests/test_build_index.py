@@ -137,6 +137,6 @@ def test_optimisations_production_nettoient_la_csp() -> None:
 
 def test_optimisations_production_sans_bloc_cdn() -> None:
     """Un contenu déjà propre ressort inchangé (idempotence)."""
-    contenu = "<head><link rel=\"stylesheet\" href=\"css/styles.css\"></head>"
+    contenu = "<head><link rel=\"stylesheet\" href=\"css/styles.built.css\"></head>"
 
     assert build_index.appliquer_optimisations_production(contenu) == contenu

@@ -102,8 +102,54 @@ def appliquer_optimisations_production(contenu: str) -> str:
         str: HTML prêt pour la publication (sans dépendance CDN).
     """
     resultat = CDN_PATTERN.sub(REMPLACEMENT_CSS_STATIQUE, contenu)
+    resultat = resultat.replace('href="css/styles.css"', 'href="css/styles.built.css"')
     resultat = resultat.replace("file: https://cdn.tailwindcss.com", "file:")
     return resultat.replace(" https://cdn.tailwindcss.com", "")
+
+
+def assembler_styles_production() -> None:
+    """
+    Lit css/styles.css, résout et fusionne tous les @import locaux dans css/styles.built.css.
+    """
+    css_dir = ROOT_DIR / "css"
+    styles_src = css_dir / "styles.css"
+    styles_dest = css_dir / "styles.built.css"
+
+    if not styles_src.is_file():
+        print(f"Avertissement : styles.css introuvable ({styles_src}).", file=sys.stderr)
+        return
+
+    print("Concaténation et minification des styles personnalisés de production...")
+    contenu_source = styles_src.read_text(encoding="utf-8")
+    
+    # Recherche des déclarations d'importation sous forme : @import url('...') ou @import "..."
+    import_pattern = re.compile(r"@import\s+(?:url\()?['\"]?([^'\"#\s\)]+)['\"]?\)?\s*;")
+    
+    contenu_built = []
+    
+    for ligne in contenu_source.splitlines():
+        correspondance = import_pattern.search(ligne)
+        if correspondance:
+            nom_fichier = correspondance.group(1)
+            fichier_cible = css_dir / nom_fichier
+            if fichier_cible.is_file():
+                # Lecture et injection du contenu du sous-fichier
+                print(f"  -> Concaténation de : {nom_fichier}")
+                css_file_content = fichier_cible.read_text(encoding="utf-8")
+                # Petite minification basique (retrait des commentaires block et des lignes vides)
+                css_file_content = re.sub(r'/\*[\s\S]*?\*/', '', css_file_content)
+                contenu_built.append(f"\n/* --- DEBUT {nom_fichier} --- */\n{css_file_content.strip()}")
+            else:
+                print(f"Avertissement : Fichier importé introuvable : {nom_fichier}", file=sys.stderr)
+        else:
+            # On conserve les règles éventuellement définies directement dans styles.css (hors imports)
+            ligne_strip = ligne.strip()
+            if ligne_strip and not ligne_strip.startswith("/*"):
+                contenu_built.append(ligne)
+                
+    # Écrit le résultat final fusionné et minifié
+    styles_dest.write_text("\n".join(contenu_built) + "\n", encoding="utf-8")
+    print(f"Fichier de styles compilé créé : {styles_dest}")
 
 
 def construire_index() -> None:
@@ -119,6 +165,10 @@ def construire_index() -> None:
     contenu_final = assembler_page(contenu_modele)
 
     if is_prod:
+        # 1. Générer le fichier de style concaténé et minifié styles.built.css
+        assembler_styles_production()
+        
+        # 2. Remplacer les appels CDN et styles.css de développement par les versions de production
         contenu_final = appliquer_optimisations_production(contenu_final)
         print(
             "Optimisations de production appliquées (Tailwind CDN remplacé "
