@@ -12,15 +12,17 @@ OUTPUT_PATH = ROOT_DIR / "index.html"
 PARTIAL_PATTERN = re.compile(r"<!--\s*@partial\s+(\S+)\s*-->")
 PARTIALS_PREFIX = "partials/"
 
-# Bloc Tailwind CDN (mode développement) remplacé en production.
+# Bloc Tailwind CDN et styles de développement (mode développement) remplacés en production.
 CDN_PATTERN = re.compile(
     r"<!--\s*Tailwind CSS \(CDN\)\s*\+.*-->\s*"
     r"<script\s+src=\"https://cdn\.tailwindcss\.com\"></script>\s*"
-    r"<script\s+src=\"js/tailwind\.config\.js\"></script>",
+    r"<script\s+src=\"js/tailwind\.config\.js\"></script>"
+    r"(?:\s*<!--\s*Styles personnalisés\s*-->\s*"
+    r"<link\s+rel=\"stylesheet\"\s+href=\"css/styles\.css\">)?",
     re.IGNORECASE | re.MULTILINE,
 )
 REMPLACEMENT_CSS_STATIQUE = (
-    "<!-- Tailwind CSS statique compilé pour la production -->\n"
+    "<!-- Tailwind CSS et styles personnalisés compilés pour la production -->\n"
     '    <link rel="stylesheet" href="css/tailwind.built.css">'
 )
 
