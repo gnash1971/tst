@@ -16,7 +16,7 @@ La sécurité de notre espace documentaire et de nos membres est une priorité a
 ### Comment signaler une vulnérabilité ?
 
 Veuillez envoyer un e-mail détaillé à notre adresse de contact officielle :
-📧 **contact@lentillytt.fr**
+📧 **gnash@ensba-lyon.fr**
 
 Dans votre message, merci d'inclure les informations suivantes :
 - Une description de la vulnérabilité découverte.
