@@ -20,6 +20,7 @@
 
         if (this.searchBar && this.docCards.length > 0) {
             this.bindEvents();
+            this.renderCategoryCounts();
         }
     }
 
@@ -121,10 +122,14 @@
         this.clearSearchBtn.classList.toggle('hidden', !hasQuery);
     };
 
-    DocumentFilter.prototype.filterDocuments = function () {
+    DocumentFilter.prototype.filterDocuments = function (animate) {
         var self = this;
         var matchCount = 0;
         var queryWords = this.getQueryWords();
+        var motionOk = !(
+            window.matchMedia &&
+            window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        );
 
         this.docCards.forEach(function (card) {
             var isVisible =
@@ -134,6 +139,9 @@
             card.style.display = isVisible ? 'flex' : 'none';
             if (isVisible) {
                 matchCount += 1;
+                if (animate && motionOk) {
+                    self.replayEnterAnimation(card);
+                }
             }
         });
 
@@ -141,10 +149,52 @@
         this.updateDocCount(matchCount);
     };
 
+    DocumentFilter.prototype.replayEnterAnimation = function (card) {
+        // Relance l'animation d'apparition : on retire la classe, on force un
+        // reflow, puis on la réapplique (même technique que le navigateur de
+        // cartes pour redémarrer une animation CSS déjà jouée).
+        card.classList.remove(C.CARD_ENTER_CLASS);
+        void card.offsetWidth;
+        card.classList.add(C.CARD_ENTER_CLASS);
+    };
+
+    DocumentFilter.prototype.renderCategoryCounts = function () {
+        var self = this;
+        if (!this.filterButtons || this.filterButtons.length === 0) {
+            return;
+        }
+
+        this.filterButtons.forEach(function (button) {
+            var category = button.getAttribute('data-category');
+            var count = 0;
+
+            if (!category || category === C.CATEGORY_ALL) {
+                count = self.docCards.length;
+            } else {
+                self.docCards.forEach(function (card) {
+                    if (card.getAttribute('data-category') === category) {
+                        count += 1;
+                    }
+                });
+            }
+
+            // Pastille décorative (masquée aux technologies d'assistance pour
+            // conserver un nom accessible stable sur le bouton de filtre).
+            var badge = button.querySelector('.' + C.FILTER_COUNT_CLASS);
+            if (!badge) {
+                badge = document.createElement('span');
+                badge.className = C.FILTER_COUNT_CLASS;
+                badge.setAttribute('aria-hidden', 'true');
+                button.appendChild(badge);
+            }
+            badge.textContent = String(count);
+        });
+    };
+
     DocumentFilter.prototype.resetFilters = function () {
         this.clearSearchInput();
         this.activateCategory(C.CATEGORY_ALL);
-        this.filterDocuments();
+        this.filterDocuments(true);
     };
 
     DocumentFilter.prototype.revealDocumentCard = function (cardId) {
@@ -185,7 +235,7 @@
                 }
 
                 self.activateCategory(targetCategory);
-                self.filterDocuments();
+                self.filterDocuments(true);
             });
         });
 

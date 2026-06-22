@@ -27,6 +27,10 @@
         ],
         HIGHLIGHT_CLASS: 'doc-card--highlight',
         HIGHLIGHT_DURATION_MS: 2200,
+        TOC_ACTIVE_CLASS: 'doc-toc-link--active',
+        CARD_ENTER_CLASS: 'doc-card--enter',
+        FILTER_COUNT_CLASS: 'filter-btn__count',
+        BACK_TO_TOP_OFFSET_PX: 600,
         SELECTORS: {
             themeToggle: '#theme-toggle',
             searchBar: '#search-bar',
@@ -37,6 +41,9 @@
             noResults: '#no-results',
             docCount: '#doc-count',
             tocLinks: '.doc-toc-link',
+            docTocMobile: '.doc-toc-mobile',
+            backToTop: '#back-to-top',
+            searchKbdHint: '#search-kbd-hint',
         },
     };
 })(window);

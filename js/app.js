@@ -17,6 +17,16 @@
         new global.LTT.ThemeManager();
         var documentFilter = new global.LTT.DocumentFilter();
         new global.LTT.DocumentNavigator(documentFilter);
+
+        if (global.LTT.DocumentScrollSpy) {
+            new global.LTT.DocumentScrollSpy();
+        }
+        if (global.LTT.BackToTop) {
+            new global.LTT.BackToTop();
+        }
+        if (global.LTT.SearchShortcuts) {
+            new global.LTT.SearchShortcuts();
+        }
     }
 
     document.addEventListener('DOMContentLoaded', bootstrap);

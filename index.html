@@ -214,6 +214,8 @@
                         <button id="clear-search" type="button" class="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hidden" aria-label="Effacer la recherche">
                             <i data-lucide="x" class="h-5 w-5"></i>
                         </button>
+                        <!-- Indice clavier : « / » place le focus dans la recherche -->
+                        <kbd id="search-kbd-hint" class="search-kbd-hint" aria-hidden="true">/</kbd>
                     </div>
 
                     <div class="hero-filters">
@@ -254,7 +256,7 @@
             </div>
 
             <!-- Sommaire mobile (équivalent au vestiaire numérique desktop) -->
-            <nav class="doc-toc-mobile lg:hidden flex flex-wrap gap-2 mb-8" aria-label="Sommaire des documents">
+            <nav class="doc-toc-mobile lg:hidden" aria-label="Sommaire des documents">
                 <a href="#doc-fiche-inscription" class="doc-toc-mobile__link doc-toc-link">Fiche d'inscription</a>
                 <a href="#doc-reglement-interieur" class="doc-toc-mobile__link doc-toc-link">Règlement intérieur</a>
                 <a href="#doc-pv-ag" class="doc-toc-mobile__link doc-toc-mobile__link--legal doc-toc-link">PV d'AG</a>
@@ -729,12 +731,20 @@
         </div>
     </footer>
 
+    <!-- Bouton flottant : retour en haut de page -->
+    <button id="back-to-top" type="button" class="back-to-top" aria-label="Revenir en haut de la page">
+        <i data-lucide="arrow-up" class="h-5 w-5"></i>
+    </button>
+
     <!-- Modules JavaScript (ordre de chargement requis) -->
     <script src="js/ltt-images.js"></script>
     <script src="js/ltt-constants.js"></script>
     <script src="js/ltt-theme-manager.js"></script>
     <script src="js/ltt-document-filter.js"></script>
     <script src="js/ltt-document-navigator.js"></script>
+    <script src="js/ltt-document-spy.js"></script>
+    <script src="js/ltt-back-to-top.js"></script>
+    <script src="js/ltt-search-shortcuts.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
