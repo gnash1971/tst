@@ -100,11 +100,15 @@ def preparer_dossier_production() -> None:
         DIST_DIR.mkdir(parents=True, exist_ok=True)
 
     # 2. Copier les fichiers de la racine requis pour la production
+    # (favicon.ico et site.webmanifest doivent être servis depuis la racine ;
+    # les icônes PWA dérivées vivent dans logo/, copié plus bas)
     fichiers_requis = [
         "index.html",
         "404.html",
         "_headers",
-        ".htaccess"
+        ".htaccess",
+        "favicon.ico",
+        "site.webmanifest"
     ]
     for fichier in fichiers_requis:
         copier_fichier_optionnel(fichier)

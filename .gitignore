@@ -24,3 +24,6 @@ node_modules/
 css/tailwind.built.css
 dist/
 
+# Cache local de génération d'assets (polices TTF téléchargées)
+scripts/_assets_cache/
+

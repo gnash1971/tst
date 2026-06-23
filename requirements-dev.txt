@@ -1,0 +1,10 @@
+# Dépendances de développement (génération d'assets, hors production).
+# Installation : python -m pip install -r requirements-dev.txt
+#
+# Ces outils servent uniquement à régénérer des fichiers statiques :
+#   - scripts/gen_favicons.py / gen_og_image.py : favicons et image Open Graph
+#   - scripts/gen_qr_flyer.py                    : QR code du flyer
+# Aucune de ces bibliothèques n'est requise à l'exécution du site.
+
+Pillow~=12.2
+qrcode~=8.2
