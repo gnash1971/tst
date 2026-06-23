@@ -26,3 +26,49 @@
         rgba(2, 6, 23, 1)
     );
 }
+
+/*
+ * Séparateur « ligne de table » entre sections : fine bande verte au trait
+ * blanc central (rappel de la ligne médiane / du filet), estompée aux
+ * extrémités. Cohérent avec le « filet » vert déjà présent sous l'en-tête.
+ */
+.table-line-separator {
+    height: 3px;
+    margin: 0;
+    border: none;
+    position: relative;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--sport-court) 18%,
+        var(--sport-court) 82%,
+        transparent 100%
+    );
+}
+
+.table-line-separator::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1px;
+    transform: translateY(-50%);
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.9) 20%,
+        rgba(255, 255, 255, 0.9) 80%,
+        transparent 100%
+    );
+}
+
+.dark .table-line-separator::before {
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(255, 255, 255, 0.45) 20%,
+        rgba(255, 255, 255, 0.45) 80%,
+        transparent 100%
+    );
+}

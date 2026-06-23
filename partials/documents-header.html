@@ -9,9 +9,28 @@
                         Vos documents de jeu
                     </h3>
                 </div>
-                <p id="doc-count" class="text-sm font-medium text-slate-500 dark:text-slate-400">
+                <p id="doc-count" class="doc-scoreboard">
                     6 documents disponibles
                 </p>
+            </div>
+
+            <!-- Filtres par catégorie : bandeau collant (desktop) au-dessus de la grille -->
+            <div class="doc-filterbar">
+                <span class="hero-filters__label">Filtrer :</span>
+                <div class="flex flex-wrap items-center gap-2">
+                    <button class="filter-btn active px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-emerald-600 text-white shadow-md shadow-emerald-500/20 border border-emerald-600" data-category="all">
+                        Tous les documents
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="administratif">
+                        Administratif & Inscription
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="juridique">
+                        Statuts & PV d'AG
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="club">
+                        Vie du club
+                    </button>
+                </div>
             </div>
 
             <!-- Sommaire mobile (équivalent au vestiaire numérique desktop) -->

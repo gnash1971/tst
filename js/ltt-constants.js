@@ -40,6 +40,7 @@
             filterButtons: '.filter-btn',
             noResults: '#no-results',
             docCount: '#doc-count',
+            heroDocTotal: '#hero-doc-total',
             tocLinks: '.doc-toc-link',
             docTocMobile: '.doc-toc-mobile',
             backToTop: '#back-to-top',

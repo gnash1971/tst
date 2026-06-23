@@ -52,6 +52,12 @@
     50% { transform: translateY(-8px); }
 }
 
+@keyframes ball-bounce {
+    0%, 100% { transform: translateY(0); }
+    30% { transform: translateY(-4px); }
+    60% { transform: translateY(-1px); }
+}
+
 @keyframes fade-in-up {
     from {
         opacity: 0;
@@ -79,6 +85,7 @@
     .hero-title,
     .hero-lead,
     .hero-stats,
+    .hero-cta,
     .hero-search,
     .doc-card {
         animation: none;

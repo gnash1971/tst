@@ -58,7 +58,61 @@
     }
 }
 
-/* --- Bouton flottant : retour en haut de page --- */
+/* --- Bandeau de filtres par catégorie (au-dessus de la grille) --- */
+.doc-filterbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 1024px) {
+    /*
+     * Collant sous l'en-tête (h-20 = 5rem) pour garder les filtres à portée
+     * pendant le parcours de la grille. Le sommaire mobile (lui aussi collant)
+     * étant masqué en lg, aucune collision n'est possible.
+     */
+    .doc-filterbar {
+        position: sticky;
+        top: 5rem;
+        z-index: 30;
+        margin-bottom: 2.5rem;
+        padding: 0.75rem 0;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+    }
+
+    .dark .doc-filterbar {
+        background: rgba(15, 23, 42, 0.9);
+        border-bottom-color: rgba(51, 65, 85, 0.9);
+    }
+
+    /* Compense l'en-tête + le bandeau collants lors d'une navigation par ancre. */
+    .doc-card {
+        scroll-margin-top: 8.5rem;
+    }
+}
+
+/* --- Compteur façon « tableau d'affichage » (scoreboard) --- */
+.doc-scoreboard {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 0.6rem;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.01em;
+    color: #f8fafc;
+    background: var(--sport-navy);
+    border: 1px solid var(--sport-court-light);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+/* --- Bouton flottant : retour en haut de page (balle de ping) --- */
 .back-to-top {
     position: fixed;
     right: 1.25rem;
@@ -70,24 +124,42 @@
     width: 2.85rem;
     height: 2.85rem;
     border-radius: 9999px;
-    color: #ffffff;
-    background: var(--sport-court);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 0 10px 25px rgba(21, 128, 61, 0.35);
+    /* Balle blanche : flèche vert foncé pour conserver un contraste AA. */
+    color: #166534;
+    background: radial-gradient(
+        circle at 32% 28%,
+        #ffffff 0%,
+        #f8fafc 45%,
+        #cbd5e1 100%
+    );
+    border: 1px solid rgba(15, 23, 42, 0.12);
+    box-shadow:
+        0 10px 25px rgba(15, 23, 42, 0.28),
+        inset -2px -3px 5px rgba(0, 0, 0, 0.06);
     cursor: pointer;
     opacity: 0;
     visibility: hidden;
     transform: translateY(12px);
     transition: opacity 0.25s ease, transform 0.25s ease,
-        background-color 0.2s ease;
+        box-shadow 0.2s ease;
 }
 
 .back-to-top:hover {
-    background: #166534;
+    box-shadow:
+        0 12px 28px rgba(15, 23, 42, 0.34),
+        inset -2px -3px 5px rgba(0, 0, 0, 0.06);
+}
+
+/*
+ * Rebond de la balle au survol : porté par l'icône (et non le bouton) pour ne
+ * pas perturber la transition d'apparition (translateY) du bouton.
+ */
+.back-to-top:hover svg {
+    animation: ball-bounce 0.6s ease;
 }
 
 .back-to-top:focus-visible {
-    outline: 2px solid var(--sport-court-light);
+    outline: 2px solid var(--sport-court);
     outline-offset: 2px;
 }
 
@@ -98,7 +170,9 @@
 }
 
 .dark .back-to-top {
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.45),
+        inset -2px -3px 5px rgba(0, 0, 0, 0.08);
 }
 
 /* --- Compteurs par catégorie sur les boutons de filtre --- */
@@ -165,6 +239,10 @@
 @media (prefers-reduced-motion: reduce) {
     .back-to-top {
         transition: none;
+    }
+
+    .back-to-top:hover svg {
+        animation: none;
     }
 
     .doc-card--enter {

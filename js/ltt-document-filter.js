@@ -14,6 +14,7 @@
         this.noResults = document.querySelector(C.SELECTORS.noResults);
         this.resetSearchBtn = document.querySelector(C.SELECTORS.resetSearch);
         this.docCount = document.querySelector(C.SELECTORS.docCount);
+        this.heroDocTotal = document.querySelector(C.SELECTORS.heroDocTotal);
 
         this.currentCategory = C.CATEGORY_ALL;
         this.searchQuery = '';
@@ -21,8 +22,20 @@
         if (this.searchBar && this.docCards.length > 0) {
             this.bindEvents();
             this.renderCategoryCounts();
+            this.syncInitialCounts();
         }
     }
+
+    DocumentFilter.prototype.syncInitialCounts = function () {
+        // Synchronise les compteurs au chargement depuis le DOM (source unique
+        // de vérité) : total du hero (fixe) et nombre affiché (toutes les
+        // cartes étant visibles avant tout filtrage).
+        var total = this.docCards.length;
+        if (this.heroDocTotal) {
+            this.heroDocTotal.textContent = String(total);
+        }
+        this.updateDocCount(total);
+    };
 
     DocumentFilter.prototype.getQueryWords = function () {
         return this.searchQuery

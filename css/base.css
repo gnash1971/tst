@@ -59,8 +59,7 @@ html {
 }
 
 .texte-redactionnel {
-    text-align: justify;
-    text-justify: inter-word;
-    hyphens: auto;
-    -webkit-hyphens: auto;
+    /* Alignement à gauche : évite les « rivières » de blancs sur colonnes
+     * étroites (cartes, mobile) et améliore le confort de lecture. */
+    text-align: left;
 }

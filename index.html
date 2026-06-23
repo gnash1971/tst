@@ -116,12 +116,24 @@
                             Inscription, règlement, statuts et procès-verbaux : retrouvez ici tous les documents officiels du club <strong class="font-semibold text-slate-900 dark:text-white">Lentilly Tennis de Table</strong>, pour jouer, vous entraîner ou vous engager en toute sérénité — en loisir comme en compétition.
                         </p>
 
+                        <!-- Appels à l'action : entrée explicite vers la grille et l'inscription -->
+                        <div class="hero-cta flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-8">
+                            <a href="#documents-grid" class="inline-flex items-center gap-2 px-6 h-12 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold text-sm shadow-md shadow-emerald-500/20 hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900">
+                                <i data-lucide="arrow-down" class="h-4 w-4"></i>
+                                <span>Voir les documents</span>
+                            </a>
+                            <a href="#doc-fiche-inscription" class="inline-flex items-center gap-2 px-6 h-12 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-700 rounded-xl font-semibold text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900">
+                                <i data-lucide="user-plus" class="h-4 w-4 text-emerald-600 dark:text-emerald-400"></i>
+                                <span>S'inscrire</span>
+                            </a>
+                        </div>
+
                         <div class="hero-stats flex flex-wrap items-center justify-center lg:justify-start gap-3">
                             <span class="stat-pill stat-pill--accent">
                                 <span class="stat-pill-icon stat-pill-icon--court" aria-hidden="true">
                                     <i data-lucide="files" class="h-3.5 w-3.5"></i>
                                 </span>
-                                5 docs à consulter
+                                <span id="hero-doc-total">6</span>&nbsp;docs à consulter
                             </span>
                             <span class="stat-pill">
                                 <span class="stat-pill-icon stat-pill-icon--ball" aria-hidden="true">
@@ -217,27 +229,11 @@
                         <!-- Indice clavier : « / » place le focus dans la recherche -->
                         <kbd id="search-kbd-hint" class="search-kbd-hint" aria-hidden="true">/</kbd>
                     </div>
-
-                    <div class="hero-filters">
-                        <span class="hero-filters__label">Filtrer :</span>
-                        <div class="flex flex-wrap items-center gap-2">
-                            <button class="filter-btn active px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-emerald-600 text-white shadow-md shadow-emerald-500/20 border border-emerald-600" data-category="all">
-                                Tous les documents
-                            </button>
-                            <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="administratif">
-                                Administratif & Inscription
-                            </button>
-                            <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="juridique">
-                                Statuts & PV d'AG
-                            </button>
-                            <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="club">
-                                Vie du club
-                            </button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
+
+    <hr class="table-line-separator" aria-hidden="true">
 
         <!-- Grille des Documents -->
         <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -250,9 +246,28 @@
                         Vos documents de jeu
                     </h3>
                 </div>
-                <p id="doc-count" class="text-sm font-medium text-slate-500 dark:text-slate-400">
+                <p id="doc-count" class="doc-scoreboard">
                     6 documents disponibles
                 </p>
+            </div>
+
+            <!-- Filtres par catégorie : bandeau collant (desktop) au-dessus de la grille -->
+            <div class="doc-filterbar">
+                <span class="hero-filters__label">Filtrer :</span>
+                <div class="flex flex-wrap items-center gap-2">
+                    <button class="filter-btn active px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-emerald-600 text-white shadow-md shadow-emerald-500/20 border border-emerald-600" data-category="all">
+                        Tous les documents
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="administratif">
+                        Administratif & Inscription
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="juridique">
+                        Statuts & PV d'AG
+                    </button>
+                    <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="club">
+                        Vie du club
+                    </button>
+                </div>
             </div>
 
             <!-- Sommaire mobile (équivalent au vestiaire numérique desktop) -->
@@ -658,6 +673,8 @@
 
             </div>
         </section>
+
+    <hr class="table-line-separator" aria-hidden="true">
 
         <!-- Section Infos Pratiques Additionnelles -->
         <section class="py-16 bg-slate-100/80 dark:bg-slate-900/50 border-t border-slate-200/80 dark:border-slate-800/80 transition-colors duration-300">
