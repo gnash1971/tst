@@ -4,7 +4,7 @@
   "description": "Espace documentaire Lentilly Tennis de Table",
   "private": true,
   "scripts": {
-    "build:css": "npx --yes tailwindcss@3.4.17 -i css/tailwind-input.css -o css/tailwind.built.css --minify",
+    "build:css": "npx --yes tailwindcss@3.4.19 -i css/tailwind-input.css -o css/tailwind.built.css --minify",
     "build": "python scripts/build_index.py --prod && npm run build:css && python scripts/build_dist.py",
     "lint": "uv run --extra dev ruff check . && uv run --extra dev ruff format --check .",
     "typecheck": "uv run --extra dev mypy",
@@ -14,6 +14,6 @@
     "check": "npm run verify && npm run build"
   },
   "devDependencies": {
-    "tailwindcss": "3.4.17"
+    "tailwindcss": "3.4.19"
   }
 }
