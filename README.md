@@ -57,6 +57,19 @@ repli) avec `srcset`/`sizes` adaptés ; les logos sous la ligne de flottaison
 uniquement en `https`/`localhost`. Incrémenter `VERSION` dans `sw.js` pour
 invalider l'ancien cache lors d'un changement majeur d'assets.
 
+### Analytics (mesure d'audience)
+
+L'audience est mesurée via **Netlify Analytics** (côté serveur, basé sur les
+logs du CDN) : aucun script, aucun cookie, aucun bandeau RGPD et **aucun
+impact sur la CSP**. Rien à installer dans le dépôt.
+
+- **Activation** : tableau de bord Netlify → *Site* → onglet **Analytics** →
+  *Enable* (fonctionnalité payante, par site).
+- **Ce que l'on suit** : pages et ressources les plus consultées. Les documents
+  étant de vraies pages/fichiers (`fic/*.html`, `pub/flyerA5.pdf`, visuels),
+  ils apparaissent dans les *Top pages* / *Top resources* — d'où la
+  fréquentation réelle de chaque document, sans traceur côté client.
+
 ### Dépendances
 
 - **Build** — installées sur Netlify via `requirements.txt` (export figé de
