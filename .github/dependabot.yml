@@ -13,6 +13,12 @@ updates:
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 5
+    # Tailwind v4 est une refonte majeure (configuration en CSS, nouveau
+    # moteur) qui casserait le build actuel basé sur Tailwind 3. On reste
+    # en 3.x (patchs et mineures acceptés) jusqu'à une migration volontaire.
+    ignore:
+      - dependency-name: "tailwindcss"
+        update-types: ["version-update:semver-major"]
 
   - package-ecosystem: "github-actions"
     directory: "/"
