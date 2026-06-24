@@ -32,20 +32,20 @@ jobs:
 
       - name: Lint (ruff)
         run: |
-          uv run ruff check .
-          uv run ruff format --check .
+          uv run --extra dev ruff check .
+          uv run --extra dev ruff format --check .
 
       - name: Typage (mypy --strict)
-        run: uv run mypy
+        run: uv run --extra dev mypy
 
       - name: Tests + couverture (périmètre critique)
         run: >-
-          uv run pytest
+          uv run --extra dev pytest
           --cov=build_index --cov=build_dist --cov=models
           --cov-report=term-missing --cov-fail-under=75
 
       - name: Audit des dépendances (pip-audit, environnement complet)
-        run: uv run pip-audit
+        run: uv run --extra dev pip-audit
 
       - name: Garde anti-dérive — requirements.txt aligné sur uv.lock
         run: |
