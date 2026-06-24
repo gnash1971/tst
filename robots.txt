@@ -1,0 +1,6 @@
+# robots.txt — Lentilly Tennis de Table
+# Site public : toutes les pages sont indexables.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.l-tt.club/sitemap.xml

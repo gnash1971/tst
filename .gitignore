@@ -19,9 +19,10 @@ __pycache__/
 publier_git.bat
 scripts/git_commit_message.ps1
 
-# Dépendances Node.js et builds Tailwind
+# Dépendances Node.js et builds Tailwind (artefacts régénérés au build)
 node_modules/
 css/tailwind.built.css
+css/styles.built.css
 dist/
 
 # Cache local de génération d'assets (polices TTF téléchargées)

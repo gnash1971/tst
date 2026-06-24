@@ -6,6 +6,34 @@
  * Importé après documents.css pour primer dans la cascade (état actif/fondu).
  */
 
+/* --- Lien d'évitement clavier (« Aller au contenu ») --- */
+/* Masqué hors focus puis révélé sous l'en-tête lors d'une tabulation. */
+.skip-link {
+    position: absolute;
+    left: 0.75rem;
+    top: -4rem;
+    z-index: 100;
+    padding: 0.65rem 1.1rem;
+    border-radius: 0.6rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: var(--sport-court);
+    box-shadow: 0 6px 18px rgba(15, 23, 42, 0.25);
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 0.75rem;
+    outline: 2px solid #ffffff;
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .skip-link {
+        transition: none;
+    }
+}
+
 /* --- Repérage actif sur les sommaires (conserve la couleur de catégorie) --- */
 .doc-toc-link--active {
     font-weight: 700;

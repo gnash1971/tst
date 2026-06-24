@@ -108,7 +108,9 @@ def preparer_dossier_production() -> None:
         "_headers",
         ".htaccess",
         "favicon.ico",
-        "site.webmanifest"
+        "site.webmanifest",
+        "robots.txt",
+        "sitemap.xml"
     ]
     for fichier in fichiers_requis:
         copier_fichier_optionnel(fichier)

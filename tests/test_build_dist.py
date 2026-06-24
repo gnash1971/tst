@@ -17,6 +17,8 @@ import build_dist
 def site_minimal(tmp_path: Path, monkeypatch: pytest.MonkeyPatch) -> Path:
     """Construit une arborescence minimale du site dans un dossier temporaire."""
     (tmp_path / "index.html").write_text("<html></html>", encoding="utf-8")
+    (tmp_path / "robots.txt").write_text("User-agent: *\n", encoding="utf-8")
+    (tmp_path / "sitemap.xml").write_text("<urlset></urlset>\n", encoding="utf-8")
 
     pub = tmp_path / "pub"
     pub.mkdir()
@@ -57,3 +59,11 @@ def test_preparer_dossier_production_exclut_tailwind_input(
     build_dist.preparer_dossier_production()
 
     assert not (site_minimal / "css" / "tailwind-input.css").exists()
+
+
+def test_preparer_dossier_production_publie_seo(site_minimal: Path) -> None:
+    """Les fichiers SEO (robots.txt, sitemap.xml) sont copiés dans dist/."""
+    build_dist.preparer_dossier_production()
+
+    assert (site_minimal / "robots.txt").is_file()
+    assert (site_minimal / "sitemap.xml").is_file()

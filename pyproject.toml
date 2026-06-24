@@ -1,0 +1,46 @@
+[project]
+name = "clubtt-lentilly"
+version = "1.0.0"
+description = "Espace documentaire Lentilly Tennis de Table"
+readme = "README.md"
+requires-python = ">=3.12"
+license = { file = "LICENSE" }
+
+# Dépendances nécessaires au BUILD du site (utilisées par scripts/build_index.py).
+# Elles doivent être installées sur Netlify : voir l'export requirements.txt.
+dependencies = [
+    "jinja2~=3.1",
+    "pydantic~=2.0",
+]
+
+[project.optional-dependencies]
+# Outils de développement et de génération d'assets (hors production Netlify).
+dev = [
+    "pytest>=8.0",
+    "mypy>=1.11",
+    "ruff>=0.8",
+    "pip-audit>=2.7",
+    "Pillow~=12.2",
+    "qrcode~=8.2",
+]
+
+# Projet « virtuel » : ce dépôt est un site, pas un paquet à installer.
+# uv ne tente donc pas de le construire (pas de backend de build requis).
+[tool.uv]
+package = false
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+files = ["scripts", "tests"]

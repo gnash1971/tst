@@ -2,7 +2,9 @@
 # https://docs.netlify.com/configure-builds/file-based-configuration/
 
 [build]
-  command = "npm run build"
+  # Installer d'abord les dépendances Python de build (jinja2, pydantic),
+  # figées dans requirements.txt (export de uv.lock), puis lancer le build.
+  command = "pip install -r requirements.txt && npm run build"
   publish = "dist"
 
 [build.environment]

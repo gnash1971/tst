@@ -10,10 +10,13 @@
 </head>
 <body class="page-bg text-slate-800 dark:text-slate-100 min-h-screen flex flex-col selection:bg-emerald-500 selection:text-white">
 
+    <!-- Lien d'évitement clavier : visible uniquement au focus -->
+    <a href="#main-content" class="skip-link">Aller au contenu</a>
+
 <!-- @partial partials/header.html -->
 
     <!-- Zone principale de contenu -->
-    <main class="flex-grow">
+    <main id="main-content" tabindex="-1" class="flex-grow">
 
 <!-- @partial partials/hero.html -->
 
