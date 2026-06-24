@@ -90,7 +90,10 @@ jobs:
         continue-on-error: true
         uses: lycheeverse/lychee-action@v2
         with:
-          args: "--offline --no-progress ./dist"
+          # --root-dir : résout les liens racine (« / », « /favicon.ico »…) des
+          # pages comme 404.html — corrects en production mais non résolubles
+          # hors-ligne sans répertoire racine explicite (chemin absolu requis).
+          args: "--offline --no-progress --root-dir ${{ github.workspace }}/dist ./dist"
           fail: false
 
       - name: Lighthouse CI (perf, SEO, accessibilité, best-practices)
