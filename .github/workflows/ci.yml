@@ -6,6 +6,10 @@ name: CI
 on:
   push:
   pull_request:
+  # Déclenchement manuel depuis l'onglet Actions (bouton « Run workflow »),
+  # utile pour relancer la CI sans nouveau commit (ex. après un changement
+  # de réglage du dépôt).
+  workflow_dispatch:
 
 # Permissions minimales : lecture seule du contenu.
 permissions:
