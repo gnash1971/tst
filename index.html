@@ -94,18 +94,18 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             
             <!-- Logo et Titre -->
-            <a href="index.html" class="flex items-center space-x-4 group" aria-label="Accueil — Lentilly Tennis de Table">
+            <a href="index.html" class="flex items-center space-x-4 group">
                 <div class="relative">
                     <!-- Logos adaptés au thème (fonds clairs / fonds sombres) -->
                     <picture class="contents">
                         <source type="image/avif" srcset="logo/V5_logo_fonds_clairs-96.avif 96w, logo/V5_logo_fonds_clairs-256.avif 256w" sizes="48px">
                         <source type="image/webp" srcset="logo/V5_logo_fonds_clairs-96.webp 96w, logo/V5_logo_fonds_clairs-256.webp 256w" sizes="48px">
-                        <img src="logo/V5_logo_fonds_clairs.png" alt="Logo LTT" data-logo-fallback="svg" width="48" height="48" class="h-12 w-auto object-contain rounded-md shadow-md border border-slate-100 transition-transform duration-300 group-hover:scale-105 block dark:hidden">
+                        <img src="logo/V5_logo_fonds_clairs.png" alt="Logo LTT" data-logo-fallback="svg" width="88" height="48" class="h-12 w-auto object-contain rounded-md shadow-md border border-slate-100 transition-transform duration-300 group-hover:scale-105 block dark:hidden">
                     </picture>
                     <picture class="contents">
                         <source type="image/avif" srcset="logo/V5_logo_fonds_sombres-96.avif 96w, logo/V5_logo_fonds_sombres-256.avif 256w" sizes="48px">
                         <source type="image/webp" srcset="logo/V5_logo_fonds_sombres-96.webp 96w, logo/V5_logo_fonds_sombres-256.webp 256w" sizes="48px">
-                        <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="svg" width="48" height="48" aria-hidden="true" class="h-12 w-auto object-contain rounded-md shadow-md border border-slate-800 transition-transform duration-300 group-hover:scale-105 hidden dark:block">
+                        <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="svg" width="88" height="48" aria-hidden="true" class="h-12 w-auto object-contain rounded-md shadow-md border border-slate-800 transition-transform duration-300 group-hover:scale-105 hidden dark:block">
                     </picture>
                 </div>
                 <div>
@@ -140,7 +140,7 @@
                 </button>
 
                 <!-- Lien Site du Club / Contact -->
-                <a href="mailto:gnash@ensba-lyon.fr" class="hidden sm:inline-flex items-center space-x-2 px-4 h-10 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:shadow-emerald-600/25 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                <a href="mailto:gnash@ensba-lyon.fr" class="hidden sm:inline-flex items-center space-x-2 px-4 h-10 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-semibold text-sm hover:shadow-lg hover:shadow-emerald-600/25 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500">
                     <i data-lucide="mail" class="h-4 w-4"></i>
                     <span>Nous contacter</span>
                 </a>
@@ -191,7 +191,7 @@
 
                         <!-- Appels à l'action : entrée explicite vers la grille et l'inscription -->
                         <div class="hero-cta flex flex-wrap items-center justify-center lg:justify-start gap-3 mb-8">
-                            <a href="#documents-grid" class="inline-flex items-center gap-2 px-6 h-12 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold text-sm shadow-md shadow-emerald-500/20 hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900">
+                            <a href="#documents-grid" class="inline-flex items-center gap-2 px-6 h-12 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl font-semibold text-sm shadow-md shadow-emerald-500/20 hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900">
                                 <i data-lucide="arrow-down" class="h-4 w-4"></i>
                                 <span>Voir les documents</span>
                             </a>
@@ -336,7 +336,7 @@
             <div class="doc-filterbar">
                 <span class="hero-filters__label">Filtrer :</span>
                 <div class="flex flex-wrap items-center gap-2">
-                    <button class="filter-btn active px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-emerald-600 text-white shadow-md shadow-emerald-500/20 border border-emerald-600" data-category="all">
+                    <button class="filter-btn active px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-emerald-700 text-white shadow-md shadow-emerald-500/20 border border-emerald-700" data-category="all">
                         Tous les documents
                     </button>
                     <button class="filter-btn px-4 py-2 rounded-xl text-sm font-semibold transition-all duration-200 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200" data-category="administratif">
@@ -367,7 +367,7 @@
                 </div>
                 <p class="texte-redactionnel text-lg font-medium text-slate-900 dark:text-white">Aucun document ne correspond à votre recherche</p>
                 <p class="texte-redactionnel text-slate-500 dark:text-slate-400 mt-1">Essayez d'autres mots-clés ou modifiez vos filtres.</p>
-                <button id="reset-search" class="mt-4 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-semibold shadow transition-all duration-200">
+                <button id="reset-search" class="mt-4 px-4 py-2 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-sm font-semibold shadow transition-all duration-200">
                     Réinitialiser la recherche
                 </button>
             </div>
@@ -386,7 +386,7 @@
                                     <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-900/50">
                                         Administratif
                                     </span>
-                                    <span class="text-[10px] text-slate-400 dark:text-slate-500 font-semibold uppercase tracking-wider">
+                                    <span class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
                                         Version V2
                                     </span>
                                 </div>
@@ -401,7 +401,7 @@
                             </p>
 
                             <div class="key-content space-y-2 mb-8">
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Contenu clé :</h4>
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Contenu clé :</h4>
                                 <ul class="grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
                                     <li class="flex items-center space-x-2">
                                         <i data-lucide="check" class="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0"></i>
@@ -424,8 +424,8 @@
                         </div>
 
                         <div class="pt-4 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
-                            <span class="text-xs text-slate-400 dark:text-slate-500">Mise à jour : Saison en cours</span>
-                            <a href="fic/V2_fiche_inscription.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-200">
+                            <span class="text-xs text-slate-500 dark:text-slate-400">Mise à jour : Saison en cours</span>
+                            <a href="fic/V2_fiche_inscription.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-sm font-semibold shadow-md shadow-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-200">
                                 <span>Consulter en ligne</span>
                                 <i data-lucide="arrow-right" class="h-4 w-4"></i>
                             </a>
@@ -444,7 +444,7 @@
                                     <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-emerald-100 dark:bg-emerald-950/80 text-emerald-800 dark:text-emerald-300 border border-emerald-200/50 dark:border-emerald-900/50">
                                         Administratif
                                     </span>
-                                    <span class="text-[10px] text-slate-400 dark:text-slate-500 font-semibold uppercase tracking-wider">
+                                    <span class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
                                         Version V5
                                     </span>
                                 </div>
@@ -459,7 +459,7 @@
                             </p>
 
                             <div class="key-content space-y-2 mb-8">
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Contenu clé :</h4>
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Contenu clé :</h4>
                                 <ul class="grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
                                     <li class="flex items-center space-x-2">
                                         <i data-lucide="check" class="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0"></i>
@@ -482,8 +482,8 @@
                         </div>
 
                         <div class="pt-4 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
-                            <span class="text-xs text-slate-400 dark:text-slate-500">Règles de vie collective</span>
-                            <a href="fic/V5_reglement_interieur_clubLTT.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-200">
+                            <span class="text-xs text-slate-500 dark:text-slate-400">Règles de vie collective</span>
+                            <a href="fic/V5_reglement_interieur_clubLTT.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-sm font-semibold shadow-md shadow-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-200">
                                 <span>Consulter en ligne</span>
                                 <i data-lucide="arrow-right" class="h-4 w-4"></i>
                             </a>
@@ -502,7 +502,7 @@
                                     <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-orange-100 dark:bg-orange-950/80 text-orange-800 dark:text-orange-300 border border-orange-200/50 dark:border-orange-900/50">
                                         Juridique & Officiel
                                     </span>
-                                    <span class="text-[10px] text-slate-400 dark:text-slate-500 font-semibold uppercase tracking-wider">
+                                    <span class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
                                         Version V2
                                     </span>
                                 </div>
@@ -517,7 +517,7 @@
                             </p>
 
                             <div class="key-content space-y-2 mb-8">
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Contenu clé :</h4>
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Contenu clé :</h4>
                                 <ul class="grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
                                     <li class="flex items-center space-x-2">
                                         <i data-lucide="check" class="h-3.5 w-3.5 text-orange-600 dark:text-orange-400 shrink-0"></i>
@@ -540,8 +540,8 @@
                         </div>
 
                         <div class="pt-4 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
-                            <span class="text-xs text-slate-400 dark:text-slate-500">Acte fondateur historique</span>
-                            <a href="fic/V2_PV_AG1.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-orange-600 hover:bg-orange-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-orange-500/10 hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-200">
+                            <span class="text-xs text-slate-500 dark:text-slate-400">Acte fondateur historique</span>
+                            <a href="fic/V2_PV_AG1.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-orange-700 hover:bg-orange-800 text-white rounded-xl text-sm font-semibold shadow-md shadow-orange-500/10 hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-200">
                                 <span>Consulter en ligne</span>
                                 <i data-lucide="arrow-right" class="h-4 w-4"></i>
                             </a>
@@ -560,7 +560,7 @@
                                     <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-orange-100 dark:bg-orange-950/80 text-orange-800 dark:text-orange-300 border border-orange-200/50 dark:border-orange-900/50">
                                         Juridique & Officiel
                                     </span>
-                                    <span class="text-[10px] text-slate-400 dark:text-slate-500 font-semibold uppercase tracking-wider">
+                                    <span class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
                                         Version V12
                                     </span>
                                 </div>
@@ -575,7 +575,7 @@
                             </p>
 
                             <div class="key-content space-y-2 mb-8">
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Contenu clé :</h4>
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Contenu clé :</h4>
                                 <ul class="grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
                                     <li class="flex items-center space-x-2">
                                         <i data-lucide="check" class="h-3.5 w-3.5 text-orange-600 dark:text-orange-400 shrink-0"></i>
@@ -598,8 +598,8 @@
                         </div>
 
                         <div class="pt-4 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
-                            <span class="text-xs text-slate-400 dark:text-slate-500">Texte juridique constitutionnel</span>
-                            <a href="fic/V12_statuts_club_LTT.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-orange-600 hover:bg-orange-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-orange-500/10 hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-200">
+                            <span class="text-xs text-slate-500 dark:text-slate-400">Texte juridique constitutionnel</span>
+                            <a href="fic/V12_statuts_club_LTT.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-orange-700 hover:bg-orange-800 text-white rounded-xl text-sm font-semibold shadow-md shadow-orange-500/10 hover:shadow-lg hover:shadow-orange-500/20 transition-all duration-200">
                                 <span>Consulter en ligne</span>
                                 <i data-lucide="arrow-right" class="h-4 w-4"></i>
                             </a>
@@ -618,7 +618,7 @@
                                     <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-sky-100 dark:bg-sky-950/80 text-sky-800 dark:text-sky-300 border border-sky-200/50 dark:border-sky-900/50">
                                         Vie du club
                                     </span>
-                                    <span class="text-[10px] text-slate-400 dark:text-slate-500 font-semibold uppercase tracking-wider">
+                                    <span class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
                                         Version V5
                                     </span>
                                 </div>
@@ -641,7 +641,7 @@
                             </p>
 
                             <div class="key-content space-y-2 mb-8">
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Contenu clé :</h4>
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Contenu clé :</h4>
                                 <ul class="grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
                                     <li class="flex items-center space-x-2">
                                         <i data-lucide="check" class="h-3.5 w-3.5 text-sky-600 dark:text-sky-400 shrink-0"></i>
@@ -664,8 +664,8 @@
                         </div>
 
                         <div class="pt-4 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
-                            <span class="text-xs text-slate-400 dark:text-slate-500">Visuel indicatif — saison en cours</span>
-                            <a href="pub/V5_t-shirts.png" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-sky-600 hover:bg-sky-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-sky-500/10 hover:shadow-lg hover:shadow-sky-500/20 transition-all duration-200">
+                            <span class="text-xs text-slate-500 dark:text-slate-400">Visuel indicatif — saison en cours</span>
+                            <a href="pub/V5_t-shirts.png" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-sky-700 hover:bg-sky-800 text-white rounded-xl text-sm font-semibold shadow-md shadow-sky-500/10 hover:shadow-lg hover:shadow-sky-500/20 transition-all duration-200">
                                 <span>Voir le visuel</span>
                                 <i data-lucide="arrow-right" class="h-4 w-4"></i>
                             </a>
@@ -684,7 +684,7 @@
                                     <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-sky-100 dark:bg-sky-950/80 text-sky-800 dark:text-sky-300 border border-sky-200/50 dark:border-sky-900/50">
                                         Vie du club
                                     </span>
-                                    <span class="text-[10px] text-slate-400 dark:text-slate-500 font-semibold uppercase tracking-wider">
+                                    <span class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
                                         Format A5
                                     </span>
                                 </div>
@@ -694,7 +694,7 @@
                                 Flyer du club
                             </h3>
 
-                            <a href="pub/flyerA5.html" target="_blank" rel="noopener noreferrer" class="block mb-6 rounded-xl border border-emerald-200/80 dark:border-emerald-800 bg-gradient-to-br from-emerald-50 to-white dark:from-emerald-950/40 dark:to-slate-900 p-4 overflow-hidden" aria-label="Aperçu du flyer A5 Lentilly Tennis de Table">
+                            <a href="pub/flyerA5.html" target="_blank" rel="noopener noreferrer" class="block mb-6 rounded-xl border border-emerald-200/80 dark:border-emerald-800 bg-gradient-to-br from-emerald-50 to-white dark:from-emerald-950/40 dark:to-slate-900 p-4 overflow-hidden">
                                 <div class="flex items-center gap-4">
                                     <div class="shrink-0 rounded-lg bg-white p-2 shadow-sm border border-slate-100 dark:border-slate-700">
                                         <img src="pub/qr_l-tt-club.svg" alt="" width="72" height="72" loading="lazy" decoding="async" class="w-16 h-16">
@@ -712,7 +712,7 @@
                             </p>
 
                             <div class="key-content space-y-2 mb-8">
-                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">Contenu clé :</h4>
+                                <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">Contenu clé :</h4>
                                 <ul class="grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
                                     <li class="flex items-center space-x-2">
                                         <i data-lucide="check" class="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0"></i>
@@ -735,8 +735,8 @@
                         </div>
 
                         <div class="pt-4 border-t border-slate-100 dark:border-slate-800/60 flex items-center justify-between">
-                            <span class="text-xs text-slate-400 dark:text-slate-500">Impression · arrière-plans activés</span>
-                            <a href="pub/flyerA5.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-sm font-semibold shadow-md shadow-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-200">
+                            <span class="text-xs text-slate-500 dark:text-slate-400">Impression · arrière-plans activés</span>
+                            <a href="pub/flyerA5.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center space-x-2 px-5 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white rounded-xl text-sm font-semibold shadow-md shadow-emerald-500/10 hover:shadow-lg hover:shadow-emerald-500/20 transition-all duration-200">
                                 <span>Ouvrir le flyer</span>
                                 <i data-lucide="arrow-right" class="h-4 w-4"></i>
                             </a>
@@ -805,12 +805,12 @@
                 <picture class="contents">
                     <source type="image/avif" srcset="logo/V5_logo_fonds_clairs-96.avif 96w, logo/V5_logo_fonds_clairs-256.avif 256w" sizes="32px">
                     <source type="image/webp" srcset="logo/V5_logo_fonds_clairs-96.webp 96w, logo/V5_logo_fonds_clairs-256.webp 256w" sizes="32px">
-                    <img src="logo/V5_logo_fonds_clairs.png" alt="Logo LTT" data-logo-fallback="hide" width="32" height="32" loading="lazy" class="h-8 w-auto opacity-70 block dark:hidden">
+                    <img src="logo/V5_logo_fonds_clairs.png" alt="Logo LTT" data-logo-fallback="hide" width="59" height="32" loading="lazy" class="h-8 w-auto opacity-70 block dark:hidden">
                 </picture>
                 <picture class="contents">
                     <source type="image/avif" srcset="logo/V5_logo_fonds_sombres-96.avif 96w, logo/V5_logo_fonds_sombres-256.avif 256w" sizes="32px">
                     <source type="image/webp" srcset="logo/V5_logo_fonds_sombres-96.webp 96w, logo/V5_logo_fonds_sombres-256.webp 256w" sizes="32px">
-                    <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="hide" width="32" height="32" aria-hidden="true" loading="lazy" class="h-8 w-auto opacity-70 hidden dark:block">
+                    <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="hide" width="59" height="32" aria-hidden="true" loading="lazy" class="h-8 w-auto opacity-70 hidden dark:block">
                 </picture>
                 <span>&copy; 2026 Lentilly Tennis de Table (LTT). Tous droits réservés.</span>
             </div>

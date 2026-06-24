@@ -9,11 +9,11 @@
         CATEGORY_ALL: 'all',
         FILTER_BTN_ACTIVE: [
             'active',
-            'bg-emerald-600',
+            'bg-emerald-700',
             'text-white',
             'shadow-md',
             'shadow-emerald-500/20',
-            'border-emerald-600',
+            'border-emerald-700',
         ],
         FILTER_BTN_INACTIVE: [
             'bg-white',
