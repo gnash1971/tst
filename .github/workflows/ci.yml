@@ -78,26 +78,26 @@ jobs:
           pip install -r requirements.txt
           npm run build
 
-      # --- Couche « qualité web » : informative (non bloquante) au démarrage.
-      #     Retirer « continue-on-error » une fois les seuils calibrés. ---
+      # --- Couche « qualité web » : désormais BLOQUANTE (seuils calibrés).
+      #     Le job échoue en cas d'erreur HTML, de lien cassé, ou d'assertion
+      #     Lighthouse de niveau « error » non satisfaite. La performance reste
+      #     en « warn » (cf. lighthouserc.json) pour éviter les faux négatifs
+      #     liés aux variations de charge du runner. ---
       - name: Validation HTML (dist/)
-        continue-on-error: true
         uses: Cyb3r-Jak3/html5validator-action@v8.0.0
         with:
           root: dist/
 
       - name: Liens internes (lychee, hors-ligne)
-        continue-on-error: true
         uses: lycheeverse/lychee-action@v2
         with:
           # --root-dir : résout les liens racine (« / », « /favicon.ico »…) des
           # pages comme 404.html — corrects en production mais non résolubles
           # hors-ligne sans répertoire racine explicite (chemin absolu requis).
           args: "--offline --no-progress --root-dir ${{ github.workspace }}/dist ./dist"
-          fail: false
+          fail: true
 
       - name: Lighthouse CI (perf, SEO, accessibilité, best-practices)
-        continue-on-error: true
         uses: treosh/lighthouse-ci-action@v12
         with:
           configPath: ./lighthouserc.json
