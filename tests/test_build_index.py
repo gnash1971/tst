@@ -128,11 +128,13 @@ def test_optimisations_production_remplacent_le_cdn() -> None:
 
 
 def test_optimisations_production_nettoient_la_csp() -> None:
-    """La CSP <meta> ne référence plus le CDN mais conserve file: et 'self'."""
+    """La CSP <meta> de production ne référence plus ni le CDN ni file:."""
     resultat = build_index.appliquer_optimisations_production(HEAD_DEV)
 
-    assert "script-src 'self' file:;" in resultat
-    assert "connect-src 'self' file:;" in resultat
+    assert "script-src 'self';" in resultat
+    assert "connect-src 'self';" in resultat
+    assert "cdn.tailwindcss.com" not in resultat
+    assert "file:" not in resultat
 
 
 def test_optimisations_production_sans_bloc_cdn() -> None:

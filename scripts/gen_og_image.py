@@ -21,6 +21,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
+from typing import cast
 
 from PIL import Image, ImageDraw, ImageFont
 from PIL.Image import Resampling
@@ -95,7 +96,7 @@ def _valider_url(url: str) -> None:
 class _RedirectionValidee(urllib.request.HTTPRedirectHandler):
     """Revalide l'hôte cible à chaque redirection HTTP (défense anti-SSRF)."""
 
-    def redirect_request(self, req, fp, code, msg, headers, newurl):  # type: ignore[override]
+    def redirect_request(self, req, fp, code, msg, headers, newurl):  # type: ignore[no-untyped-def]
         # Refuse toute redirection vers un hôte hors de la liste blanche.
         _valider_url(newurl)
         return super().redirect_request(req, fp, code, msg, headers, newurl)
@@ -131,7 +132,7 @@ def _lire_limite(flux: object, taille_max: int) -> bytes:
     Raises:
         ValueError: Si le contenu distant dépasse ``taille_max``.
     """
-    donnees = flux.read(taille_max + 1)  # type: ignore[attr-defined]
+    donnees = cast(bytes, flux.read(taille_max + 1))  # type: ignore[attr-defined]
     if len(donnees) > taille_max:
         raise ValueError("Contenu distant trop volumineux : abandon du téléchargement.")
     return donnees

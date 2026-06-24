@@ -203,6 +203,76 @@ def test_charger_documents_fichier_absent(tmp_path: Path) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Validation des URLs et des icônes (durcissement anti-injection)
+# ---------------------------------------------------------------------------
+
+
+@pytest.mark.parametrize(
+    "url_dangereuse",
+    [
+        "javascript:alert(1)",
+        "data:text/html,<script>alert(1)</script>",
+        "vbscript:msgbox(1)",
+        "//evil.example.com/x",
+        "   javascript:alert(1)",
+    ],
+)
+def test_charger_documents_cta_href_dangereux_rejete(
+    tmp_path: Path, url_dangereuse: str
+) -> None:
+    """Un cta_href à schéma exécutable ou protocol-relative est rejeté."""
+    carte = _carte_valide()
+    carte["cta_href"] = url_dangereuse
+
+    with pytest.raises(models.DocumentsConfigError):
+        _ecrire_et_charger(tmp_path, [carte])
+
+
+@pytest.mark.parametrize(
+    "url_sure",
+    ["fic/test.html", "pub/x.png", "index.html", "https://www.l-tt.club/x"],
+)
+def test_charger_documents_cta_href_sur_accepte(
+    tmp_path: Path, url_sure: str
+) -> None:
+    """Un cta_href relatif ou http(s) est accepté tel quel."""
+    carte = _carte_valide()
+    carte["cta_href"] = url_sure
+
+    documents = _ecrire_et_charger(tmp_path, [carte])
+
+    assert documents[0].cta_href == url_sure
+
+
+def test_charger_documents_media_src_dangereux_rejete(tmp_path: Path) -> None:
+    """Une image dont la src porte un schéma dangereux est rejetée."""
+    carte = _carte_valide()
+    carte["media"] = {
+        "type": "image",
+        "src": "javascript:alert(1)",
+        "alt": "a",
+        "aria_label": "b",
+    }
+
+    with pytest.raises(models.DocumentsConfigError):
+        _ecrire_et_charger(tmp_path, [carte])
+
+
+@pytest.mark.parametrize(
+    "icone_invalide", ["File-Edit", "file_edit", 'x" onx="y', "1icone", ""]
+)
+def test_charger_documents_icone_invalide_rejete(
+    tmp_path: Path, icone_invalide: str
+) -> None:
+    """Un nom d'icône hors du motif minuscules/chiffres/tirets est rejeté."""
+    carte = _carte_valide()
+    carte["icon"] = icone_invalide
+
+    with pytest.raises(models.DocumentsConfigError):
+        _ecrire_et_charger(tmp_path, [carte])
+
+
+# ---------------------------------------------------------------------------
 # Rendu des cartes (build_index.rendre_cartes_documents) — données réelles
 # ---------------------------------------------------------------------------
 
@@ -287,3 +357,43 @@ def test_injecter_documents_sans_directive() -> None:
     contenu = "<section><p>Rien à injecter</p></section>"
 
     assert build_index.injecter_documents(contenu) == contenu
+
+
+# ---------------------------------------------------------------------------
+# Auto-échappement Jinja2 (défense en profondeur anti-XSS)
+# ---------------------------------------------------------------------------
+
+
+def _rendre_cartes_personnalisees(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch, cartes: list[dict[str, Any]]
+) -> str:
+    """Rend le HTML des cartes à partir de données fournies (DATA_PATH simulé)."""
+    fichier = tmp_path / "documents.json"
+    fichier.write_text(json.dumps(cartes, ensure_ascii=False), encoding="utf-8")
+    monkeypatch.setattr(build_index, "DATA_PATH", fichier)
+    return build_index.rendre_cartes_documents()
+
+
+def test_rendre_cartes_echappe_les_champs_texte(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """Les champs texte sont auto-échappés (le HTML injecté est neutralisé)."""
+    carte = _carte_valide()
+    carte["title"] = "<script>alert(1)</script>"
+
+    html = _rendre_cartes_personnalisees(tmp_path, monkeypatch, [carte])
+
+    assert "<script>alert(1)</script>" not in html
+    assert "&lt;script&gt;" in html
+
+
+def test_rendre_cartes_description_html_rendu_en_brut(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    """description_html (source maîtrisée) garde son HTML volontaire via |safe."""
+    carte = _carte_valide()
+    carte["description_html"] = '<strong class="x">Gras</strong>'
+
+    html = _rendre_cartes_personnalisees(tmp_path, monkeypatch, [carte])
+
+    assert '<strong class="x">Gras</strong>' in html

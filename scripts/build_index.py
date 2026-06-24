@@ -44,6 +44,12 @@ REMPLACEMENT_CSS_STATIQUE = (
     '    <link rel="stylesheet" href="css/tailwind.built.css">'
 )
 
+# Schéma CSP ``file:`` (utile uniquement à la prévisualisation locale file://)
+# retiré de la balise <meta> au build de production, pour l'aligner sur
+# l'en-tête HTTP strict de _headers. La regex ne cible que le jeton de schéma
+# (" file:" suivi d'un ";" ou d'une espace) et épargne donc "data:" et "file://".
+CSP_FILE_SCHEME_PATTERN = re.compile(r" file:(?=[;\s])")
+
 
 def valider_chemin_fragment(chemin_relatif: str) -> None:
     """
@@ -113,9 +119,10 @@ def rendre_cartes_documents() -> str:
     Rend les cartes documentaires depuis data/documents.json.
 
     Chaque entrée validée (Pydantic) est passée au gabarit Jinja2
-    ``templates/doc-card.html.j2``. L'auto-échappement est désactivé car le
-    contenu provient d'une source maîtrisée et versionnée (pas d'entrée
-    utilisateur) et certains champs contiennent du HTML volontaire.
+    ``templates/doc-card.html.j2``. L'auto-échappement est ACTIVÉ (défense en
+    profondeur) : tous les champs sont échappés par défaut ; seul le champ
+    ``description_html`` — au contenu HTML volontaire et maîtrisé — est rendu
+    sans échappement via le filtre ``| safe`` dans le gabarit.
 
     Returns:
         str: Bloc HTML des cartes, séparées par un saut de ligne.
@@ -126,7 +133,7 @@ def rendre_cartes_documents() -> str:
     documents = charger_documents(DATA_PATH)
     env = Environment(
         loader=FileSystemLoader(str(TEMPLATES_DIR)),
-        autoescape=False,
+        autoescape=True,
         trim_blocks=True,
         lstrip_blocks=True,
         keep_trailing_newline=False,
@@ -197,19 +204,23 @@ def appliquer_optimisations_production(contenu: str) -> str:
     """
     Applique les transformations de production au HTML assemblé.
 
-    Remplace le Play CDN de Tailwind par le CSS compilé statique et retire
-    cdn.tailwindcss.com de la CSP déclarée en balise ``<meta>``.
+    Remplace le Play CDN de Tailwind par le CSS compilé statique, puis retire
+    de la CSP ``<meta>`` les jetons propres au développement
+    (``cdn.tailwindcss.com`` et le schéma ``file:``) afin de l'aligner sur
+    l'en-tête HTTP strict de _headers.
 
     Args:
         contenu: HTML assemblé en mode développement.
 
     Returns:
-        str: HTML prêt pour la publication (sans dépendance CDN).
+        str: HTML prêt pour la publication (sans dépendance CDN ni file:).
     """
     resultat = CDN_PATTERN.sub(REMPLACEMENT_CSS_STATIQUE, contenu)
     resultat = resultat.replace('href="css/styles.css"', 'href="css/styles.built.css"')
     resultat = resultat.replace("file: https://cdn.tailwindcss.com", "file:")
-    return resultat.replace(" https://cdn.tailwindcss.com", "")
+    resultat = resultat.replace(" https://cdn.tailwindcss.com", "")
+    # Retire le schéma file: de la CSP <meta> (durcissement du build prod).
+    return CSP_FILE_SCHEME_PATTERN.sub("", resultat)
 
 
 def assembler_styles_production() -> None:

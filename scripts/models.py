@@ -8,10 +8,13 @@ Le contenu provient du dépôt (source maîtrisée), pas d'entrées utilisateur.
 from __future__ import annotations
 
 import json
+import re
+import urllib.parse
 from pathlib import Path
 from typing import Annotated, Literal, Union
 
 from pydantic import (
+    AfterValidator,
     BaseModel,
     ConfigDict,
     Field,
@@ -26,6 +29,53 @@ CouleurAccent = Literal["emerald", "orange", "sky"]
 CouleurIcone = Literal["purple", "blue", "green", "red", "sky", "emerald", "orange"]
 CouleurBadge = Literal["emerald", "orange", "sky"]
 Categorie = Literal["administratif", "juridique", "club"]
+
+# Schémas d'URL autorisés pour les liens et ressources des cartes. Les chemins
+# relatifs (sans schéma) restent permis ; tout schéma exécutable
+# (``javascript:``, ``data:``, ``vbscript:``, ``file:``...) est refusé pour
+# empêcher une injection via data/documents.json, même si cette source venait
+# un jour à être alimentée par une donnée moins maîtrisée.
+SCHEMES_URL_AUTORISES = frozenset({"http", "https"})
+
+# Caractères retirés par les navigateurs avant lecture du schéma d'une URL
+# (tabulation, retours chariot/ligne) : on les neutralise pour éviter un
+# contournement du type ``java\tscript:``.
+_CARACTERES_URL_IGNORES = re.compile(r"[\t\r\n]")
+
+
+def _valider_url_sure(valeur: str) -> str:
+    """
+    Valide une URL de carte contre les schémas dangereux.
+
+    Autorise les chemins relatifs et les URL ``http``/``https`` absolues ;
+    refuse les URL protocol-relative (``//hote``) et tout schéma exécutable.
+
+    Args:
+        valeur (str): URL ou chemin déclaré dans data/documents.json.
+
+    Returns:
+        str: La valeur d'origine si elle est jugée sûre.
+
+    Raises:
+        ValueError: Si l'URL est vide, protocol-relative ou à schéma interdit.
+    """
+    nettoyee = _CARACTERES_URL_IGNORES.sub("", valeur).strip()
+    if not nettoyee:
+        raise ValueError("URL vide")
+    if nettoyee.startswith("//"):
+        raise ValueError(f"URL protocol-relative interdite : {valeur!r}")
+    schema = urllib.parse.urlparse(nettoyee).scheme.lower()
+    if schema and schema not in SCHEMES_URL_AUTORISES:
+        raise ValueError(f"Schéma d'URL interdit : {valeur!r}")
+    return valeur
+
+
+# URL sûre réutilisable : chemin relatif ou http(s), jamais de schéma exécutable.
+UrlSure = Annotated[str, AfterValidator(_valider_url_sure)]
+
+# Nom d'icône Lucide : minuscules, chiffres et tirets uniquement (anti-injection
+# d'attribut dans ``data-lucide``, en complément de l'auto-échappement Jinja2).
+NomIcone = Annotated[str, Field(pattern=r"^[a-z][a-z0-9-]*$")]
 
 
 class DocumentsConfigError(Exception):
@@ -43,7 +93,7 @@ class MediaImage(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     type: Literal["image"]
-    src: str
+    src: UrlSure
     alt: str
     aria_label: str
     widths: list[int] = Field(default_factory=list)
@@ -56,13 +106,16 @@ class MediaImage(BaseModel):
         stem = self.src.rsplit(".", 1)[0]
         return ", ".join(f"{stem}-{largeur}.{fmt} {largeur}w" for largeur in self.widths)
 
-    @computed_field
+    # mypy ne gère pas les décorateurs empilés au-dessus de @property
+    # (limitation « prop-decorator ») : on cible précisément ce code, le motif
+    # @computed_field + @property étant l'idiome Pydantic recommandé.
+    @computed_field  # type: ignore[prop-decorator]
     @property
     def srcset_avif(self) -> str:
         """srcset des variantes AVIF (vide si aucune largeur déclarée)."""
         return self._srcset("avif")
 
-    @computed_field
+    @computed_field  # type: ignore[prop-decorator]
     @property
     def srcset_webp(self) -> str:
         """srcset des variantes WebP (vide si aucune largeur déclarée)."""
@@ -75,8 +128,8 @@ class MediaQr(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
     type: Literal["qr"]
-    href: str
-    qr_src: str
+    href: UrlSure
+    qr_src: UrlSure
     kicker: str
     title: str
     subtitle: str
@@ -96,7 +149,7 @@ class DocumentCard(BaseModel):
     category: Categorie
     accent: CouleurAccent
     icon_color: CouleurIcone
-    icon: str
+    icon: NomIcone
     badge_label: str
     badge_color: CouleurBadge
     version_label: str
@@ -105,7 +158,7 @@ class DocumentCard(BaseModel):
     key_points: list[str] = Field(min_length=1)
     footer_note: str
     cta_label: str
-    cta_href: str
+    cta_href: UrlSure
     search: str
     media: Media | None = None
 

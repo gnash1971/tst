@@ -17,6 +17,10 @@
     <meta name="theme-color" content="#15803d" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#020617" media="(prefers-color-scheme: dark)">
     <meta name="color-scheme" content="light dark">
+    <!-- CSP : 'unsafe-inline' est restreint aux styles (blocs <style> des
+         pages autonomes) ; les scripts restent en 'self'. En production, le
+         schéma local (file://) et le CDN Tailwind sont retirés de cette CSP
+         (voir _headers et scripts/build_index.py). -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; base-uri 'none'; form-action 'none'; object-src 'none'; style-src 'self' file: 'unsafe-inline'; script-src 'self' file: https://cdn.tailwindcss.com; font-src 'self' file:; img-src 'self' file: data:; connect-src 'self' file: https://cdn.tailwindcss.com;">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Espace Documentaire Officiel &mdash; Lentilly Tennis de Table</title>
@@ -48,7 +52,7 @@
     <meta name="twitter:description" content="Tous les documents officiels du club, en loisir comme en compétition.">
     <meta name="twitter:image" content="https://www.l-tt.club/pub/og-image.png">
 
-    <!-- Tailwind CSS (CDN) + configuration locale -->
+    <!-- Tailwind CSS (CDN) + configuration locale (mode dev uniquement : retiré au build de production ; SRI non applicable au Play CDN, script dynamique) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/tailwind.config.js"></script>
 
@@ -393,7 +397,7 @@
                             </div>
 
                             <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200 mb-3">
-                                Fiche d'Inscription & RGPD
+                                Fiche d&#39;Inscription &amp; RGPD
                             </h3>
 
                             <p class="texte-redactionnel text-slate-600 dark:text-slate-300 mb-6 leading-relaxed text-sm">
@@ -413,7 +417,7 @@
                                     </li>
                                     <li class="flex items-center space-x-2">
                                         <i data-lucide="check" class="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0"></i>
-                                        <span>Autorisations d'image</span>
+                                        <span>Autorisations d&#39;image</span>
                                     </li>
                                     <li class="flex items-center space-x-2">
                                         <i data-lucide="check" class="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400 shrink-0"></i>
@@ -500,7 +504,7 @@
                                 </div>
                                 <div class="flex flex-col items-end space-y-1">
                                     <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-orange-100 dark:bg-orange-950/80 text-orange-800 dark:text-orange-300 border border-orange-200/50 dark:border-orange-900/50">
-                                        Juridique & Officiel
+                                        Juridique &amp; Officiel
                                     </span>
                                     <span class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
                                         Version V2
@@ -509,7 +513,7 @@
                             </div>
 
                             <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-200 mb-3">
-                                PV d'Assemblée Générale
+                                PV d&#39;Assemblée Générale
                             </h3>
 
                             <p class="texte-redactionnel text-slate-600 dark:text-slate-300 mb-6 leading-relaxed text-sm">
@@ -558,7 +562,7 @@
                                 </div>
                                 <div class="flex flex-col items-end space-y-1">
                                     <span class="px-2.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-orange-100 dark:bg-orange-950/80 text-orange-800 dark:text-orange-300 border border-orange-200/50 dark:border-orange-900/50">
-                                        Juridique & Officiel
+                                        Juridique &amp; Officiel
                                     </span>
                                     <span class="text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wider">
                                         Version V12
@@ -567,7 +571,7 @@
                             </div>
 
                             <h3 class="text-2xl font-bold text-slate-900 dark:text-white group-hover:text-orange-600 dark:group-hover:text-orange-400 transition-colors duration-200 mb-3">
-                                Statuts de l'Association
+                                Statuts de l&#39;Association
                             </h3>
 
                             <p class="texte-redactionnel text-slate-600 dark:text-slate-300 mb-6 leading-relaxed text-sm">
@@ -579,19 +583,19 @@
                                 <ul class="grid grid-cols-2 gap-2 text-xs text-slate-600 dark:text-slate-400">
                                     <li class="flex items-center space-x-2">
                                         <i data-lucide="check" class="h-3.5 w-3.5 text-orange-600 dark:text-orange-400 shrink-0"></i>
-                                        <span>Objet & Siège social</span>
+                                        <span>Objet &amp; Siège social</span>
                                     </li>
                                     <li class="flex items-center space-x-2">
                                         <i data-lucide="check" class="h-3.5 w-3.5 text-orange-600 dark:text-orange-400 shrink-0"></i>
-                                        <span>Conseil d'Administration</span>
+                                        <span>Conseil d&#39;Administration</span>
                                     </li>
                                     <li class="flex items-center space-x-2">
                                         <i data-lucide="check" class="h-3.5 w-3.5 text-orange-600 dark:text-orange-400 shrink-0"></i>
-                                        <span>Modalités AGO & AGE</span>
+                                        <span>Modalités AGO &amp; AGE</span>
                                     </li>
                                     <li class="flex items-center space-x-2">
                                         <i data-lucide="check" class="h-3.5 w-3.5 text-orange-600 dark:text-orange-400 shrink-0"></i>
-                                        <span>Financement & Dissolution</span>
+                                        <span>Financement &amp; Dissolution</span>
                                     </li>
                                 </ul>
                             </div>
@@ -632,7 +636,7 @@
                                 <picture class="contents">
                                     <source type="image/avif" srcset="pub/V5_t-shirts-400.avif 400w, pub/V5_t-shirts-800.avif 800w" sizes="(min-width: 768px) 44vw, 88vw">
                                     <source type="image/webp" srcset="pub/V5_t-shirts-400.webp 400w, pub/V5_t-shirts-800.webp 800w" sizes="(min-width: 768px) 44vw, 88vw">
-                                    <img src="pub/V5_t-shirts.png" alt="Maillots du club en marine et crème, floqués au prénom du joueur avec l'écusson Lentilly Tennis de Table" data-logo-fallback="hide" loading="lazy" decoding="async" class="w-full h-auto group-hover:scale-[1.02] transition-transform duration-300">
+                                    <img src="pub/V5_t-shirts.png" alt="Maillots du club en marine et crème, floqués au prénom du joueur avec l&#39;écusson Lentilly Tennis de Table" data-logo-fallback="hide" loading="lazy" decoding="async" class="w-full h-auto group-hover:scale-[1.02] transition-transform duration-300">
                                 </picture>
                             </a>
 

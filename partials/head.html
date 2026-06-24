@@ -5,6 +5,10 @@
     <meta name="theme-color" content="#15803d" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#020617" media="(prefers-color-scheme: dark)">
     <meta name="color-scheme" content="light dark">
+    <!-- CSP : 'unsafe-inline' est restreint aux styles (blocs <style> des
+         pages autonomes) ; les scripts restent en 'self'. En production, le
+         schéma local (file://) et le CDN Tailwind sont retirés de cette CSP
+         (voir _headers et scripts/build_index.py). -->
     <meta http-equiv="Content-Security-Policy" content="default-src 'self' file:; base-uri 'none'; form-action 'none'; object-src 'none'; style-src 'self' file: 'unsafe-inline'; script-src 'self' file: https://cdn.tailwindcss.com; font-src 'self' file:; img-src 'self' file: data:; connect-src 'self' file: https://cdn.tailwindcss.com;">
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>Espace Documentaire Officiel &mdash; Lentilly Tennis de Table</title>
@@ -36,7 +40,7 @@
     <meta name="twitter:description" content="Tous les documents officiels du club, en loisir comme en compétition.">
     <meta name="twitter:image" content="https://www.l-tt.club/pub/og-image.png">
 
-    <!-- Tailwind CSS (CDN) + configuration locale -->
+    <!-- Tailwind CSS (CDN) + configuration locale (mode dev uniquement : retiré au build de production ; SRI non applicable au Play CDN, script dynamique) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="js/tailwind.config.js"></script>
 

@@ -16,7 +16,7 @@ import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 
 logging.basicConfig(
     level=logging.INFO,
@@ -38,6 +38,8 @@ HOTES_TELECHARGEMENT_AUTORISES = frozenset(
 )
 TIMEOUT_S = 30
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+# Taille maximale d'un téléchargement (anti-saturation mémoire/disque).
+TAILLE_MAX_TELECHARGEMENT = 5 * 1024 * 1024
 
 # Identifiants de variantes attendus (ex : regular, 600, 600italic).
 MOTIF_VARIANTE = re.compile(r"^[a-z0-9]+$")
@@ -98,24 +100,65 @@ def valider_identifiant_variante(v_id: str) -> None:
         )
 
 
+class _RedirectionValidee(urllib.request.HTTPRedirectHandler):
+    """Revalide l'hôte cible à chaque redirection HTTP (défense anti-SSRF)."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):  # type: ignore[no-untyped-def]
+        # Refuse toute redirection vers un hôte hors de la liste blanche.
+        valider_url_woff2(newurl)
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+# Ouvreur dédié : applique la revalidation d'hôte sur les redirections.
+_OUVREUR = urllib.request.build_opener(_RedirectionValidee())
+
+
+def _lire_limite(flux: object, taille_max: int) -> bytes:
+    """
+    Lit un flux en refusant les contenus dépassant la taille maximale.
+
+    Args:
+        flux: Flux ouvert exposant ``read(taille)``.
+        taille_max (int): Nombre d'octets maximal autorisé.
+
+    Returns:
+        bytes: Contenu lu (au plus ``taille_max`` octets).
+
+    Raises:
+        TelechargementPoliceError: Si le contenu distant dépasse la limite.
+    """
+    donnees = cast(bytes, flux.read(taille_max + 1))  # type: ignore[attr-defined]
+    if len(donnees) > taille_max:
+        raise TelechargementPoliceError(
+            "Contenu distant trop volumineux : abandon du téléchargement."
+        )
+    return donnees
+
+
 def telecharger_fichier(url: str, chemin_destination: Path) -> None:
     """
     Télécharge une URL validée vers un fichier local.
+
+    La récupération est durcie : hôte revérifié à chaque redirection
+    (anti-SSRF) et taille de téléchargement bornée.
 
     Args:
         url (str): URL HTTPS du fichier woff2.
         chemin_destination (Path): Chemin local d'écriture.
 
     Raises:
-        TelechargementPoliceError: Si l'URL est refusée par la validation.
+        TelechargementPoliceError: Si l'URL est refusée ou le contenu trop gros.
         urllib.error.URLError: En cas d'échec réseau.
         OSError: En cas d'échec d'écriture disque.
     """
     valider_url_woff2(url)
     logger.info(f"Téléchargement de {url} vers {chemin_destination}")
     requete = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(requete, timeout=TIMEOUT_S) as reponse:
-        chemin_destination.write_bytes(reponse.read())
+    with _OUVREUR.open(requete, timeout=TIMEOUT_S) as reponse:
+        valider_url_woff2(reponse.geturl())
+        chemin_destination.write_bytes(
+            _lire_limite(reponse, TAILLE_MAX_TELECHARGEMENT)
+        )
 
 
 def recuperer_metadonnees(font_id: str) -> dict[str, Any]:
@@ -129,14 +172,23 @@ def recuperer_metadonnees(font_id: str) -> dict[str, Any]:
         dict[str, Any]: Métadonnées JSON décodées.
 
     Raises:
+        TelechargementPoliceError: Si l'URL/hôte est refusé ou le contenu trop gros.
         urllib.error.URLError: En cas d'échec réseau.
         json.JSONDecodeError: Si la réponse n'est pas du JSON valide.
     """
     url = API_URL_TEMPLATE.format(font_id=font_id)
+    valider_url_woff2(url)
     logger.info(f"Récupération des métadonnées : {url}")
     requete = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(requete, timeout=TIMEOUT_S) as reponse:
-        return json.loads(reponse.read().decode("utf-8"))
+    with _OUVREUR.open(requete, timeout=TIMEOUT_S) as reponse:
+        valider_url_woff2(reponse.geturl())
+        charge = _lire_limite(reponse, TAILLE_MAX_TELECHARGEMENT)
+        donnees = json.loads(charge.decode("utf-8"))
+    if not isinstance(donnees, dict):
+        raise TelechargementPoliceError(
+            "Réponse inattendue de l'API (objet JSON attendu)."
+        )
+    return donnees
 
 
 def generer_snippet_css(
@@ -180,9 +232,9 @@ def traiter_police(font_id: str, config: dict[str, Any]) -> list[str]:
 
     try:
         donnees = recuperer_metadonnees(font_id)
-    except (urllib.error.URLError, TimeoutError) as erreur:
+    except (urllib.error.URLError, TimeoutError, TelechargementPoliceError) as erreur:
         logger.error(
-            f"API injoignable pour {font_id} : {erreur}. "
+            f"API injoignable ou refusée pour {font_id} : {erreur}. "
             "Vérifiez la connexion réseau puis relancez le script."
         )
         return []

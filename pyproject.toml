@@ -44,3 +44,10 @@ select = ["E", "F", "I", "UP", "B"]
 python_version = "3.12"
 strict = true
 files = ["scripts", "tests"]
+
+# La bibliothèque qrcode (génération d'assets, outillage de développement)
+# ne publie pas de stubs de types : on ignore l'absence d'annotations pour ce
+# module tiers, sans masquer les erreurs de notre propre code.
+[[tool.mypy.overrides]]
+module = ["qrcode", "qrcode.*"]
+ignore_missing_imports = true

@@ -1,3 +1,9 @@
+# En-tête de sécurité faisant autorité (prioritaire sur la balise <meta>).
+# Choix assumé : style-src conserve 'unsafe-inline' car les pages autonomes
+# (404.html, fic/*.html, pub/flyerA5.html) embarquent leurs styles dans des
+# blocs <style>. Risque faible et accepté : aucune balise <script> inline n'est
+# autorisée (script-src 'self') et le HTML ne contient aucun attribut style="".
+# Hacher chaque bloc <style> serait fragile à maintenir pour un gain marginal.
 /*
   Content-Security-Policy: default-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; style-src 'self' 'unsafe-inline'; script-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'self';
   X-Content-Type-Options: nosniff
