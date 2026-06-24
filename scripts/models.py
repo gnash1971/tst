@@ -11,7 +11,13 @@ import json
 from pathlib import Path
 from typing import Annotated, Literal, Union
 
-from pydantic import BaseModel, ConfigDict, Field, ValidationError
+from pydantic import (
+    BaseModel,
+    ConfigDict,
+    Field,
+    ValidationError,
+    computed_field,
+)
 
 # Palettes Tailwind autorisées (cohérentes avec js/tailwind.config.js).
 # ``accent`` pilote la structure (barre, survol, puces, titre, bouton) ;
@@ -27,7 +33,12 @@ class DocumentsConfigError(Exception):
 
 
 class MediaImage(BaseModel):
-    """Visuel illustratif d'une carte (ex. maillot du club)."""
+    """Visuel illustratif d'une carte (ex. maillot du club).
+
+    Si ``widths`` est renseigné, le rendu produit un ``<picture>`` avec des
+    sources AVIF/WebP réactives (variantes nommées ``<stem>-<largeur>.<fmt>``
+    générées par scripts/generate_images.py). Sinon, un simple ``<img>``.
+    """
 
     model_config = ConfigDict(extra="forbid")
 
@@ -35,6 +46,27 @@ class MediaImage(BaseModel):
     src: str
     alt: str
     aria_label: str
+    widths: list[int] = Field(default_factory=list)
+    sizes: str | None = None
+
+    def _srcset(self, fmt: str) -> str:
+        """Construit l'attribut ``srcset`` pour un format donné."""
+        if not self.widths:
+            return ""
+        stem = self.src.rsplit(".", 1)[0]
+        return ", ".join(f"{stem}-{largeur}.{fmt} {largeur}w" for largeur in self.widths)
+
+    @computed_field
+    @property
+    def srcset_avif(self) -> str:
+        """srcset des variantes AVIF (vide si aucune largeur déclarée)."""
+        return self._srcset("avif")
+
+    @computed_field
+    @property
+    def srcset_webp(self) -> str:
+        """srcset des variantes WebP (vide si aucune largeur déclarée)."""
+        return self._srcset("webp")
 
 
 class MediaQr(BaseModel):

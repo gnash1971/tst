@@ -22,7 +22,15 @@
 
 {% if media and media.type == 'image' %}
                             <a href="{{ media.src }}" target="_blank" rel="noopener noreferrer" class="block mb-6 rounded-xl border border-slate-200/80 dark:border-slate-700 bg-white overflow-hidden" aria-label="{{ media.aria_label }}">
+{% if media.srcset_webp %}
+                                <picture class="contents">
+                                    <source type="image/avif" srcset="{{ media.srcset_avif }}"{% if media.sizes %} sizes="{{ media.sizes }}"{% endif %}>
+                                    <source type="image/webp" srcset="{{ media.srcset_webp }}"{% if media.sizes %} sizes="{{ media.sizes }}"{% endif %}>
+                                    <img src="{{ media.src }}" alt="{{ media.alt }}" data-logo-fallback="hide" loading="lazy" decoding="async" class="w-full h-auto group-hover:scale-[1.02] transition-transform duration-300">
+                                </picture>
+{% else %}
                                 <img src="{{ media.src }}" alt="{{ media.alt }}" data-logo-fallback="hide" loading="lazy" decoding="async" class="w-full h-auto group-hover:scale-[1.02] transition-transform duration-300">
+{% endif %}
                             </a>
 
 {% elif media and media.type == 'qr' %}

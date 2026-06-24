@@ -110,7 +110,8 @@ def preparer_dossier_production() -> None:
         "favicon.ico",
         "site.webmanifest",
         "robots.txt",
-        "sitemap.xml"
+        "sitemap.xml",
+        "sw.js"
     ]
     for fichier in fichiers_requis:
         copier_fichier_optionnel(fichier)

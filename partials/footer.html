@@ -3,8 +3,16 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
             
             <div class="flex items-center space-x-3 text-slate-500 dark:text-slate-400 text-sm">
-                <img src="logo/V5_logo_fonds_clairs.png" alt="Logo LTT" data-logo-fallback="hide" width="32" height="32" class="h-8 w-auto opacity-70 block dark:hidden">
-                <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="hide" width="32" height="32" aria-hidden="true" class="h-8 w-auto opacity-70 hidden dark:block">
+                <picture class="contents">
+                    <source type="image/avif" srcset="logo/V5_logo_fonds_clairs-96.avif 96w, logo/V5_logo_fonds_clairs-256.avif 256w" sizes="32px">
+                    <source type="image/webp" srcset="logo/V5_logo_fonds_clairs-96.webp 96w, logo/V5_logo_fonds_clairs-256.webp 256w" sizes="32px">
+                    <img src="logo/V5_logo_fonds_clairs.png" alt="Logo LTT" data-logo-fallback="hide" width="32" height="32" loading="lazy" class="h-8 w-auto opacity-70 block dark:hidden">
+                </picture>
+                <picture class="contents">
+                    <source type="image/avif" srcset="logo/V5_logo_fonds_sombres-96.avif 96w, logo/V5_logo_fonds_sombres-256.avif 256w" sizes="32px">
+                    <source type="image/webp" srcset="logo/V5_logo_fonds_sombres-96.webp 96w, logo/V5_logo_fonds_sombres-256.webp 256w" sizes="32px">
+                    <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="hide" width="32" height="32" aria-hidden="true" loading="lazy" class="h-8 w-auto opacity-70 hidden dark:block">
+                </picture>
                 <span>&copy; 2026 Lentilly Tennis de Table (LTT). Tous droits réservés.</span>
             </div>
 
@@ -37,3 +45,5 @@
     <script src="js/ltt-back-to-top.js"></script>
     <script src="js/ltt-search-shortcuts.js"></script>
     <script src="js/app.js"></script>
+    <!-- Enregistrement du service worker (cache hors-ligne, https/localhost) -->
+    <script src="js/ltt-sw-register.js"></script>

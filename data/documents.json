@@ -116,7 +116,9 @@
       "type": "image",
       "src": "pub/V5_t-shirts.png",
       "alt": "Maillots du club en marine et crème, floqués au prénom du joueur avec l'écusson Lentilly Tennis de Table",
-      "aria_label": "Agrandir le visuel des maillots du club"
+      "aria_label": "Agrandir le visuel des maillots du club",
+      "widths": [400, 800],
+      "sizes": "(min-width: 768px) 44vw, 88vw"
     }
   },
   {

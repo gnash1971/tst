@@ -112,6 +112,30 @@ def test_charger_documents_media_qr(tmp_path: Path) -> None:
     assert isinstance(documents[0].media, models.MediaQr)
 
 
+def test_media_image_srcset_calcule() -> None:
+    """MediaImage construit les srcset AVIF/WebP depuis les largeurs."""
+    media = models.MediaImage(
+        type="image",
+        src="pub/photo.png",
+        alt="a",
+        aria_label="b",
+        widths=[200, 400],
+    )
+
+    assert media.srcset_webp == "pub/photo-200.webp 200w, pub/photo-400.webp 400w"
+    assert media.srcset_avif == "pub/photo-200.avif 200w, pub/photo-400.avif 400w"
+
+
+def test_media_image_sans_largeurs_pas_de_srcset() -> None:
+    """Sans largeurs déclarées, les srcset sont vides (rendu en simple <img>)."""
+    media = models.MediaImage(
+        type="image", src="x.png", alt="a", aria_label="b"
+    )
+
+    assert media.srcset_webp == ""
+    assert media.srcset_avif == ""
+
+
 def test_charger_documents_couleur_accent_invalide(tmp_path: Path) -> None:
     """Une couleur d'accent hors palette est rejetée."""
     carte = _carte_valide()
@@ -219,6 +243,17 @@ def test_rendre_cartes_medias_image_et_qr() -> None:
     assert 'src="pub/V5_t-shirts.png"' in html
     assert 'src="pub/qr_l-tt-club.svg"' in html
     assert 'loading="lazy"' in html
+
+
+def test_rendre_cartes_image_responsive() -> None:
+    """Le visuel du maillot est servi en <picture> AVIF/WebP réactif."""
+    html = build_index.rendre_cartes_documents()
+
+    assert '<picture class="contents">' in html
+    assert 'type="image/avif"' in html
+    assert 'type="image/webp"' in html
+    assert "pub/V5_t-shirts-800.webp 800w" in html
+    assert "pub/V5_t-shirts-400.avif 400w" in html
 
 
 def test_rendre_cartes_couleurs_par_accent() -> None:

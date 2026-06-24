@@ -23,6 +23,40 @@ uv run npm run build
 > `node_modules`), créer l'environnement hors du dossier synchronisé via la
 > variable `UV_PROJECT_ENVIRONMENT`.
 
+### Contenu documentaire (cartes)
+
+Les cartes de la page d'accueil sont générées depuis `data/documents.json`
+(validé par Pydantic, voir `scripts/models.py`) via le gabarit
+`templates/doc-card.html.j2`. Pour ajouter ou modifier une carte : éditer
+`data/documents.json` puis régénérer (`python scripts/build_index.py`).
+
+### Thème Tailwind
+
+Source unique : `data/brand-theme.json` (couleurs de marque + polices).
+`tailwind.config.js` (CLI) la charge via `require` ; `js/tailwind.config.js`
+(Play CDN, mode dev) est **régénéré au build** par `scripts/build_index.py`.
+
+### Images responsives (WebP / AVIF)
+
+Les variantes responsives des logos et visuels sont produites par
+`scripts/generate_images.py` (Pillow) puis **versionnées** (Netlify n'a donc
+pas besoin de Pillow). À relancer lorsqu'une image source change :
+
+```bash
+python scripts/generate_images.py          # idempotent (ne refait que le nécessaire)
+python scripts/generate_images.py --force   # tout régénérer
+```
+
+Les pages servent ces images via `<picture>` (AVIF, puis WebP, puis PNG de
+repli) avec `srcset`/`sizes` adaptés ; les logos sous la ligne de flottaison
+(footer, filigrane) sont en `loading="lazy"`.
+
+### Service worker
+
+`sw.js` (cache hors-ligne) est enregistré par `js/ltt-sw-register.js`
+uniquement en `https`/`localhost`. Incrémenter `VERSION` dans `sw.js` pour
+invalider l'ancien cache lors d'un changement majeur d'assets.
+
 ### Dépendances
 
 - **Build** — installées sur Netlify via `requirements.txt` (export figé de

@@ -6,8 +6,16 @@
 
             <!-- Filigrane : logo du club fondu dans le fond (variante par thème) -->
             <div class="hero-watermark" aria-hidden="true">
-                <img src="logo/V5_logo_fonds_clairs.png" alt="" data-logo-fallback="hide" decoding="async" class="hero-watermark__img hero-watermark__img--light">
-                <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="hide" decoding="async" class="hero-watermark__img hero-watermark__img--dark">
+                <picture class="contents">
+                    <source type="image/avif" srcset="logo/V5_logo_fonds_clairs-256.avif 256w, logo/V5_logo_fonds_clairs-768.avif 768w" sizes="(min-width: 1024px) 62rem, 56rem">
+                    <source type="image/webp" srcset="logo/V5_logo_fonds_clairs-256.webp 256w, logo/V5_logo_fonds_clairs-768.webp 768w" sizes="(min-width: 1024px) 62rem, 56rem">
+                    <img src="logo/V5_logo_fonds_clairs.png" alt="" data-logo-fallback="hide" decoding="async" loading="lazy" class="hero-watermark__img hero-watermark__img--light">
+                </picture>
+                <picture class="contents">
+                    <source type="image/avif" srcset="logo/V5_logo_fonds_sombres-256.avif 256w, logo/V5_logo_fonds_sombres-768.avif 768w" sizes="(min-width: 1024px) 62rem, 56rem">
+                    <source type="image/webp" srcset="logo/V5_logo_fonds_sombres-256.webp 256w, logo/V5_logo_fonds_sombres-768.webp 768w" sizes="(min-width: 1024px) 62rem, 56rem">
+                    <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="hide" decoding="async" loading="lazy" class="hero-watermark__img hero-watermark__img--dark">
+                </picture>
             </div>
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -85,8 +93,16 @@
 
                             <div class="hero-visual__card">
                                 <div class="hero-visual__header">
-                                    <img src="logo/V5_logo_fonds_clairs.png" alt="" data-logo-fallback="hide" class="hero-visual__logo block dark:hidden">
-                                    <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="hide" aria-hidden="true" class="hero-visual__logo hidden dark:block">
+                                    <picture class="contents">
+                                        <source type="image/avif" srcset="logo/V5_logo_fonds_clairs-96.avif 96w, logo/V5_logo_fonds_clairs-256.avif 256w" sizes="48px">
+                                        <source type="image/webp" srcset="logo/V5_logo_fonds_clairs-96.webp 96w, logo/V5_logo_fonds_clairs-256.webp 256w" sizes="48px">
+                                        <img src="logo/V5_logo_fonds_clairs.png" alt="" data-logo-fallback="hide" class="hero-visual__logo block dark:hidden">
+                                    </picture>
+                                    <picture class="contents">
+                                        <source type="image/avif" srcset="logo/V5_logo_fonds_sombres-96.avif 96w, logo/V5_logo_fonds_sombres-256.avif 256w" sizes="48px">
+                                        <source type="image/webp" srcset="logo/V5_logo_fonds_sombres-96.webp 96w, logo/V5_logo_fonds_sombres-256.webp 256w" sizes="48px">
+                                        <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="hide" aria-hidden="true" class="hero-visual__logo hidden dark:block">
+                                    </picture>
                                     <div>
                                         <p class="hero-visual__club">Lentilly Tennis de Table</p>
                                         <p class="hero-visual__tagline" id="hero-vestiaire-title">Le vestiaire numérique du club</p>

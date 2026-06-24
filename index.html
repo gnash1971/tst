@@ -97,8 +97,16 @@
             <a href="index.html" class="flex items-center space-x-4 group" aria-label="Accueil — Lentilly Tennis de Table">
                 <div class="relative">
                     <!-- Logos adaptés au thème (fonds clairs / fonds sombres) -->
-                    <img src="logo/V5_logo_fonds_clairs.png" alt="Logo LTT" data-logo-fallback="svg" width="48" height="48" class="h-12 w-auto object-contain rounded-md shadow-md border border-slate-100 transition-transform duration-300 group-hover:scale-105 block dark:hidden">
-                    <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="svg" width="48" height="48" aria-hidden="true" class="h-12 w-auto object-contain rounded-md shadow-md border border-slate-800 transition-transform duration-300 group-hover:scale-105 hidden dark:block">
+                    <picture class="contents">
+                        <source type="image/avif" srcset="logo/V5_logo_fonds_clairs-96.avif 96w, logo/V5_logo_fonds_clairs-256.avif 256w" sizes="48px">
+                        <source type="image/webp" srcset="logo/V5_logo_fonds_clairs-96.webp 96w, logo/V5_logo_fonds_clairs-256.webp 256w" sizes="48px">
+                        <img src="logo/V5_logo_fonds_clairs.png" alt="Logo LTT" data-logo-fallback="svg" width="48" height="48" class="h-12 w-auto object-contain rounded-md shadow-md border border-slate-100 transition-transform duration-300 group-hover:scale-105 block dark:hidden">
+                    </picture>
+                    <picture class="contents">
+                        <source type="image/avif" srcset="logo/V5_logo_fonds_sombres-96.avif 96w, logo/V5_logo_fonds_sombres-256.avif 256w" sizes="48px">
+                        <source type="image/webp" srcset="logo/V5_logo_fonds_sombres-96.webp 96w, logo/V5_logo_fonds_sombres-256.webp 256w" sizes="48px">
+                        <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="svg" width="48" height="48" aria-hidden="true" class="h-12 w-auto object-contain rounded-md shadow-md border border-slate-800 transition-transform duration-300 group-hover:scale-105 hidden dark:block">
+                    </picture>
                 </div>
                 <div>
                     <h1 class="text-xl font-bold tracking-tight text-slate-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
@@ -151,8 +159,16 @@
 
             <!-- Filigrane : logo du club fondu dans le fond (variante par thème) -->
             <div class="hero-watermark" aria-hidden="true">
-                <img src="logo/V5_logo_fonds_clairs.png" alt="" data-logo-fallback="hide" decoding="async" class="hero-watermark__img hero-watermark__img--light">
-                <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="hide" decoding="async" class="hero-watermark__img hero-watermark__img--dark">
+                <picture class="contents">
+                    <source type="image/avif" srcset="logo/V5_logo_fonds_clairs-256.avif 256w, logo/V5_logo_fonds_clairs-768.avif 768w" sizes="(min-width: 1024px) 62rem, 56rem">
+                    <source type="image/webp" srcset="logo/V5_logo_fonds_clairs-256.webp 256w, logo/V5_logo_fonds_clairs-768.webp 768w" sizes="(min-width: 1024px) 62rem, 56rem">
+                    <img src="logo/V5_logo_fonds_clairs.png" alt="" data-logo-fallback="hide" decoding="async" loading="lazy" class="hero-watermark__img hero-watermark__img--light">
+                </picture>
+                <picture class="contents">
+                    <source type="image/avif" srcset="logo/V5_logo_fonds_sombres-256.avif 256w, logo/V5_logo_fonds_sombres-768.avif 768w" sizes="(min-width: 1024px) 62rem, 56rem">
+                    <source type="image/webp" srcset="logo/V5_logo_fonds_sombres-256.webp 256w, logo/V5_logo_fonds_sombres-768.webp 768w" sizes="(min-width: 1024px) 62rem, 56rem">
+                    <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="hide" decoding="async" loading="lazy" class="hero-watermark__img hero-watermark__img--dark">
+                </picture>
             </div>
 
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -230,8 +246,16 @@
 
                             <div class="hero-visual__card">
                                 <div class="hero-visual__header">
-                                    <img src="logo/V5_logo_fonds_clairs.png" alt="" data-logo-fallback="hide" class="hero-visual__logo block dark:hidden">
-                                    <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="hide" aria-hidden="true" class="hero-visual__logo hidden dark:block">
+                                    <picture class="contents">
+                                        <source type="image/avif" srcset="logo/V5_logo_fonds_clairs-96.avif 96w, logo/V5_logo_fonds_clairs-256.avif 256w" sizes="48px">
+                                        <source type="image/webp" srcset="logo/V5_logo_fonds_clairs-96.webp 96w, logo/V5_logo_fonds_clairs-256.webp 256w" sizes="48px">
+                                        <img src="logo/V5_logo_fonds_clairs.png" alt="" data-logo-fallback="hide" class="hero-visual__logo block dark:hidden">
+                                    </picture>
+                                    <picture class="contents">
+                                        <source type="image/avif" srcset="logo/V5_logo_fonds_sombres-96.avif 96w, logo/V5_logo_fonds_sombres-256.avif 256w" sizes="48px">
+                                        <source type="image/webp" srcset="logo/V5_logo_fonds_sombres-96.webp 96w, logo/V5_logo_fonds_sombres-256.webp 256w" sizes="48px">
+                                        <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="hide" aria-hidden="true" class="hero-visual__logo hidden dark:block">
+                                    </picture>
                                     <div>
                                         <p class="hero-visual__club">Lentilly Tennis de Table</p>
                                         <p class="hero-visual__tagline" id="hero-vestiaire-title">Le vestiaire numérique du club</p>
@@ -605,7 +629,11 @@
                             </h3>
 
                             <a href="pub/V5_t-shirts.png" target="_blank" rel="noopener noreferrer" class="block mb-6 rounded-xl border border-slate-200/80 dark:border-slate-700 bg-white overflow-hidden" aria-label="Agrandir le visuel des maillots du club">
-                                <img src="pub/V5_t-shirts.png" alt="Maillots du club en marine et crème, floqués au prénom du joueur avec l'écusson Lentilly Tennis de Table" data-logo-fallback="hide" loading="lazy" decoding="async" class="w-full h-auto group-hover:scale-[1.02] transition-transform duration-300">
+                                <picture class="contents">
+                                    <source type="image/avif" srcset="pub/V5_t-shirts-400.avif 400w, pub/V5_t-shirts-800.avif 800w" sizes="(min-width: 768px) 44vw, 88vw">
+                                    <source type="image/webp" srcset="pub/V5_t-shirts-400.webp 400w, pub/V5_t-shirts-800.webp 800w" sizes="(min-width: 768px) 44vw, 88vw">
+                                    <img src="pub/V5_t-shirts.png" alt="Maillots du club en marine et crème, floqués au prénom du joueur avec l'écusson Lentilly Tennis de Table" data-logo-fallback="hide" loading="lazy" decoding="async" class="w-full h-auto group-hover:scale-[1.02] transition-transform duration-300">
+                                </picture>
                             </a>
 
                             <p class="texte-redactionnel text-slate-600 dark:text-slate-300 mb-6 leading-relaxed text-sm">
@@ -774,8 +802,16 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
             
             <div class="flex items-center space-x-3 text-slate-500 dark:text-slate-400 text-sm">
-                <img src="logo/V5_logo_fonds_clairs.png" alt="Logo LTT" data-logo-fallback="hide" width="32" height="32" class="h-8 w-auto opacity-70 block dark:hidden">
-                <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="hide" width="32" height="32" aria-hidden="true" class="h-8 w-auto opacity-70 hidden dark:block">
+                <picture class="contents">
+                    <source type="image/avif" srcset="logo/V5_logo_fonds_clairs-96.avif 96w, logo/V5_logo_fonds_clairs-256.avif 256w" sizes="32px">
+                    <source type="image/webp" srcset="logo/V5_logo_fonds_clairs-96.webp 96w, logo/V5_logo_fonds_clairs-256.webp 256w" sizes="32px">
+                    <img src="logo/V5_logo_fonds_clairs.png" alt="Logo LTT" data-logo-fallback="hide" width="32" height="32" loading="lazy" class="h-8 w-auto opacity-70 block dark:hidden">
+                </picture>
+                <picture class="contents">
+                    <source type="image/avif" srcset="logo/V5_logo_fonds_sombres-96.avif 96w, logo/V5_logo_fonds_sombres-256.avif 256w" sizes="32px">
+                    <source type="image/webp" srcset="logo/V5_logo_fonds_sombres-96.webp 96w, logo/V5_logo_fonds_sombres-256.webp 256w" sizes="32px">
+                    <img src="logo/V5_logo_fonds_sombres.png" alt="" data-logo-fallback="hide" width="32" height="32" aria-hidden="true" loading="lazy" class="h-8 w-auto opacity-70 hidden dark:block">
+                </picture>
                 <span>&copy; 2026 Lentilly Tennis de Table (LTT). Tous droits réservés.</span>
             </div>
 
@@ -808,6 +844,8 @@
     <script src="js/ltt-back-to-top.js"></script>
     <script src="js/ltt-search-shortcuts.js"></script>
     <script src="js/app.js"></script>
+    <!-- Enregistrement du service worker (cache hors-ligne, https/localhost) -->
+    <script src="js/ltt-sw-register.js"></script>
 </body>
 </html>
 

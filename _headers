@@ -8,6 +8,11 @@
   Cross-Origin-Resource-Policy: same-site
   Strict-Transport-Security: max-age=31536000; includeSubDomains
 
+# Le service worker doit être revalidé à chaque visite pour propager
+# rapidement une nouvelle version (évite un SW « collé » sur l'ancien cache).
+/sw.js
+  Cache-Control: public, max-age=0, must-revalidate
+
 # Cache long pour les ressources stables non fingerprintées les plus lourdes.
 # (css/js volontairement laissés sur la revalidation ETag par défaut de Netlify
 # car leurs noms de fichiers ne changent pas à chaque évolution du site.)
