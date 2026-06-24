@@ -53,7 +53,7 @@ jobs:
 
       - name: Garde anti-dérive — requirements.txt aligné sur uv.lock
         run: |
-          uv export --no-dev --frozen -o requirements.txt
+          uv export --no-dev --frozen --no-header -o requirements.txt
           git diff --exit-code -- requirements.txt
 
   build-web:
