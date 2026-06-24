@@ -181,8 +181,13 @@ def telecharger_ttf(font_id: str, variant_id: str) -> Path | None:
                 _valider_url(flux.geturl())
                 cache.write_bytes(_lire_limite(flux, TAILLE_MAX_TELECHARGEMENT))
             return cache
-    except (urllib.error.URLError, TimeoutError, json.JSONDecodeError,
-            ValueError, OSError) as erreur:
+    except (
+        urllib.error.URLError,
+        TimeoutError,
+        json.JSONDecodeError,
+        ValueError,
+        OSError,
+    ) as erreur:
         logger.warning(f"Police {font_id} {variant_id} indisponible : {erreur}")
         return None
     return None
@@ -244,8 +249,11 @@ def degrade_diagonal(
 
 
 def ajouter_lueur(
-    fond: Image.Image, centre: tuple[int, int], rayon: int,
-    couleur: tuple[int, int, int], opacite: int
+    fond: Image.Image,
+    centre: tuple[int, int],
+    rayon: int,
+    couleur: tuple[int, int, int],
+    opacite: int,
 ) -> None:
     """Superpose une lueur radiale douce (rappel du fond du site).
 
@@ -270,8 +278,10 @@ def ajouter_lueur(
 
 
 def envelopper_texte(
-    dessin: ImageDraw.ImageDraw, texte: str,
-    police: ImageFont.FreeTypeFont | ImageFont.ImageFont, largeur_max: int
+    dessin: ImageDraw.ImageDraw,
+    texte: str,
+    police: ImageFont.FreeTypeFont | ImageFont.ImageFont,
+    largeur_max: int,
 ) -> list[str]:
     """Découpe un texte en lignes tenant dans une largeur donnée.
 
@@ -351,7 +361,10 @@ def composer_image() -> Image.Image:
     badge_largeur = dessin.textlength(BADGE, font=police_badge) + 48
     dessin.rounded_rectangle(
         [x_texte, 150, x_texte + badge_largeur, 198],
-        radius=24, fill=(255, 255, 255, 28), outline=(255, 255, 255, 90), width=2,
+        radius=24,
+        fill=(255, 255, 255, 28),
+        outline=(255, 255, 255, 90),
+        width=2,
     )
     dessin.text(
         (x_texte + 24, 174), BADGE, font=police_badge, fill=VERT_CLAIR, anchor="lm"
@@ -375,8 +388,11 @@ def composer_image() -> Image.Image:
         fill=ORANGE,
     )
     dessin.text(
-        (x_texte + 2 * rayon_balle + 16, y_url), URL_SITE,
-        font=police_url, fill=BLANC, anchor="lm",
+        (x_texte + 2 * rayon_balle + 16, y_url),
+        URL_SITE,
+        font=police_url,
+        fill=BLANC,
+        anchor="lm",
     )
 
     return carte.convert("RGB")

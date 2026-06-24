@@ -11,7 +11,7 @@ import json
 import re
 import urllib.parse
 from pathlib import Path
-from typing import Annotated, Literal, Union
+from typing import Annotated, Literal
 
 from pydantic import (
     AfterValidator,
@@ -104,7 +104,9 @@ class MediaImage(BaseModel):
         if not self.widths:
             return ""
         stem = self.src.rsplit(".", 1)[0]
-        return ", ".join(f"{stem}-{largeur}.{fmt} {largeur}w" for largeur in self.widths)
+        return ", ".join(
+            f"{stem}-{largeur}.{fmt} {largeur}w" for largeur in self.widths
+        )
 
     # mypy ne gère pas les décorateurs empilés au-dessus de @property
     # (limitation « prop-decorator ») : on cible précisément ce code, le motif
@@ -137,7 +139,7 @@ class MediaQr(BaseModel):
 
 
 # Union discriminée sur le champ ``type`` : sélectionne le bon média.
-Media = Annotated[Union[MediaImage, MediaQr], Field(discriminator="type")]
+Media = Annotated[MediaImage | MediaQr, Field(discriminator="type")]
 
 
 class DocumentCard(BaseModel):
@@ -183,9 +185,7 @@ def charger_documents(chemin: Path) -> list[DocumentCard]:
     try:
         donnees = json.loads(chemin.read_text(encoding="utf-8"))
     except json.JSONDecodeError as exc:
-        raise DocumentsConfigError(
-            f"JSON invalide dans {chemin} : {exc}"
-        ) from exc
+        raise DocumentsConfigError(f"JSON invalide dans {chemin} : {exc}") from exc
 
     if not isinstance(donnees, list):
         raise DocumentsConfigError(

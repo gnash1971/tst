@@ -10,6 +10,13 @@ venv/
 __pycache__/
 *.pyc
 .pytest_cache/
+.mypy_cache/
+
+# Couverture de tests (artefacts régénérés à chaque exécution)
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
 
 # Secrets (ne jamais versionner)
 .env

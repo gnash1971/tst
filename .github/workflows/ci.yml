@@ -1,0 +1,96 @@
+name: CI
+
+# Intégration continue : un job « qualité » bloquant (lint, types, tests,
+# audit, garde du lock) et un job « build-web » de parité Netlify suivi de
+# contrôles « qualité web » informatifs (cf. docs/plan-industrialisation.md).
+on:
+  push:
+  pull_request:
+
+# Permissions minimales : lecture seule du contenu.
+permissions:
+  contents: read
+
+jobs:
+  qualite:
+    name: Qualité (lint, types, tests, audit)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupération du dépôt
+        uses: actions/checkout@v4
+
+      - name: Installation de uv (version épinglée)
+        uses: astral-sh/setup-uv@v5
+        with:
+          # Version figée : rend l'export du lock déterministe pour la garde
+          # anti-dérive ci-dessous (doit correspondre à l'uv local).
+          version: "0.11.24"
+          enable-cache: true
+
+      - name: Synchronisation de l'environnement (lock verrouillé + outils dev)
+        run: uv sync --extra dev --locked
+
+      - name: Lint (ruff)
+        run: |
+          uv run ruff check .
+          uv run ruff format --check .
+
+      - name: Typage (mypy --strict)
+        run: uv run mypy
+
+      - name: Tests + couverture (périmètre critique)
+        run: >-
+          uv run pytest
+          --cov=build_index --cov=build_dist --cov=models
+          --cov-report=term-missing --cov-fail-under=75
+
+      - name: Audit des dépendances (pip-audit, environnement complet)
+        run: uv run pip-audit
+
+      - name: Garde anti-dérive — requirements.txt aligné sur uv.lock
+        run: |
+          uv export --no-dev --frozen -o requirements.txt
+          git diff --exit-code -- requirements.txt
+
+  build-web:
+    name: Build prod (parité Netlify) + qualité web
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupération du dépôt
+        uses: actions/checkout@v4
+
+      - name: Installation de Node (version de .nvmrc)
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+
+      - name: Installation de Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build de production (commande identique à Netlify)
+        run: |
+          pip install -r requirements.txt
+          npm run build
+
+      # --- Couche « qualité web » : informative (non bloquante) au démarrage.
+      #     Retirer « continue-on-error » une fois les seuils calibrés. ---
+      - name: Validation HTML (dist/)
+        continue-on-error: true
+        uses: Cyb3r-Jak3/html5validator-action@v7.2.0
+        with:
+          root: dist/
+
+      - name: Liens internes (lychee, hors-ligne)
+        continue-on-error: true
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: "--offline --no-progress ./dist"
+          fail: false
+
+      - name: Lighthouse CI (perf, SEO, accessibilité, best-practices)
+        continue-on-error: true
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          configPath: ./lighthouserc.json

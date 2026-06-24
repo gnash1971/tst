@@ -33,9 +33,7 @@ FONTS_CSS_PATH = CSS_DIR / "fonts.css"
 
 # Garde-fous réseau : seuls ces hôtes HTTPS sont autorisés au téléchargement.
 API_URL_TEMPLATE = "https://gwfh.mranftl.com/api/fonts/{font_id}?subsets=latin"
-HOTES_TELECHARGEMENT_AUTORISES = frozenset(
-    {"gwfh.mranftl.com", "fonts.gstatic.com"}
-)
+HOTES_TELECHARGEMENT_AUTORISES = frozenset({"gwfh.mranftl.com", "fonts.gstatic.com"})
 TIMEOUT_S = 30
 USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
 # Taille maximale d'un téléchargement (anti-saturation mémoire/disque).
@@ -95,9 +93,7 @@ def valider_identifiant_variante(v_id: str) -> None:
         TelechargementPoliceError: Si le format est inattendu.
     """
     if not MOTIF_VARIANTE.fullmatch(v_id):
-        raise TelechargementPoliceError(
-            f"Identifiant de variante refusé : {v_id!r}"
-        )
+        raise TelechargementPoliceError(f"Identifiant de variante refusé : {v_id!r}")
 
 
 class _RedirectionValidee(urllib.request.HTTPRedirectHandler):
@@ -156,9 +152,7 @@ def telecharger_fichier(url: str, chemin_destination: Path) -> None:
     requete = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     with _OUVREUR.open(requete, timeout=TIMEOUT_S) as reponse:
         valider_url_woff2(reponse.geturl())
-        chemin_destination.write_bytes(
-            _lire_limite(reponse, TAILLE_MAX_TELECHARGEMENT)
-        )
+        chemin_destination.write_bytes(_lire_limite(reponse, TAILLE_MAX_TELECHARGEMENT))
 
 
 def recuperer_metadonnees(font_id: str) -> dict[str, Any]:
@@ -261,9 +255,7 @@ def traiter_police(font_id: str, config: dict[str, Any]) -> list[str]:
             logger.error(f"Variante {v_id} de {family_name} rejetée : {erreur}")
             continue
         except (urllib.error.URLError, TimeoutError, OSError) as erreur:
-            logger.error(
-                f"Échec du téléchargement de {woff2_url} : {erreur}"
-            )
+            logger.error(f"Échec du téléchargement de {woff2_url} : {erreur}")
             continue
 
         font_style = "italic" if "italic" in v_id else "normal"

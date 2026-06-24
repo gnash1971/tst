@@ -1,0 +1,21 @@
+# Mises à jour automatiques des dépendances — option C du plan
+# (cf. docs/plan-industrialisation.md).
+#
+# Périmètre volontairement limité à npm (Tailwind) et GitHub Actions.
+# Les dépendances Python de production (jinja2, pydantic) sont mises à jour
+# manuellement : l'écosystème « uv » de Dependabot ne régénère pas
+# requirements.txt et entrerait en conflit avec la garde anti-dérive du lock
+# exécutée en CI.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5

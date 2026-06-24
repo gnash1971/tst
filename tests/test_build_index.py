@@ -85,9 +85,7 @@ def test_assembler_page_traite_fragment_imbrique(
     (partials / "enfant.html").write_text("<span>ok</span>", encoding="utf-8")
     monkeypatch.setattr(build_index, "ROOT_DIR", tmp_path)
 
-    resultat = build_index.assembler_page(
-        "<!-- @partial partials/parent.html -->"
-    )
+    resultat = build_index.assembler_page("<!-- @partial partials/parent.html -->")
 
     assert resultat == "<div><span>ok</span></div>"
 
@@ -139,6 +137,6 @@ def test_optimisations_production_nettoient_la_csp() -> None:
 
 def test_optimisations_production_sans_bloc_cdn() -> None:
     """Un contenu déjà propre ressort inchangé (idempotence)."""
-    contenu = "<head><link rel=\"stylesheet\" href=\"css/styles.built.css\"></head>"
+    contenu = '<head><link rel="stylesheet" href="css/styles.built.css"></head>'
 
     assert build_index.appliquer_optimisations_production(contenu) == contenu

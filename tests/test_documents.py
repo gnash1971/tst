@@ -128,9 +128,7 @@ def test_media_image_srcset_calcule() -> None:
 
 def test_media_image_sans_largeurs_pas_de_srcset() -> None:
     """Sans largeurs déclarées, les srcset sont vides (rendu en simple <img>)."""
-    media = models.MediaImage(
-        type="image", src="x.png", alt="a", aria_label="b"
-    )
+    media = models.MediaImage(type="image", src="x.png", alt="a", aria_label="b")
 
     assert media.srcset_webp == ""
     assert media.srcset_avif == ""
@@ -232,9 +230,7 @@ def test_charger_documents_cta_href_dangereux_rejete(
     "url_sure",
     ["fic/test.html", "pub/x.png", "index.html", "https://www.l-tt.club/x"],
 )
-def test_charger_documents_cta_href_sur_accepte(
-    tmp_path: Path, url_sure: str
-) -> None:
+def test_charger_documents_cta_href_sur_accepte(tmp_path: Path, url_sure: str) -> None:
     """Un cta_href relatif ou http(s) est accepté tel quel."""
     carte = _carte_valide()
     carte["cta_href"] = url_sure

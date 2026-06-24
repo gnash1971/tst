@@ -17,6 +17,7 @@ dependencies = [
 # Outils de développement et de génération d'assets (hors production Netlify).
 dev = [
     "pytest>=8.0",
+    "pytest-cov>=5.0",
     "mypy>=1.11",
     "ruff>=0.8",
     "pip-audit>=2.7",
@@ -39,6 +40,11 @@ target-version = "py312"
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
+
+# Modules internes (importés via l'ajustement de sys.path dans tests/conftest.py)
+# pour un tri correct des imports (règle I001).
+[tool.ruff.lint.isort]
+known-first-party = ["build_index", "build_dist", "models"]
 
 [tool.mypy]
 python_version = "3.12"

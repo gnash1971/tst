@@ -18,13 +18,14 @@ from pathlib import Path
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s - %(levelname)s - %(message)s",
-    handlers=[logging.StreamHandler(sys.stdout)]
+    handlers=[logging.StreamHandler(sys.stdout)],
 )
 logger = logging.getLogger("build_dist")
 
 # Chemins absolus des répertoires
 ROOT_DIR = Path(__file__).resolve().parent.parent
 DIST_DIR = ROOT_DIR / "dist"
+
 
 def copier_fichier_optionnel(nom_fichier: str) -> None:
     """
@@ -42,6 +43,7 @@ def copier_fichier_optionnel(nom_fichier: str) -> None:
     else:
         logger.debug(f"Fichier optionnel absent : {nom_fichier}")
 
+
 def nettoyer_dossier(dossier: Path) -> None:
     """
     Supprime tout le contenu d'un dossier sans supprimer le dossier lui-même
@@ -58,7 +60,10 @@ def nettoyer_dossier(dossier: Path) -> None:
         except Exception as e:
             logger.warning(f"Impossible de supprimer {item} : {e}")
 
-def copier_dossier_optionnel(nom_dossier: str, exlusions: list[str] | None = None) -> None:
+
+def copier_dossier_optionnel(
+    nom_dossier: str, exlusions: list[str] | None = None
+) -> None:
     """
     Copie un dossier de la racine vers le dossier dist/ s'il existe.
 
@@ -69,7 +74,7 @@ def copier_dossier_optionnel(nom_dossier: str, exlusions: list[str] | None = Non
     src = ROOT_DIR / nom_dossier
     if src.is_dir():
         dest = DIST_DIR / nom_dossier
-        
+
         # Fonction de filtrage pour ignorer certains fichiers
         def ignore_patterns(path: str, names: list[str]) -> list[str]:
             if exlusions is None:
@@ -85,6 +90,7 @@ def copier_dossier_optionnel(nom_dossier: str, exlusions: list[str] | None = Non
         logger.info(f"Dossier copié : {nom_dossier} (avec filtres : {exlusions})")
     else:
         logger.debug(f"Dossier optionnel absent : {nom_dossier}")
+
 
 def preparer_dossier_production() -> None:
     """
@@ -111,7 +117,7 @@ def preparer_dossier_production() -> None:
         "site.webmanifest",
         "robots.txt",
         "sitemap.xml",
-        "sw.js"
+        "sw.js",
     ]
     for fichier in fichiers_requis:
         copier_fichier_optionnel(fichier)
@@ -126,6 +132,7 @@ def preparer_dossier_production() -> None:
     copier_dossier_optionnel("pub")
 
     logger.info("Préparation du dossier 'dist/' terminée avec succès !")
+
 
 if __name__ == "__main__":
     try:

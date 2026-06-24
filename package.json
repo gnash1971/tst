@@ -5,7 +5,13 @@
   "private": true,
   "scripts": {
     "build:css": "npx --yes tailwindcss@3.4.17 -i css/tailwind-input.css -o css/tailwind.built.css --minify",
-    "build": "python scripts/build_index.py --prod && npm run build:css && python scripts/build_dist.py"
+    "build": "python scripts/build_index.py --prod && npm run build:css && python scripts/build_dist.py",
+    "lint": "uv run ruff check . && uv run ruff format --check .",
+    "typecheck": "uv run mypy",
+    "test": "uv run pytest --cov=build_index --cov=build_dist --cov=models --cov-report=term-missing --cov-fail-under=75",
+    "audit": "uv run pip-audit",
+    "verify": "npm run lint && npm run typecheck && npm run test && npm run audit",
+    "check": "npm run verify && npm run build"
   },
   "devDependencies": {
     "tailwindcss": "3.4.17"
