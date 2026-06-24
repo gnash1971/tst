@@ -1,7 +1,11 @@
 <!--
-  Modèle source de la page d'accueil.
-  Après modification des fragments dans partials/, regénérer index.html :
-  python scripts/build_index.py
+  Modèle source de la page d'accueil. Deux directives sont résolues par
+  scripts/build_index.py (écrites entre balises de commentaire HTML) :
+   - « @partial partials/xxx.html » : inclusion d'un fragment statique ;
+   - « @documents » : cartes générées depuis data/documents.json
+     (gabarit templates/doc-card.html.j2). Pour ajouter ou modifier une carte,
+     éditer data/documents.json ; ne pas écrire de carte à la main ici.
+  Après modification, régénérer index.html : python scripts/build_index.py
 -->
 <!DOCTYPE html>
 <html lang="fr">
@@ -346,13 +350,11 @@
 
             <div id="documents-grid" class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-                <!-- Carte 1 : Fiche d'inscription -->
                 <div id="doc-fiche-inscription" class="doc-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-lg hover:border-emerald-500/40 dark:hover:border-emerald-400/40 transition-all duration-300 flex flex-col overflow-hidden group" data-category="administratif" data-search="fiche inscription adhésion tarifs prix rgpd engagements protection données créneaux signature">
                     <div class="h-1 bg-emerald-600 dark:bg-emerald-500"></div>
                     <div class="p-8 flex-grow flex flex-col justify-between">
                         <div>
                             <div class="flex items-start justify-between mb-6">
-                                <!-- Pastille violette : rappel de l'identité du document ouvert -->
                                 <div class="p-4 bg-purple-50 dark:bg-purple-950/40 text-purple-600 dark:text-purple-400 rounded-2xl group-hover:scale-105 transition-transform duration-300">
                                     <i data-lucide="file-edit" class="h-7 w-7"></i>
                                 </div>
@@ -406,13 +408,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- Carte 2 : Règlement Intérieur -->
                 <div id="doc-reglement-interieur" class="doc-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-lg hover:border-emerald-500/40 dark:hover:border-emerald-400/40 transition-all duration-300 flex flex-col overflow-hidden group" data-category="administratif" data-search="règlement intérieur ri code conduite règles de vie salle horaires matériel respect tennis table sécurité sanctions">
                     <div class="h-1 bg-emerald-600 dark:bg-emerald-500"></div>
                     <div class="p-8 flex-grow flex flex-col justify-between">
                         <div>
                             <div class="flex items-start justify-between mb-6">
-                                <!-- Pastille bleue : rappel de l'identité du document ouvert -->
                                 <div class="p-4 bg-blue-50 dark:bg-blue-950/40 text-blue-600 dark:text-blue-400 rounded-2xl group-hover:scale-105 transition-transform duration-300">
                                     <i data-lucide="book-open" class="h-7 w-7"></i>
                                 </div>
@@ -466,13 +466,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- Carte 3 : PV de l'AG Constitutive -->
                 <div id="doc-pv-ag" class="doc-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-lg hover:border-orange-500/40 dark:hover:border-orange-400/40 transition-all duration-300 flex flex-col overflow-hidden group" data-category="juridique" data-search="procès-verbal pv assemblée générale constitutive fondateurs bureau président secrétaire trésorier délibérations création histoire">
                     <div class="h-1 bg-orange-600 dark:bg-orange-500"></div>
                     <div class="p-8 flex-grow flex flex-col justify-between">
                         <div>
                             <div class="flex items-start justify-between mb-6">
-                                <!-- Pastille verte : rappel de l'identité du document ouvert -->
                                 <div class="p-4 bg-green-50 dark:bg-green-950/40 text-green-600 dark:text-green-400 rounded-2xl group-hover:scale-105 transition-transform duration-300">
                                     <i data-lucide="file-text" class="h-7 w-7"></i>
                                 </div>
@@ -526,13 +524,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- Carte 4 : Statuts du Club -->
                 <div id="doc-statuts" class="doc-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-lg hover:border-orange-500/40 dark:hover:border-orange-400/40 transition-all duration-300 flex flex-col overflow-hidden group" data-category="juridique" data-search="statuts constitution loi 1901 association déclaré adhésion démission radiation conseil administration assemblées ressources modifications dissolution">
                     <div class="h-1 bg-orange-600 dark:bg-orange-500"></div>
                     <div class="p-8 flex-grow flex flex-col justify-between">
                         <div>
                             <div class="flex items-start justify-between mb-6">
-                                <!-- Pastille rouge : rappel de l'identité du document ouvert -->
                                 <div class="p-4 bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 rounded-2xl group-hover:scale-105 transition-transform duration-300">
                                     <i data-lucide="shield" class="h-7 w-7"></i>
                                 </div>
@@ -586,13 +582,11 @@
                         </div>
                     </div>
                 </div>
-                <!-- Carte 5 : Maillot du club personnalisé -->
                 <div id="doc-maillot" class="doc-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-lg hover:border-sky-500/40 dark:hover:border-sky-400/40 transition-all duration-300 flex flex-col overflow-hidden group" data-category="club" data-search="maillot t-shirt tee-shirt tshirt textile tenue équipement boutique prénom personnalisé flocage marine crème écusson logo couleurs vie du club">
                     <div class="h-1 bg-sky-600 dark:bg-sky-500"></div>
                     <div class="p-8 flex-grow flex flex-col justify-between">
                         <div>
                             <div class="flex items-start justify-between mb-6">
-                                <!-- Pastille bleu ciel : couleur dédiée à la vie du club -->
                                 <div class="p-4 bg-sky-50 dark:bg-sky-950/40 text-sky-600 dark:text-sky-400 rounded-2xl group-hover:scale-105 transition-transform duration-300">
                                     <i data-lucide="shirt" class="h-7 w-7"></i>
                                 </div>
@@ -610,7 +604,6 @@
                                 Le Maillot du Club
                             </h3>
 
-                            <!-- Aperçu du visuel : photo produit sur fond blanc volontaire -->
                             <a href="pub/V5_t-shirts.png" target="_blank" rel="noopener noreferrer" class="block mb-6 rounded-xl border border-slate-200/80 dark:border-slate-700 bg-white overflow-hidden" aria-label="Agrandir le visuel des maillots du club">
                                 <img src="pub/V5_t-shirts.png" alt="Maillots du club en marine et crème, floqués au prénom du joueur avec l'écusson Lentilly Tennis de Table" data-logo-fallback="hide" loading="lazy" decoding="async" class="w-full h-auto group-hover:scale-[1.02] transition-transform duration-300">
                             </a>
@@ -651,7 +644,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- Carte 6 : Flyer A5 du club -->
                 <div id="doc-flyer" class="doc-card bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm hover:shadow-lg hover:border-emerald-500/40 dark:hover:border-emerald-400/40 transition-all duration-300 flex flex-col overflow-hidden group" data-category="club" data-search="flyer affiche A5 impression imprimer QR code vestiaire communication saison ping documents officiels maillot l-tt.club">
                     <div class="h-1 bg-emerald-600 dark:bg-emerald-500"></div>
                     <div class="p-8 flex-grow flex flex-col justify-between">

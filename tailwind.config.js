@@ -1,4 +1,12 @@
 /** @type {import('tailwindcss').Config} */
+
+// Source unique du thème (couleurs de marque + polices), partagée avec la
+// configuration du Play CDN (js/tailwind.config.js, générée au build).
+// Regroupements des couleurs brand : court/courtLight/ball/navy (identité),
+// admin/adminLight/legal/legalLight (accents par catégorie de documents),
+// purple/blue/green/red (rappels d'identité des documents fic/*.html).
+const brandTheme = require("./data/brand-theme.json");
+
 module.exports = {
   content: [
     "./index.html",
@@ -9,30 +17,7 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
-    extend: {
-      colors: {
-        brand: {
-          court: '#15803d',
-          courtLight: '#22c55e',
-          ball: '#f97316',
-          navy: '#0f172a',
-          // Accents par catégorie de documents
-          admin: '#059669',
-          adminLight: '#34d399',
-          legal: '#ea580c',
-          legalLight: '#fb923c',
-          // Rappels d'identité visuelle des documents (fic/*.html)
-          purple: '#8e44ad',
-          blue: '#2980b9',
-          green: '#16a34a',
-          red: '#e74c3c',
-        },
-      },
-      fontFamily: {
-        sans: ['Inter', 'Segoe UI', 'system-ui', 'sans-serif'],
-        display: ['Exo 2', 'Inter', 'system-ui', 'sans-serif'],
-      },
-    },
+    extend: brandTheme,
   },
   plugins: [],
 }

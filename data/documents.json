@@ -1,0 +1,153 @@
+[
+  {
+    "id": "doc-fiche-inscription",
+    "category": "administratif",
+    "accent": "emerald",
+    "icon_color": "purple",
+    "icon": "file-edit",
+    "badge_label": "Administratif",
+    "badge_color": "emerald",
+    "version_label": "Version V2",
+    "title": "Fiche d'Inscription & RGPD",
+    "description_html": "Le document officiel de référence pour toute demande d'adhésion au club. Il regroupe le formulaire de renseignements, la grille de cotisations pour la saison en cours (compétition et loisirs), les créneaux horaires réservés, ainsi que la charte d'engagements réciproques vis-à-vis du RGPD et du droit à l'image.",
+    "key_points": [
+      "Tarifs des cotisations",
+      "Créneaux horaires",
+      "Autorisations d'image",
+      "Conformité RGPD"
+    ],
+    "footer_note": "Mise à jour : Saison en cours",
+    "cta_label": "Consulter en ligne",
+    "cta_href": "fic/V2_fiche_inscription.html",
+    "search": "fiche inscription adhésion tarifs prix rgpd engagements protection données créneaux signature",
+    "media": null
+  },
+  {
+    "id": "doc-reglement-interieur",
+    "category": "administratif",
+    "accent": "emerald",
+    "icon_color": "blue",
+    "icon": "book-open",
+    "badge_label": "Administratif",
+    "badge_color": "emerald",
+    "version_label": "Version V5",
+    "title": "Règlement Intérieur (RI)",
+    "description_html": "Le cadre d'organisation interne et de civilité du club. Indispensable pour garantir une pratique harmonieuse, il détaille les modalités d'accès à la salle de sport, le comportement attendu des adhérents, le respect dû au matériel (tables, séparations, robots d'entraînement) ainsi que l'organisation des créneaux.",
+    "key_points": [
+      "Usage du matériel",
+      "Règles de bonne conduite",
+      "Accès à la salle et clés",
+      "Ethique en compétition"
+    ],
+    "footer_note": "Règles de vie collective",
+    "cta_label": "Consulter en ligne",
+    "cta_href": "fic/V5_reglement_interieur_clubLTT.html",
+    "search": "règlement intérieur ri code conduite règles de vie salle horaires matériel respect tennis table sécurité sanctions",
+    "media": null
+  },
+  {
+    "id": "doc-pv-ag",
+    "category": "juridique",
+    "accent": "orange",
+    "icon_color": "green",
+    "icon": "file-text",
+    "badge_label": "Juridique & Officiel",
+    "badge_color": "orange",
+    "version_label": "Version V2",
+    "title": "PV d'Assemblée Générale",
+    "description_html": "L'acte fondateur authentifiant la création du club de Tennis de Table. Ce procès-verbal retrace les débats historiques de l'Assemblée Générale Constitutive, l'adoption à l'unanimité des statuts d'origine, la nomination des premiers membres du Bureau Directeur (Bureau initial) et l'établissement formel du siège social.",
+    "key_points": [
+      "Liste des fondateurs",
+      "Élection du premier Bureau",
+      "Délibérations officielles",
+      "Pouvoirs de formalités"
+    ],
+    "footer_note": "Acte fondateur historique",
+    "cta_label": "Consulter en ligne",
+    "cta_href": "fic/V2_PV_AG1.html",
+    "search": "procès-verbal pv assemblée générale constitutive fondateurs bureau président secrétaire trésorier délibérations création histoire",
+    "media": null
+  },
+  {
+    "id": "doc-statuts",
+    "category": "juridique",
+    "accent": "orange",
+    "icon_color": "red",
+    "icon": "shield",
+    "badge_label": "Juridique & Officiel",
+    "badge_color": "orange",
+    "version_label": "Version V12",
+    "title": "Statuts de l'Association",
+    "description_html": "La constitution juridique suprême du club, rédigée conformément à la loi du 1er juillet 1901. Ce document définit l'objet non lucratif de l'association (le tennis de table), l'organisation interne (Conseil d'Administration, Assemblée Générale Ordinaire et Extraordinaire), les ressources matérielles et la gestion de la dissolution.",
+    "key_points": [
+      "Objet & Siège social",
+      "Conseil d'Administration",
+      "Modalités AGO & AGE",
+      "Financement & Dissolution"
+    ],
+    "footer_note": "Texte juridique constitutionnel",
+    "cta_label": "Consulter en ligne",
+    "cta_href": "fic/V12_statuts_club_LTT.html",
+    "search": "statuts constitution loi 1901 association déclaré adhésion démission radiation conseil administration assemblées ressources modifications dissolution",
+    "media": null
+  },
+  {
+    "id": "doc-maillot",
+    "category": "club",
+    "accent": "sky",
+    "icon_color": "sky",
+    "icon": "shirt",
+    "badge_label": "Vie du club",
+    "badge_color": "sky",
+    "version_label": "Version V5",
+    "title": "Le Maillot du Club",
+    "description_html": "Le maillot officiel du club, décliné en deux coloris — marine et crème. Au dos : le prénom du joueur floqué en arrondi, l'écusson LTT et la mention <strong class=\"font-semibold text-slate-900 dark:text-white\">Lentilly Tennis de Table</strong>. De quoi arriver à la table aux couleurs du club, à l'entraînement comme en compétition.",
+    "key_points": [
+      "Coloris marine et crème",
+      "Prénom floqué au dos",
+      "Écusson du club",
+      "Visuel en haute définition"
+    ],
+    "footer_note": "Visuel indicatif — saison en cours",
+    "cta_label": "Voir le visuel",
+    "cta_href": "pub/V5_t-shirts.png",
+    "search": "maillot t-shirt tee-shirt tshirt textile tenue équipement boutique prénom personnalisé flocage marine crème écusson logo couleurs vie du club",
+    "media": {
+      "type": "image",
+      "src": "pub/V5_t-shirts.png",
+      "alt": "Maillots du club en marine et crème, floqués au prénom du joueur avec l'écusson Lentilly Tennis de Table",
+      "aria_label": "Agrandir le visuel des maillots du club"
+    }
+  },
+  {
+    "id": "doc-flyer",
+    "category": "club",
+    "accent": "emerald",
+    "icon_color": "emerald",
+    "icon": "qr-code",
+    "badge_label": "Vie du club",
+    "badge_color": "sky",
+    "version_label": "Format A5",
+    "title": "Flyer du club",
+    "description_html": "L'affiche officielle du vestiaire numérique : logo, accroche, les quatre documents de référence, le maillot du club et un QR code vers <strong class=\"font-semibold text-slate-900 dark:text-white\">www.l-tt.club</strong>. À afficher au gymnase ou à distribuer aux nouveaux adhérents.",
+    "key_points": [
+      "Format A5 portrait",
+      "QR code intégré",
+      "Synthèse des documents",
+      "Export PDF (Ctrl+P)"
+    ],
+    "footer_note": "Impression · arrière-plans activés",
+    "cta_label": "Ouvrir le flyer",
+    "cta_href": "pub/flyerA5.html",
+    "search": "flyer affiche A5 impression imprimer QR code vestiaire communication saison ping documents officiels maillot l-tt.club",
+    "media": {
+      "type": "qr",
+      "href": "pub/flyerA5.html",
+      "qr_src": "pub/qr_l-tt-club.svg",
+      "kicker": "Prêt à imprimer",
+      "title": "Préparez votre saison au ping",
+      "subtitle": "4 documents · maillot · QR vers l-tt.club",
+      "aria_label": "Aperçu du flyer A5 Lentilly Tennis de Table"
+    }
+  }
+]

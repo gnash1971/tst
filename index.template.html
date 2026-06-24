@@ -1,7 +1,11 @@
 <!--
-  Modèle source de la page d'accueil.
-  Après modification des fragments dans partials/, regénérer index.html :
-  python scripts/build_index.py
+  Modèle source de la page d'accueil. Deux directives sont résolues par
+  scripts/build_index.py (écrites entre balises de commentaire HTML) :
+   - « @partial partials/xxx.html » : inclusion d'un fragment statique ;
+   - « @documents » : cartes générées depuis data/documents.json
+     (gabarit templates/doc-card.html.j2). Pour ajouter ou modifier une carte,
+     éditer data/documents.json ; ne pas écrire de carte à la main ici.
+  Après modification, régénérer index.html : python scripts/build_index.py
 -->
 <!DOCTYPE html>
 <html lang="fr">
@@ -24,12 +28,7 @@
 
 <!-- @partial partials/documents-header.html -->
 
-<!-- @partial partials/doc-card-fiche.html -->
-<!-- @partial partials/doc-card-reglement.html -->
-<!-- @partial partials/doc-card-pv.html -->
-<!-- @partial partials/doc-card-statuts.html -->
-<!-- @partial partials/doc-card-maillot.html -->
-<!-- @partial partials/doc-card-flyer.html -->
+<!-- @documents -->
 
             </div>
         </section>
