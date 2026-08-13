@@ -35,3 +35,10 @@ dist/
 # Cache local de génération d'assets (polices TTF téléchargées)
 scripts/_assets_cache/
 
+# Rapports Lighthouse exportés localement (audit ponctuel du site déployé,
+# ~1,4 Mo pièce). Utiles sur le moment, jamais versionnés : sans cette règle
+# le « git add -A » de publier_git.bat les embarquerait dans l'historique.
+*.netlify.app_*.html
+lighthouse-report*.html
+.lighthouseci/
+
