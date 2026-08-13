@@ -28,7 +28,7 @@ jobs:
         with:
           # Version figée : rend l'export du lock déterministe pour la garde
           # anti-dérive ci-dessous (doit correspondre à l'uv local).
-          version: "0.11.24"
+          version: "0.12.3"
           enable-cache: true
 
       - name: Synchronisation de l'environnement (lock verrouillé + outils dev)
