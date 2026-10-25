@@ -21,7 +21,7 @@ dev = [
     "mypy>=1.11",
     "ruff>=0.8",
     "pip-audit>=2.7",
-    "Pillow~=12.2",
+    "Pillow>=13.0",
     "qrcode~=8.2",
 ]
 
