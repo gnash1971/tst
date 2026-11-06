@@ -85,3 +85,35 @@ lock et l'export Netlify :
 uv lock
 uv export --no-dev -o requirements.txt
 ```
+
+### Publication par pull request
+
+`main` est protégée par le ruleset GitHub **eProtec** : aucun push direct,
+même pour un administrateur. Toute modification passe par une pull request,
+fusionnée en *squash* lorsque :
+
+- les deux jobs de la CI sont verts : « Qualité (lint, types, tests, audit) »
+  et « Build prod (parité Netlify) + qualité web » ;
+- l'analyse CodeQL ne relève aucune alerte haute ou critique ;
+- les commits sont signés (le commit *squash* l'est par GitHub).
+
+Aucune relecture n'est exigée (mainteneur unique). Les administrateurs
+peuvent fusionner une PR sans attendre les contrôles (contournement limité
+aux PR), jamais pousser directement.
+
+Le script local `publier_git.bat` (non versionné) suit ce flux : il committe
+sur `main` en local, pousse vers la branche `publication`, ouvre la PR (ou
+met à jour celle qui est ouverte) et programme sa fusion automatique. Au
+lancement suivant, il réaligne `main` sur GitHub en retirant les commits déjà
+fusionnés. La branche `publication` est supprimée par GitHub après chaque
+fusion.
+
+À la main, avec la CLI `gh` :
+
+```bash
+git switch -c ma-branche
+git commit -S -m "…"
+git push -u origin ma-branche
+gh pr create --fill
+gh pr merge --auto --squash
+```

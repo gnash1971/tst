@@ -4,7 +4,12 @@ name: CI
 # audit, garde du lock) et un job « build-web » de parité Netlify suivi de
 # contrôles « qualité web » informatifs (cf. docs/plan-industrialisation.md).
 on:
+  # main n'avance que par pull request (ruleset « eProtec ») : le push y
+  # rejoue la CI sur le commit fusionné. Les branches de PR sont couvertes
+  # par l'événement pull_request ; un push sur toutes les branches lancerait
+  # la CI deux fois par commit.
   push:
+    branches: [main]
   pull_request:
   # Déclenchement manuel depuis l'onglet Actions (bouton « Run workflow »),
   # utile pour relancer la CI sans nouveau commit (ex. après un changement
